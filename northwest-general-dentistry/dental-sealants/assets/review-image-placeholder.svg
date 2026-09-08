@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000" role="img" aria-labelledby="title description">
+  <title id="title">Review image placeholder</title>
+  <desc id="description">A neutral gray and white frame marking a planned image area in a design review.</desc>
+  <rect width="1600" height="1000" fill="#f7f7f5" />
+  <rect x="24" y="24" width="1552" height="952" rx="28" fill="#ffffff" stroke="#c9cccf" stroke-width="8" />
+  <path d="M28 28 1572 972M1572 28 28 972" stroke="#e4e5e6" stroke-width="5" />
+  <rect x="550" y="307" width="500" height="326" rx="24" fill="#f0f1f1" stroke="#aeb2b5" stroke-width="7" />
+  <circle cx="687" cy="420" r="52" fill="#d3d6d8" />
+  <path d="m590 576 142-130 105 95 65-62 108 97Z" fill="#c2c5c7" />
+  <rect x="622" y="688" width="356" height="16" rx="8" fill="#c9cccf" />
+  <rect x="688" y="728" width="224" height="12" rx="6" fill="#e0e2e3" />
+</svg>
