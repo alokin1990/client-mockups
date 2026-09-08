@@ -37,7 +37,6 @@ img { display: block; max-width: 100%; }
 .brand img { width: 180px; height: auto; }
 .nav-row > nav { display: flex; justify-content: center; gap: clamp(.65rem, 1.3vw, 1.55rem); }
 .nav-row > nav a { display: inline-flex; gap: .35rem; align-items: center; color: var(--teal); text-decoration: none; font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.nav-row > nav a span { font-size: .85rem; line-height: 1; }
 .nav-row > nav a:hover { color: var(--white); }
 .mobile-menu { display: none; }
 
