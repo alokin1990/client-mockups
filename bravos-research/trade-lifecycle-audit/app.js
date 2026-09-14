@@ -14,6 +14,7 @@ import {
   summarizeTradeStats,
   tradeWinRate,
 } from "./lib/portfolio-math.js";
+import { getTradeReviewLinks } from "./lib/review-links.js";
 
 const state = {
   trades: [],
@@ -74,6 +75,7 @@ const els = {
   asOf: document.querySelector("#asOfText"),
   selectionTitle: document.querySelector("#selectionTitle"),
   selectionMeta: document.querySelector("#selectionMeta"),
+  reviewTrade: document.querySelector("#reviewTrade"),
   entrySource: document.querySelector("#entrySource"),
   exitSource: document.querySelector("#exitSource"),
   auditKicker: document.querySelector("#auditKicker"),
@@ -339,6 +341,24 @@ function setSourceLink(element, url) {
   }
 }
 
+function updateReviewTradeButton(trade) {
+  const reviewLinks = getTradeReviewLinks(trade);
+  els.reviewTrade.disabled = reviewLinks.length === 0;
+  els.reviewTrade.textContent = reviewLinks.length === 1 ? "OPEN AVAILABLE UPDATE" : "REVIEW TRADE UPDATES";
+  els.reviewTrade.title = reviewLinks.length === 2
+    ? "Open the Bravos entry and exit updates in two new tabs"
+    : reviewLinks.length === 1
+      ? "Open the available Bravos update in a new tab"
+      : "No Bravos entry or exit update is available for this trade";
+}
+
+function openSelectedTradeReview() {
+  const trade = state.trades.find((item) => item.position_id === state.selectedId);
+  for (const url of getTradeReviewLinks(trade)) {
+    window.open(url, "_blank", "noopener,noreferrer");
+  }
+}
+
 function renderSelectedTrade() {
   const trade = state.trades.find((item) => item.position_id === state.selectedId);
   if (!trade) {
@@ -347,11 +367,13 @@ function renderSelectedTrade() {
     els.auditTitle.textContent = "No matching trade";
     els.auditStatus.textContent = "—";
     els.lifecycle.innerHTML = "<li>No lifecycle is available.</li>";
+    updateReviewTradeButton(null);
     return;
   }
 
   els.selectionTitle.textContent = `${trade.ticker} · ${trade.asset}`;
   els.selectionMeta.textContent = `${trade.direction} · ${trade.sector} · ${trade.entry_date} to ${trade.audit_end_date} · ${trade.calendar_days ?? "n.a."} days`;
+  updateReviewTradeButton(trade);
   setSourceLink(els.entrySource, trade.entry_link);
   setSourceLink(els.exitSource, trade.exit_link);
   els.auditKicker.textContent = `${trade.asset} · ${trade.direction}`;
@@ -388,6 +410,7 @@ function wireEvents() {
   document.querySelectorAll('input[name="direction"]').forEach((input) => input.addEventListener("change", applyFilters));
   document.querySelectorAll('input[name="outcome"]').forEach((input) => input.addEventListener("change", applyFilters));
   els.exportCsv.addEventListener("click", exportFilteredCsv);
+  els.reviewTrade.addEventListener("click", openSelectedTradeReview);
   els.reset.addEventListener("click", () => {
     els.year.value = "all";
     els.category.value = "all";
@@ -423,7 +446,11 @@ async function initialize() {
     state.dailyPositions = Array.isArray(payload.daily_positions) ? payload.daily_positions : [];
     state.capitalModel = buildPortfolioModel({ trades: state.trades, dailyPositions: state.dailyPositions });
     state.selectedId = state.trades.some((trade) => trade.position_id === "P0305") ? "P0305" : state.trades[0]?.position_id ?? null;
-    els.asOf.textContent = `Data through ${payload.metadata?.cutoff_date ?? "latest available date"}`;
+    const modeledThrough = payload.metadata?.cutoff_date ?? "latest available date";
+    const sourceCheckedThrough = payload.metadata?.source_checked_through;
+    els.asOf.textContent = sourceCheckedThrough && sourceCheckedThrough !== modeledThrough
+      ? `Completed-trade data through ${modeledThrough} · source checked ${sourceCheckedThrough}`
+      : `Data through ${modeledThrough}`;
     populateFilters();
     applyFilters();
     els.loading.hidden = true;

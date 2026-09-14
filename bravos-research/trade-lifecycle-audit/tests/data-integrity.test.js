@@ -18,6 +18,14 @@ test("source data passes structural and arithmetic integrity checks", () => {
   assert.equal(audit.checks.actionChainFailures, 2);
 });
 
+test("source review date never trails the modeled data cutoff", () => {
+  const { cutoff_date: cutoffDate, source_checked_through: sourceCheckedThrough } = payload.metadata;
+  assert.match(cutoffDate, /^\d{4}-\d{2}-\d{2}$/);
+  assert.match(sourceCheckedThrough, /^\d{4}-\d{2}-\d{2}$/);
+  assert.ok(sourceCheckedThrough >= cutoffDate);
+  assert.equal(payload.metadata.source_post_count, 966);
+});
+
 test("every annual portfolio gain reconciles to its individual trade contributions", () => {
   const model = buildPortfolioModel({ trades: payload.trades, dailyPositions: payload.daily_positions });
   for (const yearly of model.yearly) {

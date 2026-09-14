@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23032f67'/%3E%3Cpath d='M13 43V25h9l8 10 8-16h13L39 45H27L19 35v8z' fill='%2303a9d8'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./styles.css?v=20260914-review-trades">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to trade analysis</a>
@@ -145,6 +145,7 @@
           <h2 id="selectionTitle">Choose a trade</h2>
           <p id="selectionMeta">Select any row in the table to open its full lifecycle.</p>
           <div class="selection-actions">
+            <button id="reviewTrade" class="review-trade-button" type="button" disabled>REVIEW TRADE UPDATES</button>
             <a id="entrySource" class="text-link disabled" href="#">ENTRY SOURCE <span aria-hidden="true">↗</span></a>
             <a id="exitSource" class="text-link disabled" href="#">EXIT SOURCE <span aria-hidden="true">↗</span></a>
           </div>
@@ -202,6 +203,6 @@
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260914-outcome-filter" type="module"></script>
+  <script src="./app.js?v=20260914-review-trades" type="module"></script>
 </body>
 </html>

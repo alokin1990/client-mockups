@@ -2,6 +2,8 @@
   "metadata": {
     "generated_at": "2026-09-14T17:01:42.459Z",
     "cutoff_date": "2026-09-10",
+    "source_checked_through": "2026-09-14",
+    "source_post_count": 966,
     "source": "Bravos Research portfolio updates with researched historical prices",
     "model_note": "One Bravos weight unit is modeled as one percent of a $100 portfolio. Headline portfolio returns chain-link covered daily contribution rates. Results are estimates, not verified brokerage-account returns."
   },

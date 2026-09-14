@@ -421,7 +421,25 @@ select {
 }
 
 .selection-panel > p:not(.eyebrow) { margin: 13px 0 0; color: var(--text); font-size: 0.86rem; }
-.selection-actions { display: flex; flex-wrap: wrap; gap: 18px; margin-top: 24px; }
+.selection-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; margin-top: 24px; }
+
+.review-trade-button {
+  flex-basis: 100%;
+  width: fit-content;
+  padding: 11px 16px;
+  border: 1px solid var(--link-blue);
+  color: var(--white);
+  background: var(--link-blue);
+  cursor: pointer;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  transition: transform 250ms var(--ease), background 250ms var(--ease), opacity 250ms var(--ease);
+}
+
+.review-trade-button:hover:not(:disabled) { transform: translateY(-2px); background: var(--navy); }
+.review-trade-button:focus-visible { outline: 3px solid rgba(0, 168, 219, 0.25); outline-offset: 3px; }
+.review-trade-button:disabled { cursor: not-allowed; opacity: 0.42; }
 
 .text-link {
   color: var(--link-blue);

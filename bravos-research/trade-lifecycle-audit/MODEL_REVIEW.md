@@ -89,6 +89,7 @@ For comparison, the rejected daily-resizing method produced +11.15%. The differe
 ## Data audit
 
 - 367 reconstructed trades were reviewed.
+- The category source was checked again on September 14, 2026 and contained 966 posts. The two posts added after the modeled cutoff are an EOG entry and a BRK.B exposure increase; neither closes a trade, so the completed-trade cutoff remains September 10, 2026.
 - 295 trades have enough resolved data to be modeled; 72 are excluded.
 - 9,641 daily position rows cover 2024-03-05 through 2026-09-10.
 - No duplicate position/date rows, orphan rows, invalid numeric rows, out-of-range rows, or P/L identity failures were found.
