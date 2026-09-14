@@ -1,0 +1,9 @@
+{
+  "name": "bravos-trade-lifecycle-audit",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test --test-isolation=none tests/trade-rules.test.js tests/portfolio-math.test.js tests/data-integrity.test.js",
+    "audit": "node scripts/audit-data.js"
+  }
+}

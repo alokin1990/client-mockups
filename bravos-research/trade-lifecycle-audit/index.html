@@ -46,6 +46,21 @@
         </div>
       </fieldset>
 
+      <fieldset class="direction-filter outcome-filter">
+        <legend>Outcome</legend>
+        <div class="segmented-control">
+          <input type="radio" name="outcome" id="outcomeAll" value="all" checked>
+          <label for="outcomeAll">All</label>
+          <input type="radio" name="outcome" id="outcomeWinner" value="winner">
+          <label for="outcomeWinner">Winners</label>
+          <input type="radio" name="outcome" id="outcomeLoser" value="loser">
+          <label for="outcomeLoser">Losers</label>
+          <input type="radio" name="outcome" id="outcomeIncomplete" value="incomplete">
+          <label for="outcomeIncomplete">Incomplete</label>
+        </div>
+        <small>Open, unmodeled, or flat trades are incomplete.</small>
+      </fieldset>
+
       <div class="filter-actions">
         <button class="export-button" id="exportCsv" type="button">EXPORT FILTERED CSV</button>
         <button class="reset-button" id="resetFilters" type="button">RESET FILTERS</button>
@@ -58,7 +73,7 @@
 
       <div class="model-note">
         <p class="eyebrow">MODEL BASIS</p>
-        <p>Starting capital is $100,000 at the beginning of each calendar year. Each weight unit is 1% of the portfolio value on that day, so dollar exposure falls after losses and rises after gains. Results are estimates, not brokerage-account returns.</p>
+        <p>Starting capital is $100,000 each year. Entries and additions use the portfolio value at that action. Open positions are not resized every day, and trims reduce their pooled allocated capital proportionally. Results are estimates, not brokerage-account returns.</p>
       </div>
     </aside>
 
@@ -73,24 +88,24 @@
 
       <section class="summary-grid" aria-label="Filtered portfolio summary">
         <article class="summary-stat">
-          <span>Compounded return</span>
+          <span>Compounded portfolio return</span>
           <strong id="totalPnl">—</strong>
-          <small>daily chain-linked portfolio estimate</small>
+          <small>full modeled portfolio for the selected year range</small>
         </article>
         <article class="summary-stat">
-          <span>Average trade return</span>
+          <span>Average modeled trade return</span>
           <strong id="averageReturn">—</strong>
-          <small>mean return on average capital</small>
+          <small>mean gain ÷ average allocated capital</small>
         </article>
         <article class="summary-stat">
-          <span>Gain-weighted win rate</span>
+          <span>Trade win rate</span>
           <strong id="winRate">—</strong>
-          <small>gross gains ÷ gains plus losses</small>
+          <small>profitable closed trades ÷ resolved closed trades</small>
         </article>
         <article class="summary-stat">
-          <span>Compounded return / year</span>
+          <span>Annualized portfolio return</span>
           <strong id="annualizedReturn">—</strong>
-          <small>annualized from selected compounded result</small>
+          <small>annualized from the full portfolio result</small>
         </article>
       </section>
 
@@ -151,11 +166,11 @@
             <ol id="lifecycleList" class="lifecycle-list"><li>Waiting for a selected position.</li></ol>
           </div>
           <dl class="audit-metrics">
-            <div><dt>Modeled capital at entry</dt><dd id="auditEntryCapital">—</dd></div>
+            <div><dt>Initial capital in selected range</dt><dd id="auditEntryCapital">—</dd></div>
             <div><dt>Gain/loss in selected range</dt><dd id="auditPnl">—</dd></div>
-            <div><dt>Time-weighted avg weight</dt><dd id="auditWeight">—</dd></div>
-            <div><dt>Return on avg capital</dt><dd id="auditReturn">—</dd></div>
-            <div><dt>Annualized cash-flow IRR</dt><dd id="auditIrr">—</dd></div>
+            <div><dt>Average capital in selected range</dt><dd id="auditAverageCapital">—</dd></div>
+            <div><dt>Modeled return on avg capital</dt><dd id="auditReturn">—</dd></div>
+            <div><dt>Full-trade cash-flow IRR</dt><dd id="auditIrr">—</dd></div>
             <div><dt>SPY benchmark return</dt><dd id="auditSpy">—</dd></div>
             <div><dt>Alpha vs SPY</dt><dd id="auditAlpha">—</dd></div>
             <div><dt>Relative efficiency score</dt><dd id="auditScore">—</dd></div>
@@ -181,12 +196,12 @@
       </section>
 
       <footer>
-        <p>Returns include both gains and losses. Dollar contributions use a $100,000 yearly starting balance, reset every January 1, and reconcile to each covered year's gain/loss. Annualized trade metrics are not additive across positions.</p>
+        <p>Returns include gains and losses. Dollar contributions use action-time position sizing and a $100,000 balance reset every January 1. Category and direction filters change trade statistics, but not the full-portfolio return cards. See the <a href="./MODEL_REVIEW.md">model review and limitations</a>.</p>
       </footer>
     </main>
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260914-dynamic-100k" defer></script>
+  <script src="./app.js?v=20260914-outcome-filter" type="module"></script>
 </body>
 </html>
