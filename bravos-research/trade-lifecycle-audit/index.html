@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interactive lifecycle and return analysis for Bravos Research portfolio trades.">
+  <title>Bravos Trade Lifecycle Audit</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23032f67'/%3E%3Cpath d='M13 43V25h9l8 10 8-16h13L39 45H27L19 35v8z' fill='%2303a9d8'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to trade analysis</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Bravos Trade Audit home">
+      <span class="brand-mark" aria-hidden="true">B</span>
+      <span><strong>BRAVOS</strong><small>TRADE LIFECYCLE AUDIT</small></span>
+    </a>
+    <div class="as-of"><span class="status-dot" aria-hidden="true"></span><span id="asOfText">Loading data</span></div>
+  </header>
+
+  <div class="app-shell">
+    <aside class="filter-panel" aria-labelledby="filterTitle">
+      <div>
+        <p class="eyebrow">FILTERS</p>
+        <h2 id="filterTitle">Portfolio view</h2>
+      </div>
+
+      <label class="field-label" for="yearFilter">Entry year</label>
+      <select id="yearFilter"><option value="all">All years</option></select>
+
+      <label class="field-label" for="categoryFilter">Stock category</label>
+      <select id="categoryFilter"><option value="all">All categories</option></select>
+
+      <fieldset class="direction-filter">
+        <legend>Direction</legend>
+        <div class="segmented-control">
+          <input type="radio" name="direction" id="directionAll" value="all" checked>
+          <label for="directionAll">All</label>
+          <input type="radio" name="direction" id="directionLong" value="LONG">
+          <label for="directionLong">Long</label>
+          <input type="radio" name="direction" id="directionShort" value="SHORT">
+          <label for="directionShort">Short</label>
+        </div>
+      </fieldset>
+
+      <button class="reset-button" id="resetFilters" type="button">RESET FILTERS</button>
+
+      <div class="filter-context" aria-live="polite">
+        <span id="resultCount">—</span>
+        <small>trades in the current view</small>
+      </div>
+
+      <div class="model-note">
+        <p class="eyebrow">MODEL BASIS</p>
+        <p>One Bravos weight unit is modeled as $1 in a fixed $100 portfolio. Results are estimates, not brokerage-account returns.</p>
+      </div>
+    </aside>
+
+    <main id="main-content" class="main-content">
+      <section class="page-intro" aria-labelledby="pageTitle">
+        <div>
+          <p class="eyebrow">PORTFOLIO ANALYTICS</p>
+          <h1 id="pageTitle">Trade lifecycle audit.</h1>
+        </div>
+        <p class="intro-copy">Compare entries, exposure changes, exits, time held, and capital-adjusted outcomes across the portfolio.</p>
+      </section>
+
+      <section class="summary-grid" aria-label="Filtered portfolio summary">
+        <article class="summary-stat">
+          <span>Modeled P/L</span>
+          <strong id="totalPnl">—</strong>
+          <small>sum per $100 model portfolio</small>
+        </article>
+        <article class="summary-stat">
+          <span>Average trade return</span>
+          <strong id="averageReturn">—</strong>
+          <small>mean return on average capital</small>
+        </article>
+        <article class="summary-stat">
+          <span>Win rate</span>
+          <strong id="winRate">—</strong>
+          <small>positive modeled P/L</small>
+        </article>
+        <article class="summary-stat">
+          <span>Average holding period</span>
+          <strong id="averageDays">—</strong>
+          <small>calendar days</small>
+        </article>
+      </section>
+
+      <section class="analysis-grid">
+        <article class="chart-panel" aria-labelledby="chartTitle">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">CATEGORY ATTRIBUTION</p>
+              <h2 id="chartTitle">Modeled P/L by category</h2>
+            </div>
+            <span class="chart-unit">$ / 100</span>
+          </div>
+          <div id="categoryChart" class="bar-chart" role="img" aria-label="Modeled profit and loss by stock category"></div>
+        </article>
+
+        <article class="selection-panel" aria-labelledby="selectionTitle">
+          <p class="eyebrow">SELECTED POSITION</p>
+          <h2 id="selectionTitle">Choose a trade</h2>
+          <p id="selectionMeta">Select any row in the table to open its full lifecycle.</p>
+          <div class="selection-actions">
+            <a id="entrySource" class="text-link disabled" href="#">ENTRY SOURCE <span aria-hidden="true">↗</span></a>
+            <a id="exitSource" class="text-link disabled" href="#">EXIT SOURCE <span aria-hidden="true">↗</span></a>
+          </div>
+        </article>
+      </section>
+
+      <section class="audit-card" aria-labelledby="auditTitle">
+        <div class="audit-head">
+          <div>
+            <p id="auditKicker">TRADE LIFECYCLE AUDIT</p>
+            <h2 id="auditTitle">Select a trade from the table</h2>
+          </div>
+          <span id="auditStatus" class="audit-status">—</span>
+        </div>
+        <div class="audit-rule"></div>
+        <div class="audit-layout">
+          <div>
+            <h3>EXPOSURE LIFECYCLE</h3>
+            <ol id="lifecycleList" class="lifecycle-list"><li>Waiting for a selected position.</li></ol>
+          </div>
+          <dl class="audit-metrics">
+            <div><dt>Total modeled P/L</dt><dd id="auditPnl">—</dd></div>
+            <div><dt>Time-weighted avg weight</dt><dd id="auditWeight">—</dd></div>
+            <div><dt>Return on avg capital</dt><dd id="auditReturn">—</dd></div>
+            <div><dt>Annualized cash-flow IRR</dt><dd id="auditIrr">—</dd></div>
+            <div><dt>SPY benchmark return</dt><dd id="auditSpy">—</dd></div>
+            <div><dt>Alpha vs SPY</dt><dd id="auditAlpha">—</dd></div>
+            <div><dt>Relative efficiency score</dt><dd id="auditScore">—</dd></div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="table-section" aria-labelledby="tableTitle">
+        <div class="section-heading table-heading">
+          <div>
+            <p class="eyebrow">COMPLETE DATASET</p>
+            <h2 id="tableTitle">All filtered trades</h2>
+          </div>
+          <p>Click a row to inspect the trade.</p>
+        </div>
+        <div class="table-shell" tabindex="0" aria-label="Scrollable trade data table">
+          <table id="tradeTable">
+            <thead></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+        <div id="emptyState" class="empty-state" hidden>No trades match the selected filters.</div>
+      </section>
+
+      <footer>
+        <p>Returns include both gains and losses. Annualized trade metrics are not additive across positions.</p>
+      </footer>
+    </main>
+  </div>
+
+  <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
