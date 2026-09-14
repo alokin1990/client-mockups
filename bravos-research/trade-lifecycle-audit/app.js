@@ -35,6 +35,7 @@ const columns = [
 const els = {
   year: document.querySelector("#yearFilter"),
   category: document.querySelector("#categoryFilter"),
+  exportCsv: document.querySelector("#exportCsv"),
   reset: document.querySelector("#resetFilters"),
   resultCount: document.querySelector("#resultCount"),
   totalPnl: document.querySelector("#totalPnl"),
@@ -121,10 +122,48 @@ function applyFilters() {
     state.selectedId = state.filtered[0]?.position_id ?? null;
   }
 
+  els.exportCsv.disabled = state.filtered.length === 0;
+
   renderSummary();
   renderCategoryChart();
   renderTable();
   renderSelectedTrade();
+}
+
+function csvValue(trade, column) {
+  const value = trade[column.key];
+  if (value == null) return "";
+  if (column.type === "percent") return finite(value) ? `${(value * 100).toFixed(4)}%` : "";
+  if (["number", "number4", "signed4", "score"].includes(column.type)) return finite(value) ? String(value) : "";
+  return String(value);
+}
+
+function escapeCsv(value) {
+  const safe = /^[=+@]/.test(value) ? `'${value}` : value;
+  return `"${safe.replaceAll('"', '""')}"`;
+}
+
+function fileSlug(value) {
+  return String(value).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "all";
+}
+
+function exportFilteredCsv() {
+  if (!state.filtered.length) return;
+  const headers = columns.map((column) => escapeCsv(column.label));
+  const rows = [...state.filtered].sort(compareTrades).map((trade) => columns.map((column) => escapeCsv(csvValue(trade, column))).join(","));
+  const csv = `\uFEFF${[headers.join(","), ...rows].join("\r\n")}`;
+  const blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  const url = URL.createObjectURL(blob);
+  const year = els.year.value === "all" ? "all-years" : els.year.value;
+  const category = els.category.value === "all" ? "all-categories" : fileSlug(els.category.value);
+  const direction = selectedDirection() === "all" ? "all-directions" : selectedDirection().toLowerCase();
+  const anchor = document.createElement("a");
+  anchor.href = url;
+  anchor.download = `bravos-trades-${year}-${category}-${direction}.csv`;
+  document.body.append(anchor);
+  anchor.click();
+  anchor.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 function renderSummary() {
@@ -275,6 +314,7 @@ function wireEvents() {
   els.year.addEventListener("change", applyFilters);
   els.category.addEventListener("change", applyFilters);
   document.querySelectorAll('input[name="direction"]').forEach((input) => input.addEventListener("change", applyFilters));
+  els.exportCsv.addEventListener("click", exportFilteredCsv);
   els.reset.addEventListener("click", () => {
     els.year.value = "all";
     els.category.value = "all";

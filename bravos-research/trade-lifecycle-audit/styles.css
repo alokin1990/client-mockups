@@ -203,12 +203,15 @@ select {
 .segmented-control input:checked + label { color: var(--white); background: var(--navy); }
 .segmented-control input:focus-visible + label { outline: 3px solid var(--cyan); outline-offset: -3px; }
 
+.filter-actions {
+  display: grid;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.export-button,
 .reset-button {
   min-height: 48px;
-  margin-top: 10px;
-  border: 0;
-  color: var(--navy);
-  background: var(--cyan);
   cursor: pointer;
   font-size: 0.75rem;
   font-weight: 700;
@@ -216,7 +219,21 @@ select {
   transition: transform 250ms var(--ease), background 180ms ease;
 }
 
-.reset-button:hover { transform: translateY(-2px); background: #14b7e3; }
+.export-button {
+  border: 0;
+  color: var(--navy);
+  background: var(--cyan);
+}
+
+.reset-button {
+  border: 1px solid #bac7d6;
+  color: var(--navy);
+  background: var(--white);
+}
+
+.export-button:hover { transform: translateY(-2px); background: #14b7e3; }
+.reset-button:hover { transform: translateY(-2px); background: #eef4f8; }
+.export-button:disabled { cursor: not-allowed; opacity: 0.45; transform: none; }
 
 .filter-context {
   margin-top: 17px;

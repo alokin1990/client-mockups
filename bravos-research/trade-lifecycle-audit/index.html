@@ -46,7 +46,10 @@
         </div>
       </fieldset>
 
-      <button class="reset-button" id="resetFilters" type="button">RESET FILTERS</button>
+      <div class="filter-actions">
+        <button class="export-button" id="exportCsv" type="button">EXPORT FILTERED CSV</button>
+        <button class="reset-button" id="resetFilters" type="button">RESET FILTERS</button>
+      </div>
 
       <div class="filter-context" aria-live="polite">
         <span id="resultCount">—</span>
@@ -164,6 +167,6 @@
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260914-annualized" defer></script>
+  <script src="./app.js?v=20260914-csv-export" defer></script>
 </body>
 </html>
