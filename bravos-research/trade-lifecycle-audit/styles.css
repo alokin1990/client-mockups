@@ -332,6 +332,28 @@ select {
   line-height: 1;
 }
 
+.yearly-capital {
+  margin: -12px 0 42px;
+  padding: 26px;
+  border: 1px solid var(--line);
+  background: var(--off-white);
+}
+
+.yearly-heading { align-items: end; }
+.yearly-heading h2 { margin: 0; color: var(--navy); font-size: 1.12rem; }
+.yearly-heading > p { max-width: 62ch; margin: 0; color: var(--text); font-size: 0.78rem; text-align: right; }
+.yearly-table-shell { margin-top: 20px; overflow-x: auto; }
+.yearly-table { width: 100%; min-width: 680px; background: var(--white); }
+.yearly-table th { position: static; }
+.yearly-table td { font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+.yearly-table th:not(:first-child), .yearly-table td:not(:first-child) { text-align: right; }
+
+.yearly-footnote {
+  margin: 10px 0 0;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
 .value-positive { color: #087e65 !important; }
 .value-negative { color: #c73e4b !important; }
 
@@ -507,6 +529,8 @@ footer { margin-top: 34px; padding-top: 22px; border-top: 1px solid var(--line);
   .main-content { padding: 38px 18px 44px; }
   .page-intro { grid-template-columns: 1fr; gap: 18px; }
   .page-intro h1 { font-size: clamp(2.5rem, 12vw, 4rem); }
+  .yearly-heading { display: block; }
+  .yearly-heading > p { margin-top: 10px; text-align: left; }
   .audit-card { padding: 26px 20px; border-radius: 20px; }
   .bar-row { grid-template-columns: 108px minmax(120px, 1fr) 58px; gap: 8px; }
 }

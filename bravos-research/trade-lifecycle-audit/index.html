@@ -28,7 +28,7 @@
         <h2 id="filterTitle">Portfolio view</h2>
       </div>
 
-      <label class="field-label" for="yearFilter">Entry year</label>
+      <label class="field-label" for="yearFilter">Calendar year</label>
       <select id="yearFilter"><option value="all">All years</option></select>
 
       <label class="field-label" for="categoryFilter">Stock category</label>
@@ -58,7 +58,7 @@
 
       <div class="model-note">
         <p class="eyebrow">MODEL BASIS</p>
-        <p>One Bravos weight unit is modeled as one percentage point of a $100 portfolio. Covered daily gains and losses are compounded; results are estimates, not brokerage-account returns.</p>
+        <p>Starting capital is $100,000 at the beginning of each calendar year. Each weight unit is 1% of the portfolio value on that day, so dollar exposure falls after losses and rises after gains. Results are estimates, not brokerage-account returns.</p>
       </div>
     </aside>
 
@@ -94,6 +94,25 @@
         </article>
       </section>
 
+      <section class="yearly-capital" aria-labelledby="yearlyCapitalTitle">
+        <div class="section-heading yearly-heading">
+          <div>
+            <p class="eyebrow">$100,000 YEARLY MODEL</p>
+            <h2 id="yearlyCapitalTitle">Starting capital and gained sum per year</h2>
+          </div>
+          <p>Each year resets to $100,000. The gain/loss column is the sum of that year's individual trade contributions across the full modeled portfolio.</p>
+        </div>
+        <div class="yearly-table-shell">
+          <table class="yearly-table">
+            <thead>
+              <tr><th>Year</th><th>Starting capital</th><th>Gain / loss</th><th>Ending capital</th><th>Compounded return</th></tr>
+            </thead>
+            <tbody id="yearlyCapitalBody"></tbody>
+          </table>
+        </div>
+        <p class="yearly-footnote">2023 is shown as n.a. because covered daily position data begins on March 5, 2024.</p>
+      </section>
+
       <section class="analysis-grid">
         <article class="chart-panel" aria-labelledby="chartTitle">
           <div class="section-heading">
@@ -101,7 +120,7 @@
               <p class="eyebrow">CATEGORY ATTRIBUTION</p>
               <h2 id="chartTitle">Modeled P/L by category</h2>
             </div>
-            <span class="chart-unit">$ / 100</span>
+            <span class="chart-unit">$ contribution</span>
           </div>
           <div id="categoryChart" class="bar-chart" role="img" aria-label="Modeled profit and loss by stock category"></div>
         </article>
@@ -132,7 +151,8 @@
             <ol id="lifecycleList" class="lifecycle-list"><li>Waiting for a selected position.</li></ol>
           </div>
           <dl class="audit-metrics">
-            <div><dt>Total modeled P/L</dt><dd id="auditPnl">—</dd></div>
+            <div><dt>Modeled capital at entry</dt><dd id="auditEntryCapital">—</dd></div>
+            <div><dt>Gain/loss in selected range</dt><dd id="auditPnl">—</dd></div>
             <div><dt>Time-weighted avg weight</dt><dd id="auditWeight">—</dd></div>
             <div><dt>Return on avg capital</dt><dd id="auditReturn">—</dd></div>
             <div><dt>Annualized cash-flow IRR</dt><dd id="auditIrr">—</dd></div>
@@ -161,12 +181,12 @@
       </section>
 
       <footer>
-        <p>Returns include both gains and losses. Annualized trade metrics are not additive across positions.</p>
+        <p>Returns include both gains and losses. Dollar contributions use a $100,000 yearly starting balance, reset every January 1, and reconcile to each covered year's gain/loss. Annualized trade metrics are not additive across positions.</p>
       </footer>
     </main>
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260914-gain-weighted" defer></script>
+  <script src="./app.js?v=20260914-dynamic-100k" defer></script>
 </body>
 </html>
