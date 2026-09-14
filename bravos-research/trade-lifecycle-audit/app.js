@@ -187,10 +187,12 @@ function renderSummary() {
     ? Math.pow(1 + compoundedReturn, 365 / elapsedDays) - 1
     : null;
   const averageReturn = returnRows.length ? returnRows.reduce((sum, trade) => sum + trade.return_on_average_capital, 0) / returnRows.length : null;
-  const winRate = pnlRows.length ? pnlRows.filter((trade) => trade.total_pnl > 0).length / pnlRows.length : null;
+  const grossGains = pnlRows.reduce((sum, trade) => sum + Math.max(trade.total_pnl, 0), 0);
+  const grossLosses = pnlRows.reduce((sum, trade) => sum + Math.abs(Math.min(trade.total_pnl, 0)), 0);
+  const gainWeightedWinRate = grossGains + grossLosses > 0 ? grossGains / (grossGains + grossLosses) : null;
   setSignedValue(els.totalPnl, compoundedReturn, fmtPercent);
   setSignedValue(els.averageReturn, averageReturn, fmtPercent);
-  els.winRate.textContent = finite(winRate) ? fmtPercent(winRate).replace("+", "") : "n.a.";
+  els.winRate.textContent = finite(gainWeightedWinRate) ? fmtPercent(gainWeightedWinRate).replace("+", "") : "n.a.";
   setSignedValue(els.annualizedReturn, annualizedReturn, fmtPercent);
 }
 
