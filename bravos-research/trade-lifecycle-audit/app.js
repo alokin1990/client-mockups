@@ -40,7 +40,7 @@ const els = {
   totalPnl: document.querySelector("#totalPnl"),
   averageReturn: document.querySelector("#averageReturn"),
   winRate: document.querySelector("#winRate"),
-  averageDays: document.querySelector("#averageDays"),
+  annualizedReturn: document.querySelector("#annualizedReturn"),
   categoryChart: document.querySelector("#categoryChart"),
   tableHead: document.querySelector("#tradeTable thead"),
   tableBody: document.querySelector("#tradeTable tbody"),
@@ -131,25 +131,28 @@ function renderSummary() {
   els.resultCount.textContent = state.filtered.length.toLocaleString("en-US");
   const pnlRows = state.filtered.filter((trade) => finite(trade.total_pnl));
   const returnRows = state.filtered.filter((trade) => finite(trade.return_on_average_capital));
-  const dayRows = state.filtered.filter((trade) => finite(trade.calendar_days));
   const filteredIds = new Set(state.filtered.map((trade) => trade.position_id));
   const dailyPnl = new Map();
   for (const row of state.dailyPositions) {
     if (!filteredIds.has(row.position_id) || !finite(row.pnl)) continue;
     dailyPnl.set(row.date, (dailyPnl.get(row.date) ?? 0) + row.pnl);
   }
-  const compoundedReturn = dailyPnl.size
-    ? [...dailyPnl.entries()]
-      .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
-      .reduce((growth, [, pnl]) => growth * (1 + pnl / 100), 1) - 1
+  const dailyEntries = [...dailyPnl.entries()].sort(([dateA], [dateB]) => dateA.localeCompare(dateB));
+  const compoundedReturn = dailyEntries.length
+    ? dailyEntries.reduce((growth, [, pnl]) => growth * (1 + pnl / 100), 1) - 1
+    : null;
+  const firstDate = dailyEntries.length ? new Date(`${dailyEntries[0][0]}T00:00:00Z`) : null;
+  const lastDate = dailyEntries.length ? new Date(`${dailyEntries.at(-1)[0]}T00:00:00Z`) : null;
+  const elapsedDays = firstDate && lastDate ? Math.max((lastDate - firstDate) / 86400000, 1) : null;
+  const annualizedReturn = finite(compoundedReturn) && elapsedDays && compoundedReturn > -1
+    ? Math.pow(1 + compoundedReturn, 365 / elapsedDays) - 1
     : null;
   const averageReturn = returnRows.length ? returnRows.reduce((sum, trade) => sum + trade.return_on_average_capital, 0) / returnRows.length : null;
   const winRate = pnlRows.length ? pnlRows.filter((trade) => trade.total_pnl > 0).length / pnlRows.length : null;
-  const averageDays = dayRows.length ? dayRows.reduce((sum, trade) => sum + trade.calendar_days, 0) / dayRows.length : null;
   setSignedValue(els.totalPnl, compoundedReturn, fmtPercent);
   setSignedValue(els.averageReturn, averageReturn, fmtPercent);
   els.winRate.textContent = finite(winRate) ? fmtPercent(winRate).replace("+", "") : "n.a.";
-  els.averageDays.textContent = finite(averageDays) ? `${fmtNumber(averageDays, 1)}d` : "n.a.";
+  setSignedValue(els.annualizedReturn, annualizedReturn, fmtPercent);
 }
 
 function renderCategoryChart() {
