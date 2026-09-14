@@ -1,5 +1,6 @@
 const state = {
   trades: [],
+  dailyPositions: [],
   filtered: [],
   selectedId: null,
   sortKey: "entry_date",
@@ -131,11 +132,21 @@ function renderSummary() {
   const pnlRows = state.filtered.filter((trade) => finite(trade.total_pnl));
   const returnRows = state.filtered.filter((trade) => finite(trade.return_on_average_capital));
   const dayRows = state.filtered.filter((trade) => finite(trade.calendar_days));
-  const totalPnl = pnlRows.reduce((sum, trade) => sum + trade.total_pnl, 0);
+  const filteredIds = new Set(state.filtered.map((trade) => trade.position_id));
+  const dailyPnl = new Map();
+  for (const row of state.dailyPositions) {
+    if (!filteredIds.has(row.position_id) || !finite(row.pnl)) continue;
+    dailyPnl.set(row.date, (dailyPnl.get(row.date) ?? 0) + row.pnl);
+  }
+  const compoundedReturn = dailyPnl.size
+    ? [...dailyPnl.entries()]
+      .sort(([dateA], [dateB]) => dateA.localeCompare(dateB))
+      .reduce((growth, [, pnl]) => growth * (1 + pnl / 100), 1) - 1
+    : null;
   const averageReturn = returnRows.length ? returnRows.reduce((sum, trade) => sum + trade.return_on_average_capital, 0) / returnRows.length : null;
   const winRate = pnlRows.length ? pnlRows.filter((trade) => trade.total_pnl > 0).length / pnlRows.length : null;
   const averageDays = dayRows.length ? dayRows.reduce((sum, trade) => sum + trade.calendar_days, 0) / dayRows.length : null;
-  setSignedValue(els.totalPnl, totalPnl, (value) => finite(value) ? `${value > 0 ? "+" : ""}$${fmtNumber(value, 2)}` : "n.a.");
+  setSignedValue(els.totalPnl, compoundedReturn, fmtPercent);
   setSignedValue(els.averageReturn, averageReturn, fmtPercent);
   els.winRate.textContent = finite(winRate) ? fmtPercent(winRate).replace("+", "") : "n.a.";
   els.averageDays.textContent = finite(averageDays) ? `${fmtNumber(averageDays, 1)}d` : "n.a.";
@@ -292,6 +303,7 @@ async function initialize() {
     if (!response.ok) throw new Error(`Trade data request failed with ${response.status}`);
     const payload = await response.json();
     state.trades = Array.isArray(payload.trades) ? payload.trades : [];
+    state.dailyPositions = Array.isArray(payload.daily_positions) ? payload.daily_positions : [];
     state.selectedId = state.trades.some((trade) => trade.position_id === "P0305") ? "P0305" : state.trades[0]?.position_id ?? null;
     els.asOf.textContent = `Data through ${payload.metadata?.cutoff_date ?? "latest available date"}`;
     populateFilters();
