@@ -48,6 +48,7 @@ export function auditDataset(payload, tolerance = 1e-9) {
     .map((trade) => trade.position_id);
   const actionChainFailures = [];
   const actionDatesWithoutDailyRows = [];
+  const terminalStatusContradictions = [];
   for (const trade of included) {
     const actions = trade.actions ?? [];
     for (let index = 0; index < actions.length; index += 1) {
@@ -62,6 +63,20 @@ export function auditDataset(payload, tolerance = 1e-9) {
       if (!rowsByPosition.get(trade.position_id)?.has(action.date)) {
         actionDatesWithoutDailyRows.push(`${trade.position_id}|${action.date}`);
       }
+    }
+
+    const terminalAction = actions.at(-1);
+    const hasPositiveResidual = isFiniteNumber(terminalAction?.weight_after)
+      && terminalAction.weight_after > tolerance;
+    if (trade.status === "CLOSED" && hasPositiveResidual) {
+      terminalStatusContradictions.push(
+        `${trade.position_id}: CLOSED after ${terminalAction.type} left weight ${terminalAction.weight_after}`,
+      );
+    }
+    if (trade.status === "OPEN AT CUTOFF" && terminalAction?.type === "Final exit") {
+      terminalStatusContradictions.push(
+        `${trade.position_id}: OPEN AT CUTOFF after ${terminalAction?.type ?? "terminal action"} left no weight`,
+      );
     }
   }
 
@@ -79,6 +94,7 @@ export function auditDataset(payload, tolerance = 1e-9) {
     pnlIdentityFailures,
     includedWithoutDailyRows: includedWithoutDailyRows.length,
     actionDatesWithoutDailyRows: actionDatesWithoutDailyRows.length,
+    terminalStatusContradictions: terminalStatusContradictions.length,
   };
   for (const [name, count] of Object.entries(criticalCounts)) {
     if (count > 0) criticalIssues.push(`${name}: ${count}`);
@@ -121,6 +137,7 @@ export function auditDataset(payload, tolerance = 1e-9) {
       includedWithoutDailyRows: includedWithoutDailyRows.slice(0, 10),
       actionChainFailures: actionChainFailures.slice(0, 10),
       actionDatesWithoutDailyRows: actionDatesWithoutDailyRows.slice(0, 10),
+      terminalStatusContradictions: terminalStatusContradictions.slice(0, 10),
     },
     criticalIssues,
     warnings,

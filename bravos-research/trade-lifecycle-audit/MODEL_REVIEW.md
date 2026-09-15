@@ -11,6 +11,8 @@ The corrected model changes capital only when an action occurs:
 - trim: reduce the pooled allocated capital in proportion to the weight reduction;
 - final exit: reduce allocated capital to zero.
 
+A trim is not a close. A lifecycle is marked closed only when the source reports a final exit or zero remaining weight. If a partial exit leaves a positive weight, the residual position remains open and continues to be marked through the model cutoff. Realized profit from the trimmed shares and unrealized profit or loss on the residual shares are both retained.
+
 This is an action-sized attribution estimate. It is more faithful to the stated rule, but it is still not a verified brokerage-account return.
 
 ## Separation of responsibilities
@@ -80,9 +82,9 @@ Each calendar year is an independent $100,000 scenario.
 |---|---:|---:|---:|---:|
 | Mar 5-Dec 31, 2024 | $100,000.00 | -$301.43 | $99,698.57 | -0.30% |
 | Jan 1-Dec 31, 2025 | $100,000.00 | +$6,578.72 | $106,578.72 | +6.58% |
-| Jan 1-Sep 10, 2026 | $100,000.00 | +$5,490.49 | $105,490.49 | +5.49% |
+| Jan 1-Sep 10, 2026 | $100,000.00 | +$5,739.97 | $105,739.97 | +5.74% |
 
-The chain-linked return across the three independent covered periods is **+12.09%**. Annualized over the inclusive covered calendar span, it is **+4.63%**.
+The chain-linked return across the three independent covered periods is **+12.36%**. Annualized over the inclusive covered calendar span, it is **+4.73%**.
 
 For comparison, the rejected daily-resizing method produced +11.15%. The difference is caused by when position capital is allowed to change, not by removing losses.
 
@@ -91,9 +93,10 @@ For comparison, the rejected daily-resizing method produced +11.15%. The differe
 - 367 reconstructed trades were reviewed.
 - The category source was checked again on September 14, 2026 and contained 966 posts. The two posts added after the modeled cutoff are an EOG entry and a BRK.B exposure increase; neither closes a trade, so the completed-trade cutoff remains September 10, 2026.
 - 295 trades have enough resolved data to be modeled; 72 are excluded.
-- 9,641 daily position rows cover 2024-03-05 through 2026-09-10.
+- 9,740 daily position rows cover 2024-03-05 through 2026-09-10.
 - No duplicate position/date rows, orphan rows, invalid numeric rows, out-of-range rows, or P/L identity failures were found.
 - Every included action date has a daily position row.
+- Seven open 2026 lifecycles (`NTRA`, `XLF`, `IBB`, `TBBB`, `NVDA`, `XLV`, and `CF`) had been truncated at their latest partial exit. Their positive residual weights are now carried through the cutoff, and the audit rejects a closed status when the terminal action leaves positive weight.
 - The source P/L identity holds for every row: `pnl = capital_base × daily_return_on_capital`.
 - Source aggregate capital bases peak at 100 weight units on 2026-06-17 and do not exceed 100.
 - Two action chains are internally inconsistent: `P0078` (ETH) and `P0100` (ETR) enter at weight 2, but a later partial exit says its before-weight is 5. The model follows the stated trim ratio, so 5→2 removes 60% and 5→3 removes 40%, while retaining the actual pooled capital accumulated from the recorded entry. These two trades should be checked against the original posts.
