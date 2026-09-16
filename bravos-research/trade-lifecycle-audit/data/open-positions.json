@@ -1,0 +1,41 @@
+{
+  "as_of": "2026-09-16",
+  "source": "Current Bravos website holdings supplied by the user; not independently refreshed",
+  "price_cutoff": "2026-09-10",
+  "positions": [
+    {"ticker":"EWJ","asset":"iShares MSCI Japan ETF","direction":"LONG","weight":8,"position_id":"P0327"},
+    {"ticker":"XLF","asset":"Financial Select Sector SPDR Fund","direction":"LONG","weight":3,"position_id":"P0343"},
+    {"ticker":"IBB","asset":"iShares Biotechnology ETF","direction":"LONG","weight":5,"position_id":"P0346"},
+    {"ticker":"XLV","asset":"Health Care Select Sector SPDR Fund","direction":"LONG","weight":3,"position_id":"P0352"},
+    {"ticker":"EWW","asset":"iShares MSCI Mexico ETF","direction":"LONG","weight":5,"position_id":"P0362"},
+    {"ticker":"ARGT","asset":"Global X MSCI Argentina ETF","direction":"LONG","weight":5,"position_id":"P0365"},
+    {"ticker":"MAGS","asset":"Roundhill Magnificent Seven ETF","direction":"LONG","weight":5,"position_id":"P0366"},
+    {"ticker":"NTRA","asset":"Natera Inc","direction":"LONG","weight":2,"position_id":"P0338"},
+    {"ticker":"TBBB","asset":"BBB Foods Inc","direction":"LONG","weight":3,"position_id":"P0349"},
+    {"ticker":"NVDA","asset":"Nvidia Corporation","direction":"LONG","weight":6,"position_id":"P0350"},
+    {"ticker":"TEVA","asset":"Teva Pharmaceutical Limited","direction":"LONG","weight":5,"position_id":"P0358"},
+    {"ticker":"CF","asset":"CF Industries Holdings, Inc.","direction":"LONG","weight":4,"position_id":"P0363"},
+    {"ticker":"BRK.B","asset":"Berkshire Hathaway Inc.","direction":"LONG","weight":8,"position_id":"P0364"},
+    {"ticker":"EOG","asset":"EOG Resources, Inc.","direction":"LONG","weight":5,"position_id":null,"sector":"Energy"},
+    {"ticker":"SRUUF","asset":"Sprott Physical Uranium Trust","direction":"LONG","weight":5,"position_id":"P0361"},
+    {"ticker":"IBIT","asset":"iShares Bitcoin Trust","direction":"LONG","weight":3,"position_id":"P0367"}
+  ],
+  "marks": {
+    "EWJ":{"date":"2026-09-10","close":96.44000244140625},
+    "XLF":{"date":"2026-09-10","close":56.77000045776367},
+    "IBB":{"date":"2026-09-10","close":202.63999938964844},
+    "XLV":{"date":"2026-09-10","close":165.66000366210938},
+    "EWW":{"date":"2026-09-10","close":75.25},
+    "ARGT":{"date":"2026-09-10","close":97.06999969482422},
+    "MAGS":{"date":"2026-09-10","close":69.18000030517578},
+    "NTRA":{"date":"2026-09-10","close":324.94500732421875},
+    "TBBB":{"date":"2026-09-10","close":51.34000015258789},
+    "NVDA":{"date":"2026-09-10","close":218.36000061035156},
+    "TEVA":{"date":"2026-09-10","close":36.1150016784668},
+    "CF":{"date":"2026-09-10","close":135.11000061035156},
+    "BRK.B":{"date":"2026-09-10","close":507},
+    "SRUUF":{"date":"2026-09-10","close":19.81999969482422},
+    "IBIT":{"date":"2026-09-10","close":43.68000030517578}
+  },
+  "mark_source": "Last cached historical closes at or before the existing model cutoff, copied from daily-portfolio-audit/data/marks.json"
+}

@@ -11,12 +11,14 @@ export function getKnownYears(trades) {
 
 export function tradeOverlapsYear(trade, year) {
   if (year === "all") return true;
+  if (trade.current_open && !trade.entry_date) return trade.snapshot_as_of?.startsWith(year) ?? false;
   const start = `${year}-01-01`;
   const end = `${year}-12-31`;
   return Boolean(trade.entry_date && trade.audit_end_date && trade.entry_date <= end && trade.audit_end_date >= start);
 }
 
 export function classifyTradeOutcome(trade, gainLoss, year = "all", tolerance = 1e-9) {
+  if (trade.current_open) return "open";
   const isModeled = trade?.model_status === "Included" && isFiniteNumber(gainLoss);
   const isClosedInScope = trade?.status === "CLOSED"
     && (year === "all" || trade.audit_end_date?.startsWith(year));

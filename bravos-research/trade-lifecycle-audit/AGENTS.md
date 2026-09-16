@@ -11,6 +11,7 @@ This folder presents an estimated portfolio model from reconstructed Bravos trad
 - `lib/trade-rules.js`: trade filtering and weight-action business rules.
 - `lib/portfolio-math.js`: pure capital allocation and return calculations.
 - `lib/data-audit.js`: source-data integrity checks.
+- `data/open-positions.json` / `lib/open-positions.js`: dated user-supplied current-holdings overlay and residual-share unrealized calculations. Do not backdate current weights, invent entries/adds, reopen prior lifecycles, or equate snapshot absence with a historical exit. Preserve price cutoffs and explicitly exclude unresolved current cost bases from subtotal coverage.
 - `lib/trade-recovery.js`: non-mutating excluded-trade scenario adapter. Preserve original actions/links; use an explicit final exit only. The exit-only scenario is not daily mark-to-market performance. Additions remain excluded until a dollar/share ledger is available.
 - `app.js`: presentation, interaction, sorting, and export only.
 
@@ -25,7 +26,7 @@ This folder presents an estimated portfolio model from reconstructed Bravos trad
 7. Annual portfolio gain/loss must equal the sum of all modeled trade contributions in that year.
 8. Compound portfolio returns. Never sum or compound trade-level percentages to manufacture a portfolio return.
 9. Category and direction filters may change trade statistics and attribution, but they must not relabel a filtered sleeve as the full portfolio's compounded return.
-10. Outcome classification is mutually exclusive: a winner or loser must be closed, included in the model, non-flat, and resolved inside the selected year. Everything else is incomplete for that view.
+10. Outcome classification is mutually exclusive: current holdings explicitly matched to a dated user-supplied snapshot are open, even if their cost basis is incomplete. A winner or loser must be closed, included in the model, non-flat, and resolved inside the selected year. Everything else is incomplete for that view. Preserve original source statuses and actions. Snapshot absence is not evidence of an exit.
 11. Trade win rate is a count: winners divided by winners plus losers. Do not substitute gross gain share or weight it by P/L dollars.
 
 ## Change procedure

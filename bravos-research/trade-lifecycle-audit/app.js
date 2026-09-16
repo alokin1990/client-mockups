@@ -16,6 +16,7 @@ import {
 import { getTradeReviewLinks } from "./lib/review-links.js?v=20260916-exit-recovery";
 import { categoryAttributionRows } from "./lib/category-attribution.js";
 import { buildRecoveryScenario } from "./lib/trade-recovery.js";
+import { applyOpenSnapshot, unrealizedPosition, summarizeUnrealized } from "./lib/open-positions.js";
 
 const state = {
   trades: [],
@@ -27,6 +28,8 @@ const state = {
   capitalModel: null,
   payload: null,
   baselineModel: null,
+  openSnapshot: null,
+  unrealized: new Map(),
 };
 
 const columns = [
@@ -35,7 +38,11 @@ const columns = [
   { key: "ticker", label: "Ticker" },
   { key: "asset", label: "Asset" },
   { key: "direction", label: "Direction" },
-  { key: "status", label: "Status" },
+  { key: "display_status", label: "Status" },
+  { key: "status", label: "Original Source Status" },
+  { key: "current_weight", label: "Current Snapshot Weight", type: "number" },
+  { key: "snapshot_as_of", label: "Holdings Snapshot Date", type: "date" },
+  { key: "unrealized_pnl", label: "Unrealized P/L at Price Cutoff", type: "signedCurrency2" },
   { key: "entry_date", label: "Entry Date", type: "date" },
   { key: "audit_end_date", label: "Exit or Mark Date", type: "date" },
   { key: "calendar_days", label: "Calendar Days", type: "number" },
@@ -156,6 +163,8 @@ function modeledTradeOutcome(trade) {
 }
 
 function columnValue(trade, column) {
+  if (column.key === "display_status") return modeledTradeOutcome(trade)==='open'?'OPEN':modeledTradeOutcome(trade)==='incomplete'?'INCOMPLETE':'CLOSED';
+  if (column.key === "unrealized_pnl") return state.unrealized.get(trade.position_id)?.unrealized ?? null;
   if (column.key === "modeled_entry_capital") return modeledTradeStats(trade)?.initialCapital ?? null;
   if (column.key === "modeled_average_capital") return modeledTradeStats(trade)?.averageCapital ?? null;
   if (column.key === "modeled_gain_loss") return modeledTradeGain(trade);
@@ -203,6 +212,7 @@ function applyFilters() {
 
   renderSummary();
   renderYearlyCapital();
+  renderUnrealized();
   renderCategoryChart();
   renderTable();
   renderSelectedTrade();
@@ -274,6 +284,14 @@ function renderYearlyCapital() {
       <td class="${valueClass(row.return)}">${fmtPercent(row.return)}</td>
     </tr>`;
   }).join("");
+}
+
+function renderUnrealized() {
+  const rows=state.filtered.filter(t=>t.current_open).map(t=>state.unrealized.get(t.position_id));
+  const summary=summarizeUnrealized(rows);
+  setSignedValue(document.querySelector('#unrealizedTotal'),summary.total,fmtSignedCurrency);
+  document.querySelector('#unrealizedContext').textContent=`Holdings supplied as of ${state.openSnapshot.as_of}: 16 open positions, 75 total weight points. This filtered view values ${summary.covered} positions; ${summary.missing} need review. Cached prices through ${state.openSnapshot.price_cutoff}, NOT current live prices. Uses this page's $100,000 yearly action-sizing model. Unrealized P/L = remaining shares × mark − remaining cost (reversed for shorts). Realized trim profits are excluded. Missing EOG history and the BRK.B 5→8 increase are not guessed. This subtotal is already represented in modeled P/L where covered; do not add it again to portfolio returns.`;
+  document.querySelector('#unrealizedBody').innerHTML=rows.map(r=>`<tr><td>${escapeHtml(r.ticker)}</td><td>${fmtNumber(r.weight,0)}</td><td>${fmtNumber(r.sourceWeight,0)}</td><td>${fmtCurrency(r.cost)}</td><td>${fmtCurrency(r.value)}</td><td class="${valueClass(r.unrealized)}">${fmtSignedCurrency(r.unrealized)}</td><td>${escapeHtml(r.reason || r.markDate)}</td></tr>`).join('') || '<tr><td colspan="7">No confirmed current holdings match these filters. This section is a current-holdings snapshot, not historical holdings for a selected past year.</td></tr>';
 }
 
 function renderCategoryChart() {
@@ -383,13 +401,13 @@ function renderSelectedTrade() {
   }
 
   els.selectionTitle.textContent = `${trade.ticker} · ${trade.asset}`;
-  els.selectionMeta.textContent = `${trade.direction} · ${trade.sector} · ${trade.entry_date} to ${trade.audit_end_date} · ${trade.calendar_days ?? "n.a."} days`;
+  els.selectionMeta.textContent = `${trade.direction} · ${trade.sector ?? 'Unclassified'} · ${trade.entry_date ?? 'Entry date unknown'} to ${trade.audit_end_date ?? 'Current snapshot only'} · ${trade.calendar_days ?? "n.a."} days${trade.current_open?` · Confirmed open ${trade.snapshot_as_of}, weight ${trade.current_weight}`:''}`;
   updateReviewTradeButton(trade);
   setSourceLink(els.entrySource, trade.entry_link);
   setSourceLink(els.exitSource, trade.exit_link);
   els.auditKicker.textContent = `${trade.asset} · ${trade.direction}`;
-  els.auditTitle.textContent = `$${trade.ticker} · Trade #${trade.trade_number}`;
-  els.auditStatus.textContent = trade.status;
+  els.auditTitle.textContent = `$${trade.ticker} · ${trade.trade_number?`Trade #${trade.trade_number}`:'Current holding · history pending'}`;
+  els.auditStatus.textContent = columnValue(trade,{key:'display_status'});
   els.auditRecoveryNote.textContent = trade.recovery_basis
     ? `${trade.recovery_basis}: ${trade.recovery_note}. ${trade.omitted_partial_exits} incomplete partial exits omitted from the estimate. P/L is recognized on exits only; exact daily and year-boundary market values are unavailable. Original actions remain in the dataset and review links.` : "";
 
@@ -468,6 +486,9 @@ async function initialize() {
     const response = await fetch("./data/trades.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`Trade data request failed with ${response.status}`);
     const payload = await response.json();
+    const holdingsResponse=await fetch('./data/open-positions.json',{cache:'no-store'});
+    if(!holdingsResponse.ok)throw new Error('Cannot load current holdings snapshot');
+    state.openSnapshot=await holdingsResponse.json();
     state.payload = payload;
     state.trades = Array.isArray(payload.trades) ? payload.trades : [];
     state.dailyPositions = Array.isArray(payload.daily_positions) ? payload.daily_positions : [];
@@ -498,11 +519,12 @@ function selectCalculationMode() {
   const recovered = scenario.reviews.filter(r => r.recovered);
   const withFallback = recovered.filter(r => r.skipped.length);
   const enhanced = els.calculation.value === "recovered";
-  state.trades = enhanced ? scenario.trades : state.payload.trades;
+  state.trades = applyOpenSnapshot(enhanced ? scenario.trades : state.payload.trades,state.openSnapshot);
   state.dailyPositions = enhanced ? scenario.dailyPositions : state.payload.daily_positions;
   state.capitalModel = enhanced
     ? buildPortfolioModel({ trades: state.trades, dailyPositions: state.dailyPositions }) : state.baselineModel;
+  state.unrealized=new Map(state.trades.filter(t=>t.current_open).map(t=>[t.position_id,unrealizedPosition(t,state.capitalModel,state.openSnapshot.marks[t.ticker],state.openSnapshot)]));
   els.recoveryContext.textContent = enhanced
     ? `Exit-based scenario: ${recovered.length} previously excluded closed trades added; ${withFallback.length} use the incomplete-trim fallback. Recovered trades recognize gains/losses at exits only, not daily market moves. This changes yearly timing and compounding in either direction. Original daily-coverage result: ${fmtPercent(state.baselineModel.compoundedReturn)} across all covered years. ${scenario.reviews.length - recovered.length} trades still excluded. No missing entries/adds or final exits are invented.`
-    : `Original daily-coverage model: ${scenario.reviews.length} trades excluded. ${recovered.length} have enough recorded entry/exit data for the separate exit-based scenario. Open trades can already contribute to this model even though the outcome filter calls them incomplete.`;
+    : `Original daily-coverage model: ${scenario.reviews.length} historical trades excluded. ${recovered.length} have enough recorded entry/exit data for the separate exit-based scenario. Current holdings have a separate Open filter; unresolved historical trades remain Incomplete. Snapshot-only holdings do not create invented model executions.`;
 }

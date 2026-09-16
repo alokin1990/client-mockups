@@ -4,6 +4,8 @@ This version deliberately does not use annual $100,000 resets or the old fixed-s
 
 ## Accounting
 
+The September 16 user-supplied current-holdings list is stored separately in `../trade-lifecycle-audit/data/open-positions.json`. The current open-position unrealized section matches exact lifecycle IDs to the final continuous ledger day, independent of historical range filters. Fourteen weights match; BRK.B's 5-versus-8 exposure mismatch and EOG's absent entry history remain n.a., not zero. The source action chains and historical ledger are unchanged. Current holdings are not backdated to September 10 or used to invent cash flows. Marks remain at the existing model cutoff, not today's live prices. This page uses continuous dollar sizing, while Trade Review's analogous section uses yearly model sizing; do not mix their dollar totals. Unrealized P/L on residual shares excludes realized trims and is already counted in portfolio equity. Current snapshot absence does not prove a historical exit.
+
 - Entry/add dollars = positive weight change / 100 × previous day's closing portfolio equity. All same-day actions use the same opening equity; shares added = dollars / action price.
 - Long purchase: cash decreases by dollars. Short sale: cash increases by dollars and shares owed increase. This cash includes short proceeds and is NOT available buying power.
 - Trim fraction = (before weight − after weight) / before weight. A final exit closes all remaining shares. Relieve pooled shares and cost proportionally; an inconsistent weight chain is excluded rather than silently repaired.

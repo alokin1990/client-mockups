@@ -9,7 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23032f67'/%3E%3Cpath d='M13 43V25h9l8 10 8-16h13L39 45H27L19 35v8z' fill='%2303a9d8'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=20260916-navigation">
+  <link rel="stylesheet" href="./styles.css?v=20260916-header">
+  <link rel="stylesheet" href="./dashboard-header.css?v=20260916-header">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to trade analysis</a>
@@ -65,10 +66,12 @@
           <label for="outcomeWinner">Winners</label>
           <input type="radio" name="outcome" id="outcomeLoser" value="loser">
           <label for="outcomeLoser">Losers</label>
+          <input type="radio" name="outcome" id="outcomeOpen" value="open">
+          <label for="outcomeOpen">Open</label>
           <input type="radio" name="outcome" id="outcomeIncomplete" value="incomplete">
           <label for="outcomeIncomplete">Incomplete</label>
         </div>
-        <small>Open, unmodeled, or flat trades are incomplete.</small>
+        <small>Open = confirmed current holdings. Incomplete = unresolved historical trades or flat/out-of-period results.</small>
       </fieldset>
 
       <div class="filter-actions">
@@ -118,6 +121,12 @@
           <strong id="annualizedReturn">—</strong>
           <small>annualized from the full portfolio result</small>
         </article>
+      </section>
+
+      <section class="yearly-capital" aria-labelledby="unrealizedTitle">
+        <div class="section-heading"><div><p class="eyebrow">CONFIRMED OPEN POSITIONS</p><h2 id="unrealizedTitle">Unrealized gain / loss</h2></div><strong id="unrealizedTotal">—</strong></div>
+        <p id="unrealizedContext" class="chart-note"></p>
+        <div class="yearly-table-shell"><table class="yearly-table"><thead><tr><th>Asset</th><th>Current weight</th><th>Recorded weight</th><th>Remaining cost</th><th>Marked value</th><th>Unrealized P/L</th><th>Price date / review note</th></tr></thead><tbody id="unrealizedBody"></tbody></table></div>
       </section>
 
       <section class="yearly-capital" aria-labelledby="yearlyCapitalTitle">
@@ -218,6 +227,6 @@
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260916-exit-recovery" type="module"></script>
+  <script src="./app.js?v=20260916-open-snapshot" type="module"></script>
 </body>
 </html>

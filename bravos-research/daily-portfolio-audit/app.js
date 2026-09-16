@@ -2,12 +2,13 @@ import {buildDailyLedger,selectRange} from './lib/ledger.js';
 import {dailyCsv} from './lib/csv.js';
 import {wholeDollar} from './lib/display.js';
 import {buildRecoveryScenario} from '../trade-lifecycle-audit/lib/trade-recovery.js';
+import {ledgerSnapshotRows,summarizeUnrealized} from '../trade-lifecycle-audit/lib/open-positions.js';
 const $=id=>document.getElementById(id), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=x=>x==null?'—':new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2}).format(x);
 const number=x=>new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(x);
 const signed=(x,format=money)=>`<span class="${x<0?'negative':x>0?'positive':''}">${x>0?'+':''}${format(x)}</span>`;
 const recoveryEnabled=()=>$('calculation-basis').value==='recovered';
-let payload, marks, ledger, range, selected, excluded, coverageText;
+let payload, marks, ledger, range, selected, excluded, coverageText, openSnapshot;
 function rebuild(){
  const source=recoveryEnabled() ? buildRecoveryScenario(payload).trades : payload.trades;
  ledger=buildDailyLedger({trades:source.filter(t=>t.model_status==='Included'),marks,cutoff:payload.metadata.cutoff_date});
@@ -16,7 +17,14 @@ function rebuild(){
  $('excluded-label').textContent=`${excluded.length} excluded records — see reasons`;
  $('excluded').innerHTML=excluded.map(x=>`<div>${esc(x.trade.position_id)} · ${esc(x.trade.ticker)} — ${esc(x.reason)}</div>`).join('');
  coverageText=$('coverage').textContent;
+ renderOpenSnapshot();
  renderRange();
+}
+function renderOpenSnapshot(){
+ const rows=ledgerSnapshotRows(openSnapshot,ledger.days.at(-1)),summary=summarizeUnrealized(rows);
+ $('open-unrealized').innerHTML=signed(summary.total,wholeDollar);
+ $('open-context').textContent=`Current holdings supplied as of ${openSnapshot.as_of}: 16 positions, 75 weight points. Valued ${summary.covered}; ${summary.missing} require entry/add details. This current-holdings section stays at the model cutoff ${payload.metadata.cutoff_date}, independent of the historical date filters above. Uses this page's continuous cash/share ledger and the selected calculation basis; it differs from Trade Review's yearly-reset dollar basis. These are cached historical marks, not today's live prices. Realized trim P/L is excluded; unrealized P/L is already in portfolio value, so never add this subtotal again. Historical unresolved records are not confirmed current holdings.`;
+ $('open-positions').innerHTML=rows.map(r=>`<tr><td>${esc(r.ticker)}</td><td>${number(r.weight)}</td><td>${r.sourceWeight==null?'—':number(r.sourceWeight)}</td><td>${money(r.cost)}</td><td>${money(r.value)}</td><td>${signed(r.unrealized)}</td><td>${esc(r.reason||r.markDate)}</td></tr>`).join('');
 }
 function renderRange(){
  if(!$('from').value || !$('to').value || $('from').value>$('to').value){clearRange('Choose valid From and To dates, with From on or before To.');return;}
@@ -83,7 +91,8 @@ function exportCsv(){
 }
 async function init(){
  const fetchJson=async url=>{const r=await fetch(url);if(!r.ok)throw new Error(`Cannot load ${url} (${r.status})`);return r.json();};
- [payload,{marks}]=await Promise.all([fetchJson('../trade-lifecycle-audit/data/trades.json'),fetchJson('data/marks.json')]);
+ [payload,{marks},openSnapshot]=await Promise.all([fetchJson('../trade-lifecycle-audit/data/trades.json'),fetchJson('data/marks.json'),fetchJson('../trade-lifecycle-audit/data/open-positions.json')]);
+ $('asOfText').textContent=`Daily model through ${payload.metadata.cutoff_date} · source checked ${payload.metadata.source_checked_through ?? payload.metadata.source_review_date ?? 'not recorded'}`;
  const years=[...new Set(payload.daily_positions.map(d=>d.date.slice(0,4)))];years.forEach(y=>$('year').add(new Option(y,y)));
  $('year').value=years.at(-1);$('from').value=`${years.at(-1)}-01-01`;$('to').value=payload.metadata.cutoff_date;
  $('year').onchange=()=>{const y=$('year').value;$('from').value=y==='all'?ledger.days[0].date:`${y}-01-01`;$('to').value=y==='all'?payload.metadata.cutoff_date:[`${y}-12-31`,payload.metadata.cutoff_date].sort()[0];renderRange();};

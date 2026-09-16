@@ -35,6 +35,14 @@ app.js
 
 ## Current formulas
 
+### September 16 current-holdings overlay and unrealized P/L
+
+`data/open-positions.json` records the 16 positions (75 weight points) supplied by the user as the current Bravos website list on September 16. It is a dated status overlay, not independently verified live execution data. `lib/open-positions.js` matches explicit lifecycle IDs so earlier closed trades in the same symbol are never reopened. It preserves all original source actions/statuses; non-confirmed unresolved historical lifecycles remain INCOMPLETE, not assumed closed. A snapshot-only EOG row is OPEN with missing history and no fabricated entry/date/price. BRK.B is OPEN at current weight 8, but its recorded weight remains 5 until its dated exposure increase is reconstructed. Neither gap creates a portfolio cash flow or changes existing return totals.
+
+Open is separate from winner/loser/incomplete classification and never enters the resolved-trade win-rate denominator. Current holdings filters do not reconstruct historical holdings. Missing-history holdings appear in the snapshot year; past-year views remain based on recorded lifecycle dates.
+
+Unrealized P/L uses the selected calculation basis's yearly model action capital: entries/adds buy shares at recorded prices; trims reduce pooled shares and cost proportionally. Remaining marked value = remaining shares × cached close. Long unrealized P/L = marked value − remaining cost; shorts reverse the sign. Realized trim gains are not included. Missing weights, cost history, marks, or cross-year cost-basis bridges produce n.a., not zero. Fourteen current weights match and can be valued; BRK.B's missing increase and EOG's missing entry are excluded from the unrealized subtotal. Available cached closes are September 10, not September 16 live prices. No later snapshot weights are backdated into the older model. The section is marked as an estimate at the price cutoff, not today's verified account P/L; its contribution must not be added again to existing portfolio totals. The daily continuous-account page uses its own cash/share ledger and dollar basis.
+
 For an entry or increase:
 
 ```text
@@ -107,7 +115,7 @@ The year filter changes both the portfolio period and trade calculations. Catego
 
 Category and long/short filters do **not** change the compounded portfolio return cards. Computing a filtered sleeve return would require an explicit cash-allocation rule for capital that was assigned to excluded positions; without that rule, it would be easy to display a misleading number. Trade win rate is a count of resolved winners, not a dollar-weighted gain share.
 
-The outcome filter is selected-period aware. A winner or loser must be closed, included in the model, have a non-zero modeled gain or loss, and be resolved inside the selected calendar year. Open-at-cutoff, excluded/unmodeled, exact-flat, and cross-year positions that have not yet closed are labeled incomplete for that view. Outcome filtering changes trade statistics and attribution, but not the full-portfolio return cards.
+The outcome filter is selected-period aware. The 16 explicitly matched current holdings are Open; historical unresolved holdings not in that snapshot are Incomplete, not presumed closed. A winner or loser must be closed, included in the model, have a non-zero modeled gain or loss, and be resolved inside the selected calendar year. Other excluded/unmodeled, exact-flat, and out-of-period positions are incomplete for that view. The dashboard Status column/badge follows this view classification, while Original Source Status preserves the recorded closure information. Outcome filtering changes trade statistics and attribution, but not the full-portfolio return cards.
 
 ## Known limitations
 
