@@ -1,0 +1,56 @@
+{
+  "original": {
+    "eligible": 292,
+    "excluded": [
+      {
+        "id": "P0078",
+        "ticker": "ETH",
+        "reason": "Inconsistent allocation chain"
+      },
+      {
+        "id": "P0100",
+        "ticker": "ETR",
+        "reason": "Inconsistent allocation chain"
+      },
+      {
+        "id": "P0165",
+        "ticker": "ESLOF",
+        "reason": "Missing execution price"
+      }
+    ],
+    "firstDate": "2024-03-05",
+    "lastDate": "2026-09-10",
+    "endingEquity": 111873.05547377051,
+    "provisionalDays": 325,
+    "negativeCashDays": 2,
+    "maxIdentityError": 1.6007106751203537e-10,
+    "maxDailyError": 6.639311322942376e-11
+  },
+  "recovery": {
+    "eligible": 324,
+    "excluded": [
+      {
+        "id": "P0078",
+        "ticker": "ETH",
+        "reason": "Inconsistent allocation chain"
+      },
+      {
+        "id": "P0100",
+        "ticker": "ETR",
+        "reason": "Inconsistent allocation chain"
+      },
+      {
+        "id": "P0165",
+        "ticker": "ESLOF",
+        "reason": "Missing execution price"
+      }
+    ],
+    "firstDate": "2024-03-05",
+    "lastDate": "2026-09-10",
+    "endingEquity": 124764.8394766059,
+    "provisionalDays": 637,
+    "negativeCashDays": 4,
+    "maxIdentityError": 5.820766091346741e-11,
+    "maxDailyError": 5.4797055781818926e-11
+  }
+}

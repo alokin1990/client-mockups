@@ -49,6 +49,11 @@ a { color: inherit; }
 
 .skip-link:focus { top: 16px; }
 
+.version-nav { display: flex; flex-wrap: wrap; gap: 8px; max-width: var(--shell); margin: 18px auto; padding-inline: 24px; }
+.version-nav a { display: inline-block; padding: 11px 18px; border: 1px solid #b9cadd; background: #fff; color: #032f67; font-size: 14px; font-weight: 600; text-decoration: none; }
+.version-nav a:hover { background: #e7f2fa; }
+.version-nav a[aria-current="page"] { background: #032f67; border-color: #032f67; color: #fff; }
+
 :focus-visible {
   outline: 3px solid var(--cyan);
   outline-offset: 3px;

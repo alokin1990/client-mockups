@@ -1,0 +1,1 @@
+{"name":"bravos-daily-portfolio-audit","private":true,"type":"module","scripts":{"test":"node --test --test-isolation=none tests/ledger.test.js tests/navigation.test.js","prepare":"node scripts/prepare-data.js","preview":"node scripts/serve.js"}}
