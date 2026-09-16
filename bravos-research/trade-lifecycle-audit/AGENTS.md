@@ -11,6 +11,7 @@ This folder presents an estimated portfolio model from reconstructed Bravos trad
 - `lib/trade-rules.js`: trade filtering and weight-action business rules.
 - `lib/portfolio-math.js`: pure capital allocation and return calculations.
 - `lib/data-audit.js`: source-data integrity checks.
+- `lib/trade-recovery.js`: non-mutating excluded-trade scenario adapter. Preserve original actions/links; use an explicit final exit only. The exit-only scenario is not daily mark-to-market performance. Additions remain excluded until a dollar/share ledger is available.
 - `app.js`: presentation, interaction, sorting, and export only.
 
 ## Non-negotiable math rules

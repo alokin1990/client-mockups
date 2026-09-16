@@ -111,6 +111,29 @@ The outcome filter is selected-period aware. A winner or loser must be closed, i
 
 ## Known limitations
 
+### September 16 excluded-trade recovery scenario
+
+Keep the original daily-coverage model and its source data unchanged. A separately selectable exit-based scenario may recover an excluded CLOSED lifecycle only when its entry price, entry weight, capital additions (if any), and explicit final-exit price/date are usable. Never use the last partial exit or a later, different lifecycle as a final exit. Missing entry/add data still blocks recovery.
+
+In this scenario, omit an unusable partial exit from the effective action sequence and hold that exposure until the next usable exit, ultimately the explicit final exit. Preserve every original action and source link. A usable trim closes the reported proportion of remaining pooled shares. If a skipped trim changes effective weight, apply later usable trim ratios to effective weight rather than inventing source facts.
+
+This round reviewed all 72 excluded lifecycles and recovered 32 endpoint-based scenarios: 11 complete-action trades without daily coverage and 21 trades with incomplete trims (22 omitted trim actions). Forty remain excluded. Capital additions remain excluded until their resolved dated dollar/share ledger can be reconstructed; a fixed-basis pooled return is not sufficient when dollar sizing differs between additions.
+
+| Covered period | Original daily coverage | With exit-based recovery estimates |
+|---|---:|---:|
+| 2024 partial year | -0.30% | +4.20% |
+| 2025 | +6.58% | +12.78% |
+| 2026 through Sep 10 | +5.74% | +6.47% |
+| Chain-linked covered years | +12.36% | +25.12% |
+
+These differences include both recovered contributions and the resulting changes in subsequent action-sized allocations. They are not simply sums of recovered trade percentages. The original dataset is unchanged; `data/excluded-trade-review.json` lists every excluded trade, recovery reason, omitted original trims, effective actions, and modeled annual contributions. Run `node scripts/review-excluded.js` to regenerate it.
+
+ALUM P0268 was checked against the saved authenticated entry, trim, and final-exit articles. They explicitly state 2025-12-19 at 3.85 and weight 5, 2026-03-30 at 4.53 reducing 5 to 4, and 2026-06-10 at 4.615. Its fixed-$100 P/L is `(4.53/3.85-1) + 4*(4.615/3.85-1) = 0.9714285714`, or 19.43% of original five-unit allocation. Its 50.57% source IRR is annualized and must not be mistaken for its holding-period or portfolio return. The complete ALUM trim is retained. Other recoveries are rule-screened from reconstructed endpoints, not newly verified brokerage executions.
+
+An independent endpoint dollar/share check of the original model's 22 included CLOSED trades with additions and entry/exit both in 2026 found a net -$10.42 difference from their modeled contributions, holding the original allocation path constant. Largest individual difference: TSM P0273 modeled +$588.58 versus pooled dollar/share endpoint +$584.27. This is a real approximation in applying fixed-basis daily returns to pooled modeled capital when additions receive different dollars per source weight. It does not explain a many-percentage-point shortfall, and this diagnostic is not a replayed portfolio correction. A dated lot/cash-flow model remains the next math improvement; do not describe the current aggregate as exact brokerage P/L.
+
+Recovered positions recognize P/L only on exits; intervening rows have zero **recognized** P/L, not an assertion of zero market movement. This is a realization-timing estimate, not daily mark-to-market TWR. Cross-year P/L is recognized in the exit year; unknown January market values and missed intrayear equity changes can affect allocation and compounding in either direction. Display the baseline beside the scenario and do not claim the difference is a verified correction. Full-trade dollar P/L is recoverable from endpoints; exact monthly/yearly market returns still require daily marks. Known complete partial exits, including ALUM, must not be discarded.
+
 ### Sector / theme and entry-setup provenance
 
 `sector` is assigned during reconstruction using a curated ticker-to-theme map, then keyword rules against the ticker and asset name, with `Other / Review` as the unresolved classification fallback. These are broad research themes, not a verified provider taxonomy or official Bravos sector labels. `setup` is separately inferred from trade direction and entry-report URL/evidence keywords; unmatched long entries default to `Tactical long`, which does not establish an explicit source strategy.

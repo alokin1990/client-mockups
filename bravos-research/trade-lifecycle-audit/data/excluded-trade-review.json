@@ -1,0 +1,5210 @@
+{
+  "reviewed_on": "2026-09-16",
+  "cutoff": "2026-09-10",
+  "basis": "Recorded endpoints only. Missing trims omitted, complete trims preserved. Recovered P/L recognized on exit dates, not daily market moves. Not verified account TWR.",
+  "baseline_compounded_return": 0.1235659938899818,
+  "scenario_compounded_return": 0.2511937220428999,
+  "years": [
+    {
+      "year": "2024",
+      "baseline_gain_loss": -301.4298588996171,
+      "baseline_return": -0.003014298588996156,
+      "scenario_gain_loss": 4195.27845089561,
+      "scenario_return": 0.04195278450895601
+    },
+    {
+      "year": "2025",
+      "baseline_gain_loss": 6578.718024590824,
+      "baseline_return": 0.06578718024590824,
+      "scenario_gain_loss": 12781.928705639846,
+      "scenario_return": 0.12781928705639856
+    },
+    {
+      "year": "2026",
+      "baseline_gain_loss": 5739.965515558972,
+      "baseline_return": 0.05739965515558976,
+      "scenario_gain_loss": 6472.38923967359,
+      "scenario_return": 0.06472389239673593
+    }
+  ],
+  "recovery_audit": {
+    "counts": {
+      "trades": 367,
+      "includedTrades": 327,
+      "excludedTrades": 40,
+      "dailyRows": 11610
+    },
+    "coverageByYear": [
+      {
+        "year": "2024",
+        "rows": 2743,
+        "positions": 78,
+        "firstDate": "2024-03-05",
+        "lastDate": "2024-12-31"
+      },
+      {
+        "year": "2025",
+        "rows": 4933,
+        "positions": 170,
+        "firstDate": "2025-01-01",
+        "lastDate": "2025-12-31"
+      },
+      {
+        "year": "2026",
+        "rows": 3934,
+        "positions": 109,
+        "firstDate": "2026-01-01",
+        "lastDate": "2026-09-10"
+      }
+    ],
+    "checks": {
+      "duplicateDailyRows": 0,
+      "orphanDailyRows": 0,
+      "excludedTradeDailyRows": 0,
+      "outOfRangeDailyRows": 0,
+      "invalidDailyRows": 0,
+      "pnlIdentityFailures": 0,
+      "includedWithoutDailyRows": 0,
+      "actionDatesWithoutDailyRows": 0,
+      "terminalStatusContradictions": 0,
+      "actionChainFailures": 2
+    },
+    "exposure": {
+      "maxAggregateWeight": 103,
+      "maxAggregateWeightDate": "2026-05-29",
+      "daysOver100Weight": 1
+    },
+    "samples": {
+      "includedWithoutDailyRows": [],
+      "actionChainFailures": [
+        "P0078: 2 does not continue to 5 at 2024-12-19",
+        "P0100: 2 does not continue to 5 at 2025-01-22"
+      ],
+      "actionDatesWithoutDailyRows": [],
+      "terminalStatusContradictions": []
+    },
+    "criticalIssues": [],
+    "warnings": [
+      "Aggregate source capital_base exceeds 100 weight units on 1 covered days.",
+      "2 action chains contain a stated before-weight that does not match the prior after-weight.",
+      "40 trades are excluded from modeled returns."
+    ]
+  },
+  "trades": [
+    {
+      "position_id": "P0001",
+      "ticker": "BTCUSD",
+      "direction": "SHORT",
+      "status": "OPEN AT CUTOFF",
+      "entry_date": "2024-01-12",
+      "exit_or_mark_date": "2026-09-10",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-01-26",
+      "recovered": false,
+      "reason": "No explicit completed lifecycle",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Partial exit",
+          "date": "2024-01-26",
+          "price": 39902,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/flash-update-booking-profits-on-bitcoin-short/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0002",
+      "ticker": "TLT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2023-11-08",
+      "exit_or_mark_date": "2024-02-13",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-02-13",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Final exit",
+          "date": "2024-02-13",
+          "price": 93,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/flash-update-closing-tlt-and-gld/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0003",
+      "ticker": "GLD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2023-11-08",
+      "exit_or_mark_date": "2024-02-13",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-02-13",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Final exit",
+          "date": "2024-02-13",
+          "price": 184.12,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/flash-update-closing-tlt-and-gld/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0004",
+      "ticker": "IWM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-02-14",
+      "exit_or_mark_date": "2024-03-14",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2024-02-14",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Add",
+          "date": "2024-02-14",
+          "price": null,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/adding-small-caps-as-a-long/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-03-14",
+          "price": 202.029999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-small-caps-stocks-iwm-1-5/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0005",
+      "ticker": "SUGAR",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-02-20",
+      "exit_or_mark_date": "2024-04-01",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-20",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-20",
+          "price": 22.75,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-a-short-trade-on-sugar-futures/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-04-01",
+          "price": 22.719999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-sugar-futures-short-position/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0006",
+      "ticker": "ETHUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2023-12-01",
+      "exit_or_mark_date": "2024-03-08",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-02-21",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Partial exit",
+          "date": "2024-02-21",
+          "price": 2942,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-ethereum-37/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-03-08",
+          "price": 3923,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-ethereum-long-84-profit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0007",
+      "ticker": "SRUUF",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-02-22",
+      "exit_or_mark_date": "2024-02-23",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-22",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-22",
+          "price": 29.1,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-uranium-spot/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-02-23",
+          "price": 27.309999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/uranium-breaks-down-shifting-the-trade-from-long-to-short/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0008",
+      "ticker": "URANIUM",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-02-23",
+      "exit_or_mark_date": "2024-03-05",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-23",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-23",
+          "price": 27.309999,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/uranium-breaks-down-shifting-the-trade-from-long-to-short/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-03-05",
+          "price": 26.469999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-uranium-short-7/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0009",
+      "ticker": "COCOA",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-02-23",
+      "exit_or_mark_date": "2024-05-21",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-23",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-23",
+          "price": 6562,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-a-short-trade-on-cocoa-futures/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-03-14",
+          "price": null,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-weight-of-short-trade-on-cocoa-futures/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-05-21",
+          "price": 7394,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-short-trade-on-cocoa-futures/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0010",
+      "ticker": "SOLUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-02-28",
+      "exit_or_mark_date": "2024-03-19",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-28",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-28",
+          "price": 108.5,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-solana/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-03-11",
+          "price": 147.56,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-solana-36/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-03-19",
+          "price": 176.855,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-solana-63/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0011",
+      "ticker": "PALLADIUM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-02-29",
+      "exit_or_mark_date": "2024-04-02",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-02-29",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-02-29",
+          "price": 926,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-palladium/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-03-13",
+          "price": 1064.9,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-palladium-15/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-04-02",
+          "price": 992.299988,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-palladium-futures-long-position/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0013",
+      "ticker": "URANIUM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-03-08",
+      "exit_or_mark_date": "2024-06-21",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-03-08",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-03-08",
+          "price": 27.709999,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-a-long-trade-on-uranium/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-21",
+          "price": 27.139999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-trade-on-uranium-loss-of-bullish-momentum/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0014",
+      "ticker": "XLE",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-01-16",
+      "exit_or_mark_date": "2025-01-10",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2024-03-11",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Add",
+          "date": "2024-03-11",
+          "price": null,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-weight-of-short-trade-on-xle/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-01-10",
+          "price": 89.3,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-short-on-energy-stocks-xle-false-breakdown/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0015",
+      "ticker": "MCHI",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-01-23",
+      "exit_or_mark_date": "2024-04-12",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-03-13",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Partial exit",
+          "date": "2024-03-13",
+          "price": 40.865,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-chinese-stocks-mchi-10/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-04-12",
+          "price": 39.379,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-china-stocks-position-6/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0016",
+      "ticker": "GDX",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2023-11-08",
+      "exit_or_mark_date": "2024-09-26",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-03-19",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Partial exit",
+          "date": "2024-03-19",
+          "price": 29.74116,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-gold-miners-gdx-3-7/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-05-23",
+          "price": 34.75,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-gold-miners-gdx-following-false-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-09-26",
+          "price": 41.8728,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-gold-miners-etf-gdx-46-profit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0017",
+      "ticker": "SLV",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2023-11-08",
+      "exit_or_mark_date": "2024-06-25",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-03-19",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Partial exit",
+          "date": "2024-03-19",
+          "price": 22.8993,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-silver-slv-11/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-25",
+          "price": 26.4,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/exiting-silver-long-trade-break-of-price-channel/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0020",
+      "ticker": "IWM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-03-21",
+      "exit_or_mark_date": "2024-05-29",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2024-05-02",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-03-21",
+          "price": 207.940002,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/reinitiating-long-trade-on-small-caps/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-05-02",
+          "price": null,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/adding-to-our-long-trade-on-small-cap-stocks-iwm/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-05-29",
+          "price": 202.130005,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-small-cap-stocks-long-trade-iwm/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0021",
+      "ticker": "TLT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-03-21",
+      "exit_or_mark_date": "2024-11-15",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2024-05-02",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-03-21",
+          "price": 89.76,
+          "weight_before": 0,
+          "weight_after": 3,
+          "capital_added": 3,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-bonds-tlt-following-fed-pivot/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-05-02",
+          "price": null,
+          "weight_before": 3,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/adding-to-our-long-trade-on-20-year-treasury-bonds-tlt/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-11-15",
+          "price": 89.76,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-treasury-bond-etf-tlt-rising-yields/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0022",
+      "ticker": "XBI",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-03-21",
+      "exit_or_mark_date": "2024-11-15",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-03-21",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-03-21",
+          "price": 95.86,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-sp-biotech-xbi/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-05-02",
+          "price": null,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/adding-to-our-long-trade-on-biotech-stocks-xbi/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-11-15",
+          "price": 95.86,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-biotech-etf-xbi-break-of-support/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0025",
+      "ticker": "BDRY",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-04-09",
+      "exit_or_mark_date": "2024-06-18",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-04-09",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-09",
+          "price": 12.78,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-the-dry-bulk-shipping-etf-bdry/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-18",
+          "price": 11.87,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-position-on-the-dry-bulk-shipping-etf-bdry-loss-of-bullish-momentum/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0027",
+      "ticker": "SPX",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-01-25",
+      "exit_or_mark_date": "2024-04-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-04-24",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Final exit",
+          "date": "2024-04-24",
+          "price": 5071.629883,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-short-position-on-the-sp500-spx/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0028",
+      "ticker": "XLU",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-01-29",
+      "exit_or_mark_date": "2024-04-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-04-24",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Final exit",
+          "date": "2024-04-24",
+          "price": 66.739998,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-position-on-utilities-stocks-xlu/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0029",
+      "ticker": "RSPT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-04-24",
+      "exit_or_mark_date": "2024-06-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-06-07",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.20783968398663033,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-06-07",
+          "price": 35.27,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-equal-weight-tech-stocks-rspt/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-24",
+          "price": 32.91,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-equal-weight-technology-rspt/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-06-07",
+          "price": 35.27,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-equal-weight-tech-stocks-rspt/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-24",
+          "price": 36.330002,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-trade-on-equal-weight-technology-etf-rspt/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-24",
+          "price": 32.91,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-trade-on-equal-weight-technology-rspt/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-24",
+          "price": 36.330002,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.20783968398663033,
+          "source_link": "https://bravosresearch.com/news-feed/closing-trade-on-equal-weight-technology-etf-rspt/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 207.45990422170328
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0030",
+      "ticker": "MCHI",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-04-26",
+      "exit_or_mark_date": "2024-10-15",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-09-30",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.341682419659735,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-09-30",
+          "price": 52.09,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-msci-china-etf-mchi-23-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-26",
+          "price": 42.32,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-a-long-trade-on-chinese-stocks-after-impulsive-breakout-mchi/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-09-30",
+          "price": 52.09,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-msci-china-etf-mchi-23-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-15",
+          "price": 49.55,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-msci-china-etf-mchi-gapping-down-below-channel/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-26",
+          "price": 42.32,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-a-long-trade-on-chinese-stocks-after-impulsive-breakout-mchi/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-15",
+          "price": 49.55,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.341682419659735,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-msci-china-etf-mchi-gapping-down-below-channel/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 341.0835417429046
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0031",
+      "ticker": "TSLA",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-04-26",
+      "exit_or_mark_date": "2024-07-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-07-05",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.6099999999999999,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-07-05",
+          "price": 252.32,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-tesla-tsla-near-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-26",
+          "price": 167.98,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-a-long-trade-on-tesla-tsla/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-07-05",
+          "price": 252.32,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-tesla-tsla-near-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-24",
+          "price": 219.2139,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-tesla-tsla-long-following-false-breakout/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-04-26",
+          "price": 167.98,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-a-long-trade-on-tesla-tsla/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-24",
+          "price": 219.2139,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.6099999999999999,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-tesla-tsla-long-following-false-breakout/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 608.9308331121325
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0032",
+      "ticker": "BTCUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-05-03",
+      "exit_or_mark_date": "2024-06-26",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-06-11",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-06-11",
+          "price": 67332.03125,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-partial-profits-on-bitcoin/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-03",
+          "price": 61817,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-trade-on-bitcoin-btcusd-our-model-points-to-undervaluation/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-06-11",
+          "price": 67332.03125,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-partial-profits-on-bitcoin/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-26",
+          "price": 61817,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-bitcoin-btcusd-long-loss-of-momentum/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-03",
+          "price": 61817,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-trade-on-bitcoin-btcusd-our-model-points-to-undervaluation/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-06-26",
+          "price": 61817,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0,
+          "source_link": "https://bravosresearch.com/news-feed/closing-bitcoin-btcusd-long-loss-of-momentum/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 0
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0033",
+      "ticker": "CSCO",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2024-05-17",
+      "exit_or_mark_date": "2024-08-15",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-06-13",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.06537775563085546,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-06-13",
+          "price": 45.62,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profit-on-cisco-systems-csco-short-trade/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-17",
+          "price": 50.17,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/short-cisco-systems-csco-following-bearish-engulfing-candle/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-06-13",
+          "price": 45.62,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profit-on-cisco-systems-csco-short-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-08-15",
+          "price": 48.529999,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-cisco-csco-long-on-positive-earnings/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-17",
+          "price": 50.17,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/short-cisco-systems-csco-following-bearish-engulfing-candle/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-08-15",
+          "price": 48.529999,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.06537775563085546,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-cisco-csco-long-on-positive-earnings/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 65.2212647963438
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0034",
+      "ticker": "ELF",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-05-23",
+      "exit_or_mark_date": "2024-07-16",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-06-04",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.2257286311451283,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-06-04",
+          "price": 196.44851,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-elf-beauty-elf/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-23",
+          "price": 169.85,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-elf-beauty-elf-following-gap-up-post-earnings/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-06-04",
+          "price": 196.44851,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-elf-beauty-elf/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-16",
+          "price": 189.020004,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-elf-elf-long-break-of-support/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-05-23",
+          "price": 169.85,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-elf-beauty-elf-following-gap-up-post-earnings/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-16",
+          "price": 189.020004,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.2257286311451283,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-elf-elf-long-break-of-support/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 225.31191558601427
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0036",
+      "ticker": "IWM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-06-04",
+      "exit_or_mark_date": "2024-10-22",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-06-04",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-06-04",
+          "price": 201.96,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-small-cap-stocks-iwm-following-breakdown-in-yields/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-22",
+          "price": 220.45,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-small-cap-stocks-iwm/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0039",
+      "ticker": "AAPL",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-06-13",
+      "exit_or_mark_date": "2024-07-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-07-16",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.0743999999999998,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-07-16",
+          "price": 234.820007,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-apple-aapl-near-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-06-13",
+          "price": 213.07,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-apple-aapl-following-wwdc-2024-trend-following-setup/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-07-16",
+          "price": 234.820007,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-apple-aapl-near-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-24",
+          "price": 220.996204,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-apple-aapl-long/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-06-13",
+          "price": 213.07,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-apple-aapl-following-wwdc-2024-trend-following-setup/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-24",
+          "price": 220.996204,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.0743999999999998,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-apple-aapl-long/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 74.1810683982849
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0040",
+      "ticker": "SOLUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-06-18",
+      "exit_or_mark_date": "2024-08-08",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-06-18",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-06-18",
+          "price": 136.51,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-solana-solusd-altcoins-capitulating/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-07-19",
+          "price": 169.185867,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-partial-profits-on-solana-solusd-at-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-08-08",
+          "price": 162.93074,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-solana-position-solusd-break-of-trendline/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0043",
+      "ticker": "AMD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-07-05",
+      "exit_or_mark_date": "2024-08-23",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2024-07-25",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-07-05",
+          "price": 163.9,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-advanced-micro-devices-amd-as-resistance-gets-broken/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-07-25",
+          "price": null,
+          "weight_before": 2,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/adding-to-advanced-micro-devices-amd-long-confluence-of-support/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-08-23",
+          "price": 154.979996,
+          "weight_before": 3,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-amd-amd-reducing-risk-on-tech-positioning/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0045",
+      "ticker": "WPM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-07-10",
+      "exit_or_mark_date": "2025-04-23",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-10-23",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-07-10",
+          "price": 56.24,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/413574/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-10-23",
+          "price": 67.75,
+          "weight_before": 2,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-wpm/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-01-02",
+          "price": null,
+          "weight_before": 3,
+          "weight_after": 5,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/increasing-exposure-to-wheaton-precious-metals-wpm-gold-miner-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-02-10",
+          "price": 68.07,
+          "weight_before": 5,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-wheaton-precious-metals-corp-wpm-price-at-resistance/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-03-20",
+          "price": 75.48,
+          "weight_before": 3,
+          "weight_after": 2,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-wheaton-precious-metals-corp-wpm/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-04-23",
+          "price": 80.75,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-wheaton-precious-metals-corp-wpm-43-58-profit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0046",
+      "ticker": "ARGT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-07-11",
+      "exit_or_mark_date": "2024-09-19",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-09-03",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.42355371900826455,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-09-03",
+          "price": 65.19,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-global-x-msci-argentina-etf-argt/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-07-11",
+          "price": 58.08,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-argentinian-stocks-argt-lower-inflation-strengthens-bullish-outlook/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-09-03",
+          "price": 65.19,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-global-x-msci-argentina-etf-argt/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-09-19",
+          "price": 70.38,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-argentina-trade-argt-21-2-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-07-11",
+          "price": 58.08,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-argentinian-stocks-argt-lower-inflation-strengthens-bullish-outlook/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-09-19",
+          "price": 70.38,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.42355371900826455,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-argentina-trade-argt-21-2-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 422.32065236767846
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0049",
+      "ticker": "PCAR",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-07-22",
+      "exit_or_mark_date": "2024-07-23",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-07-22",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-07-22",
+          "price": 109.059998,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/re-entering-long-paccar-inc-pcar-confirmation-of-false-breakdown/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-07-23",
+          "price": 99,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-paccar-inc-pcar-stop-loss-hit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0053",
+      "ticker": "ALA",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-08-08",
+      "exit_or_mark_date": "2024-09-23",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-09-09",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.14400000000000013,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-09-09",
+          "price": 34.96,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-altagas-ltd-ala-to/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-08-08",
+          "price": 32.61,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-altagas-ala-holding-key-mas/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-09-09",
+          "price": 34.96,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-altagas-ltd-ala-to/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-09-23",
+          "price": 34.95792,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-altagas-ltd-ala-to-break-of-primary-trendline/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-08-08",
+          "price": 32.61,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-altagas-ala-holding-key-mas/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-09-23",
+          "price": 34.95792,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.14400000000000013,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-altagas-ltd-ala-to-break-of-primary-trendline/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 144.49023223199964
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0055",
+      "ticker": "SLV",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-08-15",
+      "exit_or_mark_date": "2024-12-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-10-23",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-08-15",
+          "price": 25.13,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-silver-slv-bullish-structure-held/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-10-23",
+          "price": 30.709999,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-silver-trading-at-resistance/"
+        },
+        {
+          "type": "Add",
+          "date": "2024-11-12",
+          "price": null,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/adding-to-silver-slv-precious-metal-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-24",
+          "price": 27,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-silver-slv-break-of-support/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0059",
+      "ticker": "NTRA",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-09-05",
+      "exit_or_mark_date": "2024-11-21",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2024-09-05",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-09-05",
+          "price": 113.24,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-natera-inc-ntra-healthcare-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-10-10",
+          "price": 126.09,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-natera-inc-ntra-healthcare-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-11-21",
+          "price": 172.22,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-natera-inc-ntra-52-profit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0061",
+      "ticker": "EXEL",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-09-10",
+      "exit_or_mark_date": "2024-10-30",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-10-17",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.5299999999999998,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-10-17",
+          "price": 29.25,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-exelixis-inc-exel-13-55/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-09-10",
+          "price": 25.76,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-exelixis-inc-exel-healthcare-sector-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-10-17",
+          "price": 29.25,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-exelixis-inc-exel-13-55/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-30",
+          "price": 32.5864,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-exelixis-inc-exel-26-5-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-09-10",
+          "price": 25.76,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-exelixis-inc-exel-healthcare-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-30",
+          "price": 32.5864,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.5299999999999998,
+          "source_link": "https://bravosresearch.com/news-feed/closing-exelixis-inc-exel-26-5-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 532.9082600885116
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0063",
+      "ticker": "NRG",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-09-18",
+      "exit_or_mark_date": "2024-10-09",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-10-04",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.17511968561955005,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-10-04",
+          "price": 95,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-nrg-energy-inc-nrg-16-7-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-09-18",
+          "price": 81.43,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-nrg-energy-inc-nrg-utilities-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-10-04",
+          "price": 95,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-nrg-energy-inc-nrg-16-7-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-09",
+          "price": 88.559998,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nrg-energy-inc-nrg-break-through-channel-support/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-09-18",
+          "price": 81.43,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-nrg-energy-inc-nrg-utilities-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-10-09",
+          "price": 88.559998,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.17511968561955005,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nrg-energy-inc-nrg-break-through-channel-support/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 176.74386372841337
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0066",
+      "ticker": "PANW",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-10-04",
+      "exit_or_mark_date": "2024-11-29",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-11-12",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.2633986161604316,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-11-12",
+          "price": 398.07,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-palo-alto-networks-panw-tech-sector-trade/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-04",
+          "price": 341.08,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-palo-alto-networks-panw-tech-sector-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-11-12",
+          "price": 398.07,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-palo-alto-networks-panw-tech-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-11-29",
+          "price": 386,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-palo-alto-networks-inc-panw-weakening-technical-structure/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-04",
+          "price": 341.08,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-palo-alto-networks-panw-tech-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-11-29",
+          "price": 386,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.2633986161604316,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-palo-alto-networks-inc-panw-weakening-technical-structure/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 266.8717362293923
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0074",
+      "ticker": "SHAK",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-10-28",
+      "exit_or_mark_date": "2024-12-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-12-09",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.28052631578947373,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-12-09",
+          "price": 136.59,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-shake-shack-inc-shak-19-8/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 114,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-shake-shack-inc-shak-inverse-hs-pattern/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-12-09",
+          "price": 136.59,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-shake-shack-inc-shak-19-8/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-24",
+          "price": 129.99,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-shake-shack-inc-shak-14/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 114,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-shake-shack-inc-shak-inverse-hs-pattern/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-24",
+          "price": 129.99,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.28052631578947373,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-shake-shack-inc-shak-14/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 286.21688614807005
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0075",
+      "ticker": "NWG",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-10-28",
+      "exit_or_mark_date": "2024-12-17",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-12-09",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.1395833333333334,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-12-09",
+          "price": 10.74,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-natwest-group-plc-nwg-price-at-channel-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 9.6,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-natwest-group-plc-nwg/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-12-09",
+          "price": 10.74,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-profits-on-natwest-group-plc-nwg-price-at-channel-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-17",
+          "price": 10.27,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-natwest-group-nwg-potential-local-top/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 9.6,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-natwest-group-plc-nwg/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-17",
+          "price": 10.27,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.1395833333333334,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-natwest-group-nwg-potential-local-top/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 142.4148280435011
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0076",
+      "ticker": "TUR",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-10-28",
+      "exit_or_mark_date": "2024-12-13",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-12-06",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.20716188221367293,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-12-06",
+          "price": 37.9,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-turkish-stocks-price-at-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 33.79,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-turkish-stocks-tur/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-12-06",
+          "price": 37.9,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-turkish-stocks-price-at-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-13",
+          "price": 37.29,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-position-on-turkish-stocks-tur-break-of-channel/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-10-28",
+          "price": 33.79,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-turkish-stocks-tur/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-13",
+          "price": 37.29,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.20716188221367293,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-position-on-turkish-stocks-tur-break-of-channel/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 211.36423044270984
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0079",
+      "ticker": "BTC",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-11-04",
+      "exit_or_mark_date": "2024-12-26",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-11-12",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 0.7762664574069231,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2024-11-12",
+          "price": 89136,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-bitcoin-btcusd-price-at-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-11-04",
+          "price": 68814,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-bitcoin-btc-retest-of-price-channel-support/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2024-11-12",
+          "price": 89136,
+          "weight_before": 2,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-bitcoin-btcusd-price-at-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-26",
+          "price": 95523,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-on-bitcoin-btcusd-38-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-11-04",
+          "price": 68814,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-bitcoin-btc-retest-of-price-channel-support/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2024-12-26",
+          "price": 95523,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.7762664574069231,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-long-on-bitcoin-btcusd-38-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 793.9086012416532
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0088",
+      "ticker": "OIL",
+      "direction": "SHORT",
+      "status": "CLOSED",
+      "entry_date": "2023-11-27",
+      "exit_or_mark_date": "2024-11-21",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2024-11-21",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Final exit",
+          "date": "2024-11-21",
+          "price": 69.63,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-short-oil-futures/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0101",
+      "ticker": "FI",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2024-12-13",
+      "exit_or_mark_date": "2025-01-10",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": -0.047459925420117344,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-12-13",
+          "price": 206.49,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-fiserv-inc-fi-financial-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-01-10",
+          "price": 201.59,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.047459925420117344,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-fiserv-inc-fi-break-of-uptrend/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2024-12-13",
+          "price": 206.49,
+          "weight_before": 0,
+          "weight_after": 2,
+          "capital_added": 2,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-fiserv-inc-fi-financial-sector-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-01-10",
+          "price": 201.59,
+          "weight_before": 2,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.047459925420117344,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-fiserv-inc-fi-break-of-uptrend/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": 0
+        },
+        {
+          "year": "2025",
+          "gain_loss": -47.459925420117344
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0109",
+      "ticker": "TLN",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-01-02",
+      "exit_or_mark_date": "2025-01-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2025-01-21",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 1.0926389093227407,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2025-01-21",
+          "price": 246.12,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-talen-energy-corporation-tln-at-resistance/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-02",
+          "price": 203.91,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-talen-energy-corporation-tln-utilities-stock-trade/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-01-21",
+          "price": 246.12,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-talen-energy-corporation-tln-at-resistance/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-01-24",
+          "price": 248.47,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-talen-energy-corporation-tln/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-02",
+          "price": 203.91,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/long-talen-energy-corporation-tln-utilities-stock-trade/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-01-24",
+          "price": 248.47,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 1.0926389093227407,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-talen-energy-corporation-tln/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 1092.4914983720969
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0122",
+      "ticker": "HES",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-01-29",
+      "exit_or_mark_date": "2025-02-04",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": -0.242878767029036,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-29",
+          "price": 145.34,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-hess-corporation-hes-break-above-downtrend-resistance-line/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-02-04",
+          "price": 138.28,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.242878767029036,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-hess-corporation-hes-false-breakout/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-29",
+          "price": 145.34,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-hess-corporation-hes-break-above-downtrend-resistance-line/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-02-04",
+          "price": 138.28,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.242878767029036,
+          "source_link": "https://bravosresearch.com/news-feed/closing-long-on-hess-corporation-hes-false-breakout/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": -246.52047329646726
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0123",
+      "ticker": "3988/BACHF",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-01-29",
+      "exit_or_mark_date": "2025-08-06",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 0.6865671641791058,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-29",
+          "price": 4.02,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-bank-of-china-3988-bachf-on-otc-large-basing-pattern/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-06-26",
+          "price": 4.74,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.1791044776119406,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-bank-of-china-3988-bachf-on-otc-17-91-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-06",
+          "price": 4.53,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.5074626865671652,
+          "source_link": "https://bravosresearch.com/news-feed/closing-bank-of-china-3988-bachf-on-otc-12-69-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-01-29",
+          "price": 4.02,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-bank-of-china-3988-bachf-on-otc-large-basing-pattern/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-06-26",
+          "price": 4.74,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.1791044776119406,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-bank-of-china-3988-bachf-on-otc-17-91-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-06",
+          "price": 4.53,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.5074626865671652,
+          "source_link": "https://bravosresearch.com/news-feed/closing-bank-of-china-3988-bachf-on-otc-12-69-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 696.8615014543961
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0139",
+      "ticker": "UPRO",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-03-07",
+      "exit_or_mark_date": "2025-03-18",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2025-03-07",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-03-07",
+          "price": 79.63,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-sp500-3x-leveraged-etf-upro-buy-the-dip/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-03-18",
+          "price": 74.730003,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-upro-not-enough-evidence-of-strength/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0182",
+      "ticker": "UBER",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-07-07",
+      "exit_or_mark_date": "2025-07-29",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-07-11",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-07-07",
+          "price": 94.7,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/long-uber-technologies-uber-breakout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-07-11",
+          "price": 96.38,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-long-exposure-to-uber-technologies-uber-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-07-29",
+          "price": 88.01,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-uber-technologies-uber-false-breakout/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0187",
+      "ticker": "TRXUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-07-16",
+      "exit_or_mark_date": "2025-08-20",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 0.7266666666666672,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-07-16",
+          "price": 0.3,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-tron-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-07-18",
+          "price": 0.33,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.10000000000000031,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-tron-trxusd-10-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-20",
+          "price": 0.347,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.6266666666666669,
+          "source_link": "https://bravosresearch.com/news-feed/closing-tron-trxusd-weakness/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-07-16",
+          "price": 0.3,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-tron-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-07-18",
+          "price": 0.33,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.10000000000000031,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-tron-trxusd-10-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-20",
+          "price": 0.347,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.6266666666666669,
+          "source_link": "https://bravosresearch.com/news-feed/closing-tron-trxusd-weakness/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 754.0344487302608
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0190",
+      "ticker": "BNBUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-01",
+      "exit_or_mark_date": "2025-08-20",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-08-12",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-01",
+          "price": 772.2,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-binance-coin-bnbusd-breaout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-08-12",
+          "price": 822.8,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-binance-coin-bnbusd-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-20",
+          "price": 820.9,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-binance-coin-bnbusd-weakness/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0193",
+      "ticker": "6988",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-05",
+      "exit_or_mark_date": "2025-10-09",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 1.2036512433112998,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-05",
+          "price": 3177,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-nitto-denko-corp-6988-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-10-06",
+          "price": 3859,
+          "weight_before": 5,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": 0.4293358514321688,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-nitto-denko-corp-6988-21-46-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-10-09",
+          "price": 3997,
+          "weight_before": 3,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.774315391879131,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nitto-denko-corp-6988-25-81-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-05",
+          "price": 3177,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-nitto-denko-corp-6988-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-10-06",
+          "price": 3859,
+          "weight_before": 5,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": 0.4293358514321688,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-nitto-denko-corp-6988-21-46-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-10-09",
+          "price": 3997,
+          "weight_before": 3,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.774315391879131,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nitto-denko-corp-6988-25-81-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 1268.0281992970795
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0195",
+      "ticker": "ETHUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-07",
+      "exit_or_mark_date": "2025-08-15",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2025-08-13",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 1.061751633986927,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2025-08-13",
+          "price": 4616,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-ethereum-ethusd-20-68-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-07",
+          "price": 3825,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-ethereum-ethusd-constructive-consolidation/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-08-13",
+          "price": 4616,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-ethereum-ethusd-20-68-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-15",
+          "price": 4637.24,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-ethereum-ethusd-21-23-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-07",
+          "price": 3825,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-ethereum-ethusd-constructive-consolidation/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-15",
+          "price": 4637.24,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 1.061751633986927,
+          "source_link": "https://bravosresearch.com/news-feed/closing-ethereum-ethusd-21-23-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 1119.5793543839945
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0200",
+      "ticker": "AAVE/USDT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-13",
+      "exit_or_mark_date": "2025-08-15",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": -0.40261356565028006,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-13",
+          "price": 321.4,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-aave-finance-aave-usdt-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-15",
+          "price": 295.52,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.40261356565028006,
+          "source_link": "https://bravosresearch.com/news-feed/closing-aave-finance-aave-usdt-false-breakout/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-13",
+          "price": 321.4,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-aave-finance-aave-usdt-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-08-15",
+          "price": 295.52,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.40261356565028006,
+          "source_link": "https://bravosresearch.com/news-feed/closing-aave-finance-aave-usdt-false-breakout/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": -425.37772830122793
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0203",
+      "ticker": "UBER",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-18",
+      "exit_or_mark_date": "2025-09-05",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-08-19",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-18",
+          "price": 93.99,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-uber-technologies-uber-breakout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-08-19",
+          "price": 95.47,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-uber-technologies-uber-resistance-break/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-05",
+          "price": 90.72,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-uber-technologies-inc-uber-false-breakout/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0210",
+      "ticker": "US_SMALL_CAP_2000",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-25",
+      "exit_or_mark_date": "2025-11-06",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 0.33842622114526133,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-25",
+          "price": 2352.3,
+          "weight_before": 0,
+          "weight_after": 8,
+          "capital_added": 8,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-us-small-cap-2000-index-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-03",
+          "price": 2481.72,
+          "weight_before": 8,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.22007397015686703,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-us-small-cap-2000-index-5-5-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-06",
+          "price": 2421.9,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.1183522509883943,
+          "source_link": "https://bravosresearch.com/news-feed/closing-us-small-cap-2000-index-2-96-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-25",
+          "price": 2352.3,
+          "weight_before": 0,
+          "weight_after": 8,
+          "capital_added": 8,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-us-small-cap-2000-index-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-03",
+          "price": 2481.72,
+          "weight_before": 8,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.22007397015686703,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-us-small-cap-2000-index-5-5-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-06",
+          "price": 2421.9,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.1183522509883943,
+          "source_link": "https://bravosresearch.com/news-feed/closing-us-small-cap-2000-index-2-96-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 358.20009225114427
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0211",
+      "ticker": "ORLA",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-26",
+      "exit_or_mark_date": "2025-09-18",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 0.3521256931608139,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-26",
+          "price": 10.82,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-orla-mining-ltd-orla-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-09-15",
+          "price": 12.71,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.17467652495378938,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-orla-mining-ltd-orla-17-47-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-18",
+          "price": 11.3,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.1774491682070236,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-orla-mining-ltd-orla-channel-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-26",
+          "price": 10.82,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-orla-mining-ltd-orla-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-09-15",
+          "price": 12.71,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.17467652495378938,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-orla-mining-ltd-orla-17-47-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-18",
+          "price": 11.3,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.1774491682070245,
+          "source_link": "https://bravosresearch.com/portfolio-update/closing-orla-mining-ltd-orla-channel-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 371.87987950908786
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0213",
+      "ticker": "UGL",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-08-27",
+      "exit_or_mark_date": "2025-09-30",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2025-08-27",
+      "recovered": false,
+      "reason": "Missing usable entry price, date, or weight",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-08-27",
+          "price": 35.75,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-proshares-ultra-gold-ugl-potential-breakout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-08-29",
+          "price": 36.85,
+          "weight_before": null,
+          "weight_after": 8,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-proshares-ultra-gold-ugl-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-09-16",
+          "price": 42.36,
+          "weight_before": 8,
+          "weight_after": 6,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-profits-on-proshares-ultra-gold-ugl-18-49-profit/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-09-23",
+          "price": 44.38,
+          "weight_before": 6,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-proshares-ultra-gold-ugl-24-13-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-30",
+          "price": 45.29,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-proshares-ultra-gold-ugl-26-68-profit/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0214",
+      "ticker": "TTWO",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-09-02",
+      "exit_or_mark_date": "2025-11-07",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2025-10-23",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": -0.09726443768996873,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2025-10-23",
+          "price": 255.75,
+          "weight_before": 8,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-take-two-interactive-software-inc-ttwo-7-97-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-06",
+          "price": 254,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-take-two-interactive-software-inc-ttwo-7-23-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-09-02",
+          "price": 236.88,
+          "weight_before": 0,
+          "weight_after": 8,
+          "capital_added": 8,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-take-two-interactive-software-inc-ttwo-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-10-23",
+          "price": 255.75,
+          "weight_before": 8,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-take-two-interactive-software-inc-ttwo-7-97-profit/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-06",
+          "price": 254,
+          "weight_before": null,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-take-two-interactive-software-inc-ttwo-7-23-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-07",
+          "price": 234,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-take-two-interactive-software-inc-ttwo-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-09-02",
+          "price": 236.88,
+          "weight_before": 0,
+          "weight_after": 8,
+          "capital_added": 8,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-take-two-interactive-software-inc-ttwo-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-07",
+          "price": 234,
+          "weight_before": 8,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.09726443768996873,
+          "source_link": "https://bravosresearch.com/news-feed/closing-take-two-interactive-software-inc-ttwo-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": -103.68631192076501
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0218",
+      "ticker": "XRPUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-09-08",
+      "exit_or_mark_date": "2025-09-22",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": -0.19263552676440465,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-09-08",
+          "price": 2.933,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-xrp-xrpusd-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-22",
+          "price": 2.82,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.19263552676440465,
+          "source_link": "https://bravosresearch.com/news-feed/closing-xrp-xrpusd-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-09-08",
+          "price": 2.933,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-xrp-xrpusd-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-22",
+          "price": 2.82,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.19263552676440465,
+          "source_link": "https://bravosresearch.com/news-feed/closing-xrp-xrpusd-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": -209.1881526174702
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0219",
+      "ticker": "ETHUSD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-09-10",
+      "exit_or_mark_date": "2025-09-22",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-09-12",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-09-10",
+          "price": 4417.29,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-ethereum-ethusd-breakout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-09-12",
+          "price": 4534,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-ethereum-ethusd-constructive-price-action/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-09-22",
+          "price": 4207,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-ethereum-ethusd-breakdown/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0235",
+      "ticker": "NTRA",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-10-16",
+      "exit_or_mark_date": "2025-11-24",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2025-11-06",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": 1.3290340285400655,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2025-11-06",
+          "price": 198.72,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-natera-inc-ntra-9-1-profit/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-10-16",
+          "price": 182.2,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-natera-inc-ntra-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-06",
+          "price": 198.72,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-natera-inc-ntra-9-1-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-24",
+          "price": 230.63,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-natera-inc-ntra-26-58-profit/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-10-16",
+          "price": 182.2,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-natera-inc-ntra-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-11-24",
+          "price": 230.63,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 1.3290340285400655,
+          "source_link": "https://bravosresearch.com/news-feed/closing-natera-inc-ntra-26-58-profit/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 1477.500085571666
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0238",
+      "ticker": "NYT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-11-06",
+      "exit_or_mark_date": "2026-02-04",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-12-10",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-11-06",
+          "price": 59.06,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-new-york-times-company-nyt-breakout-2/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-11-13",
+          "price": 63.97,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.08313579410768712,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-new-york-times-company-nyt-7-62-profit/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-12-10",
+          "price": null,
+          "weight_before": 4,
+          "weight_after": 6,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-new-york-times-company-nyt-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-12-19",
+          "price": 70.9,
+          "weight_before": 6,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/booking-partial-profits-on-new-york-times-company-nyt-profit-booking/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-02-04",
+          "price": 61.83,
+          "weight_before": 3,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-the-new-york-times-company-nyt-breakdown/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0244",
+      "ticker": "SP500",
+      "direction": "SHORT",
+      "status": "OPEN AT CUTOFF",
+      "entry_date": "2025-11-17",
+      "exit_or_mark_date": "2026-09-10",
+      "original_exclusion": "Excluded: Missing usable entry weight or price on 2025-11-17",
+      "recovered": false,
+      "reason": "No explicit completed lifecycle",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-11-17",
+          "price": 6672.410156,
+          "weight_before": 0,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/shorting-the-sp500-as-a-short-term-hedge-incoming-melt-up-on-silver/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0247",
+      "ticker": "VCYT",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-11-25",
+      "exit_or_mark_date": "2025-12-05",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2025-12-03",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-11-25",
+          "price": 46.7,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-veracyte-inc-vcyt-breakout/"
+        },
+        {
+          "type": "Add",
+          "date": "2025-12-03",
+          "price": 47.63,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-veracyte-inc-vcyt-strong-momentum/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2025-12-05",
+          "price": 45.3,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-veracyte-inc-vcyt-false-breakout/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0252",
+      "ticker": "CPER",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-12-03",
+      "exit_or_mark_date": "2026-01-21",
+      "original_exclusion": "Excluded: Missing usable add weight or price on 2026-01-14",
+      "recovered": false,
+      "reason": "Capital addition needs resolved dated cash-flow reconstruction",
+      "source_pnl_100_basis": null,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-12-03",
+          "price": 5.38,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-copper-cper-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2025-12-26",
+          "price": 5.83,
+          "weight_before": 5,
+          "weight_after": 3,
+          "capital_added": null,
+          "realized_pnl": 0.16728624535316028,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-copper-cper-profit-booking/"
+        },
+        {
+          "type": "Add",
+          "date": "2026-01-14",
+          "price": 6.11,
+          "weight_before": 3,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/increasing-exposure-to-united-states-copper-index-fund-cper-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-01-21",
+          "price": 5.81,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-united-states-copper-index-fund-cper-breakdown/"
+        }
+      ],
+      "effective_actions": null,
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": null
+        }
+      ]
+    },
+    {
+      "position_id": "P0268",
+      "ticker": "ALUM",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2025-12-19",
+      "exit_or_mark_date": "2026-06-10",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": 0.9714285714285722,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-12-19",
+          "price": 3.85,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-aluminum-alum-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2026-03-30",
+          "price": 4.53,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.1766233766233769,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-aluminum-alum-profit-booking/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-06-10",
+          "price": 4.615,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.7948051948051944,
+          "source_link": "https://bravosresearch.com/news-feed/closing-aluminum-alum-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2025-12-19",
+          "price": 3.85,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-aluminum-alum-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2026-03-30",
+          "price": 4.53,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.1766233766233769,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-aluminum-alum-profit-booking/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-06-10",
+          "price": 4.615,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": 0.7948051948051953,
+          "source_link": "https://bravosresearch.com/news-feed/closing-aluminum-alum-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": 0
+        },
+        {
+          "year": "2026",
+          "gain_loss": 971.4285714285721
+        }
+      ]
+    },
+    {
+      "position_id": "P0291",
+      "ticker": "BLD",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2026-02-06",
+      "exit_or_mark_date": "2026-02-25",
+      "original_exclusion": "Excluded: incomplete daily capital coverage",
+      "recovered": true,
+      "reason": "Complete recorded actions; missing daily coverage",
+      "source_pnl_100_basis": -0.059041244216949895,
+      "omitted_partial_exits": [],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2026-02-06",
+          "price": 507.95,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-topbuild-corp-bld-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2026-02-12",
+          "price": 554.76,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.09215473963972842,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-topbuild-corp-bld-9-21-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-02-25",
+          "price": 488.75,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.15119598385667832,
+          "source_link": "https://bravosresearch.com/news-feed/closing-topbuild-corp-bld-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2026-02-06",
+          "price": 507.95,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/portfolio-update/initiating-long-on-topbuild-corp-bld-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2026-02-12",
+          "price": 554.76,
+          "weight_before": 5,
+          "weight_after": 4,
+          "capital_added": null,
+          "realized_pnl": 0.09215473963972842,
+          "source_link": "https://bravosresearch.com/news-feed/booking-partial-profits-on-topbuild-corp-bld-9-21-profit/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-02-25",
+          "price": 488.75,
+          "weight_before": 4,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.15119598385667832,
+          "source_link": "https://bravosresearch.com/news-feed/closing-topbuild-corp-bld-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": -61.47407593223993
+        }
+      ]
+    },
+    {
+      "position_id": "P0307",
+      "ticker": "NEE",
+      "direction": "LONG",
+      "status": "CLOSED",
+      "entry_date": "2026-03-12",
+      "exit_or_mark_date": "2026-05-18",
+      "original_exclusion": "Excluded: Missing usable exit weight, price, or open capital on 2026-04-22",
+      "recovered": true,
+      "reason": "Incomplete partial exits omitted; final-exit fallback",
+      "source_pnl_100_basis": -0.17353579175704947,
+      "omitted_partial_exits": [
+        {
+          "type": "Partial exit",
+          "date": "2026-04-22",
+          "price": 90,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/reducing-exposure-to-nextera-energy-inc-nee-upcoming-earnings/",
+          "reason": "Unusable partial-exit price or reduction; exposure held to a usable exit"
+        }
+      ],
+      "original_actions": [
+        {
+          "type": "Entry",
+          "date": "2026-03-12",
+          "price": 92.2,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-nextera-energy-inc-nee-breakout/"
+        },
+        {
+          "type": "Partial exit",
+          "date": "2026-04-22",
+          "price": 90,
+          "weight_before": 5,
+          "weight_after": null,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/reducing-exposure-to-nextera-energy-inc-nee-upcoming-earnings/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-05-18",
+          "price": 89,
+          "weight_before": null,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nextera-energy-inc-nee-breakdown/"
+        }
+      ],
+      "effective_actions": [
+        {
+          "type": "Entry",
+          "date": "2026-03-12",
+          "price": 92.2,
+          "weight_before": 0,
+          "weight_after": 5,
+          "capital_added": 5,
+          "realized_pnl": null,
+          "source_link": "https://bravosresearch.com/news-feed/initiating-long-on-nextera-energy-inc-nee-breakout/"
+        },
+        {
+          "type": "Final exit",
+          "date": "2026-05-18",
+          "price": 89,
+          "weight_before": 5,
+          "weight_after": 0,
+          "capital_added": null,
+          "realized_pnl": -0.17353579175704947,
+          "source_link": "https://bravosresearch.com/news-feed/closing-nextera-energy-inc-nee-breakdown/"
+        }
+      ],
+      "modeled_contributions": [
+        {
+          "year": "2024",
+          "gain_loss": null
+        },
+        {
+          "year": "2025",
+          "gain_loss": null
+        },
+        {
+          "year": "2026",
+          "gain_loss": -179.28224637266382
+        }
+      ]
+    }
+  ]
+}

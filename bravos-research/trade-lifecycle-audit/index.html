@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23032f67'/%3E%3Cpath d='M13 43V25h9l8 10 8-16h13L39 45H27L19 35v8z' fill='%2303a9d8'/%3E%3C/svg%3E">
-  <link rel="stylesheet" href="./styles.css?v=20260916-full-sector-attribution">
+  <link rel="stylesheet" href="./styles.css?v=20260916-exit-recovery">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to trade analysis</a>
@@ -33,6 +33,12 @@
 
       <label class="field-label" for="categoryFilter">Stock category</label>
       <select id="categoryFilter"><option value="all">All categories</option></select>
+
+      <label class="field-label" for="calculationMode">Calculation basis</label>
+      <select id="calculationMode">
+        <option value="recovered">With exit-based recovery estimates</option>
+        <option value="original">Original daily coverage</option>
+      </select>
 
       <fieldset class="direction-filter">
         <legend>Direction</legend>
@@ -86,11 +92,12 @@
         <p class="intro-copy">Compare entries, exposure changes, exits, time held, and capital-adjusted outcomes across the portfolio.</p>
       </section>
 
+      <p id="recoveryContext" class="chart-note" role="status"></p>
       <section class="summary-grid" aria-label="Filtered portfolio summary">
         <article class="summary-stat">
           <span>Compounded portfolio return</span>
           <strong id="totalPnl">—</strong>
-          <small>full modeled portfolio for the selected year range</small>
+          <small>full modeled portfolio under the selected calculation basis</small>
         </article>
         <article class="summary-stat">
           <span>Average modeled trade return</span>
@@ -163,12 +170,14 @@
           <span id="auditStatus" class="audit-status">—</span>
         </div>
         <div class="audit-rule"></div>
+        <p id="auditRecoveryNote" class="chart-note"></p>
         <div class="audit-layout">
           <div>
             <h3>EXPOSURE LIFECYCLE</h3>
             <ol id="lifecycleList" class="lifecycle-list"><li>Waiting for a selected position.</li></ol>
           </div>
           <dl class="audit-metrics">
+            <div hidden><dt>Recovered full-trade return on original capital</dt><dd id="auditEndpointReturn">—</dd></div>
             <div><dt>Initial capital in selected range</dt><dd id="auditEntryCapital">—</dd></div>
             <div><dt>Gain/loss in selected range</dt><dd id="auditPnl">—</dd></div>
             <div><dt>Average capital in selected range</dt><dd id="auditAverageCapital">—</dd></div>
@@ -205,6 +214,6 @@
   </div>
 
   <div id="loadingState" class="loading-state" role="status">Loading trade data…</div>
-  <script src="./app.js?v=20260916-full-sector-attribution" type="module"></script>
+  <script src="./app.js?v=20260916-exit-recovery" type="module"></script>
 </body>
 </html>

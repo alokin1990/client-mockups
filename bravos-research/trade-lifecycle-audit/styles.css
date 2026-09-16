@@ -408,6 +408,9 @@ select {
 
 .bar-label { color: var(--text); white-space: normal; overflow-wrap: anywhere; line-height: 1.5; }
 .chart-note { margin: 14px 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.6; }
+#recoveryContext { margin-bottom: 20px; padding: 16px; border: 1px solid var(--line); background: #f5f8fc; color: var(--text); }
+#auditRecoveryNote { color: #b6ccda; margin-bottom: 20px; }
+.audit-metrics > [hidden] { display: none; }
 .bar-track { position: relative; height: 8px; background: #eaf0f5; overflow: hidden; }
 .bar-fill { position: absolute; top: 0; bottom: 0; left: 50%; width: 0; background: var(--cyan); transition: width 450ms var(--ease), left 450ms var(--ease); }
 .bar-fill.negative { background: #e7616e; }

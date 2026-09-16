@@ -13,8 +13,9 @@ import {
   summarizeTradeStats,
   tradeWinRate,
 } from "./lib/portfolio-math.js";
-import { getTradeReviewLinks } from "./lib/review-links.js";
+import { getTradeReviewLinks } from "./lib/review-links.js?v=20260916-exit-recovery";
 import { categoryAttributionRows } from "./lib/category-attribution.js";
+import { buildRecoveryScenario } from "./lib/trade-recovery.js";
 
 const state = {
   trades: [],
@@ -24,6 +25,8 @@ const state = {
   sortKey: "entry_date",
   sortDirection: "desc",
   capitalModel: null,
+  payload: null,
+  baselineModel: null,
 };
 
 const columns = [
@@ -51,6 +54,10 @@ const columns = [
   { key: "sector", label: "Sector / Theme" },
   { key: "setup", label: "Entry Setup" },
   { key: "model_status", label: "Model Status" },
+  { key: "recovery_basis", label: "Estimate Basis" },
+  { key: "recovery_note", label: "Recovery Note" },
+  { key: "omitted_partial_exits", label: "Omitted Incomplete Trims", type: "number" },
+  { key: "recovered_return_on_initial_capital", label: "Recovered Full-Trade Return on Original Capital", type: "percent" },
   { key: "modeled_outcome", label: "Modeled Outcome" },
   { key: "entry_link", label: "Entry Link", type: "link" },
   { key: "exit_link", label: "Exit Link", type: "link" },
@@ -58,6 +65,8 @@ const columns = [
 
 const els = {
   year: document.querySelector("#yearFilter"),
+  calculation: document.querySelector("#calculationMode"),
+  recoveryContext: document.querySelector("#recoveryContext"),
   category: document.querySelector("#categoryFilter"),
   exportCsv: document.querySelector("#exportCsv"),
   reset: document.querySelector("#resetFilters"),
@@ -82,6 +91,8 @@ const els = {
   auditKicker: document.querySelector("#auditKicker"),
   auditTitle: document.querySelector("#auditTitle"),
   auditStatus: document.querySelector("#auditStatus"),
+  auditRecoveryNote: document.querySelector("#auditRecoveryNote"),
+  auditEndpointReturn: document.querySelector("#auditEndpointReturn"),
   lifecycle: document.querySelector("#lifecycleList"),
   auditPnl: document.querySelector("#auditPnl"),
   auditEntryCapital: document.querySelector("#auditEntryCapital"),
@@ -364,6 +375,8 @@ function renderSelectedTrade() {
     els.selectionMeta.textContent = "Change the filters to show available positions.";
     els.auditTitle.textContent = "No matching trade";
     els.auditStatus.textContent = "—";
+    els.auditRecoveryNote.textContent = "";
+    els.auditEndpointReturn.parentElement.hidden = true;
     els.lifecycle.innerHTML = "<li>No lifecycle is available.</li>";
     updateReviewTradeButton(null);
     return;
@@ -377,6 +390,8 @@ function renderSelectedTrade() {
   els.auditKicker.textContent = `${trade.asset} · ${trade.direction}`;
   els.auditTitle.textContent = `$${trade.ticker} · Trade #${trade.trade_number}`;
   els.auditStatus.textContent = trade.status;
+  els.auditRecoveryNote.textContent = trade.recovery_basis
+    ? `${trade.recovery_basis}: ${trade.recovery_note}. ${trade.omitted_partial_exits} incomplete partial exits omitted from the estimate. P/L is recognized on exits only; exact daily and year-boundary market values are unavailable. Original actions remain in the dataset and review links.` : "";
 
   const actions = Array.isArray(trade.actions) && trade.actions.length
     ? trade.actions.map((action) => {
@@ -389,7 +404,19 @@ function renderSelectedTrade() {
       return `${action.date} · ${action.type} · weight ${before} → ${after} · ${price}${exposureText}`;
     })
     : String(trade.exposure_lifecycle || "No lifecycle available").split(" | ");
+  // The displayed source timeline spans years even when the selected metric
+  // range is one year. Expose independent-year reseeding rather than making
+  // a capital jump look like an undocumented trim.
+  for (const period of state.capitalModel?.yearly ?? []) {
+    const carry = getTradeStats(state.capitalModel, trade.position_id, period.year);
+    if (carry && trade.entry_date < period.firstDate && carry.firstDate === period.firstDate) {
+      actions.push(`${period.firstDate} · Independent yearly scenario reset · carried capital seeded at ${fmtCurrency(carry.initialCapital, 0)} (not a Bravos trade action)`);
+    }
+  }
+  actions.sort((a,b)=>a.slice(0,10).localeCompare(b.slice(0,10)));
   els.lifecycle.innerHTML = actions.map((action) => `<li>${escapeHtml(action)}</li>`).join("");
+  els.auditEndpointReturn.parentElement.hidden = !isFiniteNumber(trade.recovered_return_on_initial_capital);
+  setSignedValue(els.auditEndpointReturn, trade.recovered_return_on_initial_capital, fmtPercent);
 
   const stats = modeledTradeStats(trade);
   els.auditEntryCapital.textContent = fmtCurrency(stats?.initialCapital ?? null, 2);
@@ -403,6 +430,7 @@ function renderSelectedTrade() {
 }
 
 function wireEvents() {
+  els.calculation.addEventListener("change", () => { selectCalculationMode(); applyFilters(); });
   els.year.addEventListener("change", applyFilters);
   els.category.addEventListener("change", applyFilters);
   document.querySelectorAll('input[name="direction"]').forEach((input) => input.addEventListener("change", applyFilters));
@@ -440,9 +468,12 @@ async function initialize() {
     const response = await fetch("./data/trades.json", { cache: "no-store" });
     if (!response.ok) throw new Error(`Trade data request failed with ${response.status}`);
     const payload = await response.json();
+    state.payload = payload;
     state.trades = Array.isArray(payload.trades) ? payload.trades : [];
     state.dailyPositions = Array.isArray(payload.daily_positions) ? payload.daily_positions : [];
     state.capitalModel = buildPortfolioModel({ trades: state.trades, dailyPositions: state.dailyPositions });
+    state.baselineModel = state.capitalModel;
+    selectCalculationMode();
     state.selectedId = state.trades.some((trade) => trade.position_id === "P0305") ? "P0305" : state.trades[0]?.position_id ?? null;
     const modeledThrough = payload.metadata?.cutoff_date ?? "latest available date";
     const sourceCheckedThrough = payload.metadata?.source_checked_through;
@@ -461,3 +492,17 @@ async function initialize() {
 }
 
 initialize();
+
+function selectCalculationMode() {
+  const scenario = buildRecoveryScenario(state.payload);
+  const recovered = scenario.reviews.filter(r => r.recovered);
+  const withFallback = recovered.filter(r => r.skipped.length);
+  const enhanced = els.calculation.value === "recovered";
+  state.trades = enhanced ? scenario.trades : state.payload.trades;
+  state.dailyPositions = enhanced ? scenario.dailyPositions : state.payload.daily_positions;
+  state.capitalModel = enhanced
+    ? buildPortfolioModel({ trades: state.trades, dailyPositions: state.dailyPositions }) : state.baselineModel;
+  els.recoveryContext.textContent = enhanced
+    ? `Exit-based scenario: ${recovered.length} previously excluded closed trades added; ${withFallback.length} use the incomplete-trim fallback. Recovered trades recognize gains/losses at exits only, not daily market moves. This changes yearly timing and compounding in either direction. Original daily-coverage result: ${fmtPercent(state.baselineModel.compoundedReturn)} across all covered years. ${scenario.reviews.length - recovered.length} trades still excluded. No missing entries/adds or final exits are invented.`
+    : `Original daily-coverage model: ${scenario.reviews.length} trades excluded. ${recovered.length} have enough recorded entry/exit data for the separate exit-based scenario. Open trades can already contribute to this model even though the outcome filter calls them incomplete.`;
+}
