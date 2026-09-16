@@ -19,6 +19,16 @@ The September 16 user-supplied current-holdings list is stored separately in `..
 
 Date/year filters only select displayed rows from a single continuous replay. Range P/L compares the final row with the day before the range. New investments reflect evolving equity, but no annual compounding summary is emphasized.
 
+## Historical-price backfill policy (September 16)
+
+Preserve `data/marks.json` as the original comparison baseline. Store reviewed missing-history mappings and external price pulls separately in `data/price-backfill.json`; the Price history selector chooses the baseline or the backfilled scenario independently of action recovery. Do not change source actions, execution prices, weights, lifecycle eligibility, or the yearly Trade Review model. Missing execution prices are not replaced with market closes.
+
+Use explicit asset-to-provider mappings, not the first lifecycle's potentially unresolved mapping. Retain provider symbol, quote currency, fetch time, source URL and price basis. Match exchange-local dates and discard marks after the model cutoff. Yahoo close is split-adjusted, so reverse reported later split factors to match recorded as-traded action prices; refuse an affected lifecycle's new history if a split occurs while it is active, since the share ledger does not yet implement split actions. Never use dividend-adjusted close in a dividend-free ledger. Broad action/close scale checks are rejection guards, not proof of actual fills. Generic futures and index histories are labeled proxy marks because contract/CFD details are unknown. Foreign-quoted action prices and marks use the same nominal units; FX returns are not modeled, so displayed dollars remain a nominal-equivalent estimate, not verified USD brokerage performance.
+
+Keep unavailable or unverified mappings as explicit failures, never silently substitute a different stock, ETF, currency pair, or futures contract. Compare baseline/backfilled ending equity, daily differences, stale/fallback coverage, financing days and both accounting identities for Original and Recovery action bases. Price histories can change later allocation sizes in either direction without recovering an unknown trade entry.
+
+Results and outstanding gaps are documented in [PRICE_BACKFILL_REVIEW.md](PRICE_BACKFILL_REVIEW.md). The original build findings below refer to the preserved baseline, not the new backfilled default.
+
 ## Provenance and limitations
 
 Use existing cached historical closes, in the existing reconstruction's price basis, and alert prices for executions. Actions precede end-of-day marks. No intraday timestamps are known. Never use a future quote. Carry a previous close on days without a quote; expose mark date, age and source per position. Where no eligible quote exists, use the last execution mark with an explicit endpoint-only/stale warning, not invented daily movements. Show provisional days and excluded trades prominently.

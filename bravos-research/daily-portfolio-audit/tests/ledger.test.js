@@ -81,5 +81,9 @@ test('CSV exports exactly the selected daily range, with basis, full precision a
  const r=selectRange(l,'2026-01-02','2026-01-03');
  const csv=dailyCsv(r.rows,'Test "basis"');assert.equal(csv.split('\r\n').length,3);
  assert.ok(csv.includes('calculationBasis'));assert.ok(csv.includes('"Test ""basis"""'));
- assert.ok(csv.includes('2026-01-02'));assert.ok(!csv.includes('2026-01-01'));
+ // Carried price marks may predate the range; only ledger row dates must be in range.
+ const rows=csv.split('\r\n').slice(1);
+ assert.ok(rows[0].startsWith('"2026-01-02",'));
+ assert.ok(rows[1].startsWith('"2026-01-03",'));
+ assert.ok(!rows.some(row=>row.startsWith('"2026-01-01",')));
 });

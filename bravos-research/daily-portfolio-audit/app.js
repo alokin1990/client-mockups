@@ -3,22 +3,32 @@ import {dailyCsv} from './lib/csv.js';
 import {wholeDollar} from './lib/display.js';
 import {buildRecoveryScenario} from '../trade-lifecycle-audit/lib/trade-recovery.js';
 import {ledgerSnapshotRows,summarizeUnrealized} from '../trade-lifecycle-audit/lib/open-positions.js';
+import {mergePriceHistories} from './lib/price-backfill.js';
 const $=id=>document.getElementById(id), esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const money=x=>x==null?'—':new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',minimumFractionDigits:2}).format(x);
 const number=x=>new Intl.NumberFormat('en-US',{maximumFractionDigits:4}).format(x);
 const signed=(x,format=money)=>`<span class="${x<0?'negative':x>0?'positive':''}">${x>0?'+':''}${format(x)}</span>`;
 const recoveryEnabled=()=>$('calculation-basis').value==='recovered';
-let payload, marks, ledger, range, selected, excluded, coverageText, openSnapshot;
+let payload, marks, ledger, range, selected, excluded, coverageText, openSnapshot, originalMarks, priceBackfill, priceAudit;
+const backfillEnabled=()=>$('price-history').value==='backfilled';
 function rebuild(){
+ marks=backfillEnabled()?mergePriceHistories(originalMarks,priceBackfill,payload.metadata.cutoff_date):originalMarks;
  const source=recoveryEnabled() ? buildRecoveryScenario(payload).trades : payload.trades;
  ledger=buildDailyLedger({trades:source.filter(t=>t.model_status==='Included'),marks,cutoff:payload.metadata.cutoff_date});
  excluded=[...source.filter(t=>t.model_status!=='Included').map(trade=>({trade,reason:trade.model_status})),...ledger.excluded];
- $('coverage').textContent=`${ledger.eligible.length} of ${payload.trades.length} lifecycles covered; ${excluded.length} excluded. Starts once at $100,000 on ${ledger.days[0].date}. ${recoveryEnabled()?'32 endpoint recoveries are included; omitted trims and flat fallback marks are estimates.':'Original daily-covered source actions only; endpoint recoveries are off.'} Date filters do not reset equity. The daily ledger uses actual modeled shares, not the old source-return multiplier.`;
+ $('coverage').textContent=`${ledger.eligible.length} of ${payload.trades.length} lifecycles covered; ${excluded.length} excluded. Starts once at $100,000 on ${ledger.days[0].date}. ${recoveryEnabled()?'32 action recoveries are included; omitted trims remain estimates.':'Original daily-covered source actions only; action recoveries are off.'} Price history: ${backfillEnabled()?'backfilled':'original cache'}. Date filters do not reset equity. The daily ledger uses actual modeled shares, not the old source-return multiplier.`;
  $('excluded-label').textContent=`${excluded.length} excluded records — see reasons`;
  $('excluded').innerHTML=excluded.map(x=>`<div>${esc(x.trade.position_id)} · ${esc(x.trade.ticker)} — ${esc(x.reason)}</div>`).join('');
  coverageText=$('coverage').textContent;
+ renderPriceReview();
  renderOpenSnapshot();
  renderRange();
+}
+function renderPriceReview(){
+ const applied=priceBackfill.reviews.filter(r=>r.status==='Applied'),unresolved=priceBackfill.reviews.filter(r=>r.status==='Unresolved');
+ const comparison=priceAudit.scenarios[recoveryEnabled()?'recovery':'original'];
+ $('price-coverage').textContent=`${backfillEnabled()?'Backfilled prices ON':'Original prices selected'}: ${applied.length} asset histories recovered; ${unresolved.map(r=>r.ticker).join(', ')} still unavailable. Prices stop at ${payload.metadata.cutoff_date}; source executions and exclusions are unchanged. Full-model comparison (not just the selected range): ${money(comparison.before.endingEquity)} → ${money(comparison.after.endingEquity)}; fallback/stale days ${comparison.before.provisionalDays} → ${comparison.after.provisionalDays}. Foreign-quoted marks match nominal action units; FX returns are NOT modeled. Futures/index marks are proxies, not verified contract fills. Closing prices never replace missing execution prices.`;
+ $('price-review').innerHTML=priceBackfill.reviews.map(r=>`<tr><td>${esc(r.ticker)}</td><td>${esc(r.status)}</td><td>${esc(r.symbol)}</td><td>${esc(r.currency)}</td><td>${r.quoteCount??'—'}</td><td>${esc(r.reason??r.note)}${r.url?`<br><a href="${esc(r.url)}" target="_blank" rel="noopener noreferrer">Price source ↗</a>`:''}</td></tr>`).join('');
 }
 function renderOpenSnapshot(){
  const rows=ledgerSnapshotRows(openSnapshot,ledger.days.at(-1)),summary=summarizeUnrealized(rows);
@@ -67,7 +77,7 @@ function drawChart(){
 function selectDay(date){
  selected=date;const d=range.rows.find(r=>r.date===date);if(!d)return;
  $('day-slider').value=range.rows.indexOf(d);$('day-label').textContent=date;$('selected-date').textContent=date;
- $('day-status').textContent=d.negativeCash?'IMPLIED FINANCING':d.provisional?'PROVISIONAL MARKS':d.carriedMarks?'CARRIED CLOSES':'CACHED CLOSES / BALANCED';
+ $('day-status').textContent=d.negativeCash?'IMPLIED FINANCING':d.provisional?'PROVISIONAL MARKS':d.positions.some(p=>p.proxy)?'PROXY MARKS / BALANCED':d.carriedMarks?'CARRIED CLOSES':'CACHED CLOSES / BALANCED';
  $('day-summary').innerHTML=`<div>Total daily P/L<strong>${signed(d.pnl)}</strong></div><div>Realized today<strong>${signed(d.realized)}</strong></div><div>Change in unrealized<strong>${signed(d.unrealizedChange)}</strong></div><div>Current unrealized total<strong>${signed(d.unrealized)}</strong></div>`;
  $('equation').textContent=`${money(d.cash)} cash + ${money(d.longValue)} longs − ${money(d.shortLiability)} shorts owed = ${money(d.equity)} portfolio value\nDaily P/L: ${money(d.realized)} realized + ${money(d.unrealizedChange)} change in unrealized = ${money(d.pnl)}. Balance check error: ${money(d.identityError)}.`;
  $('events').innerHTML=d.events.map(e=>`<tr><td>${esc(e.ticker)} · ${esc(e.direction)}</td><td>${esc(e.type)}</td><td>${number(e.weightBefore)} → ${number(e.weightAfter)}</td><td>${money(e.price)}</td><td>${number(e.quantity)}</td><td>${signed(e.cashFlow)}</td><td>${signed(e.realized)}</td><td>${/^https:\/\/bravosresearch\.com\//.test(e.sourceLink??'')?`<a href="${esc(e.sourceLink)}" target="_blank" rel="noopener noreferrer">Report ↗</a>`:'—'}${e.warning?`<br><small>${esc(e.warning)}</small>`:''}</td></tr>`).join('')||'<tr><td colspan="8">No trade actions this day. P/L may still change as active prices move.</td></tr>';
@@ -76,7 +86,7 @@ function selectDay(date){
  const ids=new Set([...prev.keys(),...today.keys(),...d.events.map(e=>e.positionId)]);
  const contributions=[...ids].map(id=>{const p=today.get(id)??prev.get(id),events=d.events.filter(e=>e.positionId===id),realized=events.reduce((s,e)=>s+e.realized,0),before=prev.get(id)?.unrealized??0,after=today.get(id)?.unrealized??0;return {ticker:p?.ticker??events[0]?.ticker,id,realized,before,after,pnl:realized+after-before};}).sort((a,b)=>Math.abs(b.pnl)-Math.abs(a.pnl));
  $('contributions').innerHTML=contributions.map(c=>`<tr><td>${esc(c.ticker)} · ${esc(c.id)}</td><td>${signed(c.realized)}</td><td>${signed(c.before)}</td><td>${signed(c.after)}</td><td>${signed(c.pnl)}</td></tr>`).join('')+`<tr><td>Total</td><td>${signed(d.realized)}</td><td>${signed(previous?.unrealized??0)}</td><td>${signed(d.unrealized)}</td><td>${signed(d.pnl)}</td></tr>`;
- $('positions').innerHTML=d.positions.map(p=>`<tr><td>${esc(p.ticker)} · ${esc(p.positionId)}</td><td>${esc(p.direction)}</td><td>${number(p.weight)}</td><td>${number(p.shares)}</td><td>${money(p.cost)}</td><td>${money(p.mark)}</td><td>${money(p.value)}</td><td>${signed(p.unrealized)}</td><td>${esc(p.provenance)} · ${p.markDate} · ${p.age}d old${p.recovered?' · recovered estimate':''}</td></tr>`).join('')||'<tr><td colspan="9">No active positions.</td></tr>';
+ $('positions').innerHTML=d.positions.map(p=>`<tr><td>${esc(p.ticker)} · ${esc(p.positionId)}</td><td>${esc(p.direction)}</td><td>${number(p.weight)}</td><td>${number(p.shares)}</td><td>${money(p.cost)}</td><td>${p.markCurrency?`${number(p.mark)} ${esc(p.markCurrency)}`:money(p.mark)}</td><td>${money(p.value)}</td><td>${signed(p.unrealized)}</td><td>${esc(p.provenance)} · ${p.markDate} · ${p.age}d old${p.recovered?' · recovered action estimate':''}<br>${esc(p.markSource)} · ${esc(p.markSymbol)}${p.proxy?' · PROXY MARK':''}<br><small>${esc(p.markBasis)}</small>${p.markUrl&&/^https:\/\//.test(p.markUrl)?`<br><a href="${esc(p.markUrl)}" target="_blank" rel="noopener noreferrer">Price source ↗</a>`:''}</td></tr>`).join('')||'<tr><td colspan="9">No active positions.</td></tr>';
  drawChart();document.querySelectorAll('#daily tr').forEach(r=>r.classList.toggle('selected',r.dataset.date===selected));
 }
 function drawDaily(){
@@ -86,18 +96,20 @@ function drawDaily(){
  document.querySelectorAll('#daily tr').forEach(r=>{r.classList.toggle('selected',r.dataset.date===selected);r.onclick=()=>inspect(r.dataset.date);r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();inspect(r.dataset.date);}};});
 }
 function exportCsv(){
- const text=dailyCsv(range.rows,recoveryEnabled()?'Endpoint-recovery estimates':'Original covered actions');
+ const text=dailyCsv(range.rows,`${recoveryEnabled()?'Action-recovery estimates':'Original covered actions'}; ${backfillEnabled()?'backfilled price history':'original price cache'}; nominal units, FX excluded`);
  const url=URL.createObjectURL(new Blob([text],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=`bravos-daily-${$('from').value}-${$('to').value}-${recoveryEnabled()?'recovery':'original'}.csv`;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
 async function init(){
  const fetchJson=async url=>{const r=await fetch(url);if(!r.ok)throw new Error(`Cannot load ${url} (${r.status})`);return r.json();};
- [payload,{marks},openSnapshot]=await Promise.all([fetchJson('../trade-lifecycle-audit/data/trades.json'),fetchJson('data/marks.json'),fetchJson('../trade-lifecycle-audit/data/open-positions.json')]);
+ let priceData;
+ [payload,priceData,openSnapshot,priceBackfill,priceAudit]=await Promise.all([fetchJson('../trade-lifecycle-audit/data/trades.json'),fetchJson('data/marks.json'),fetchJson('../trade-lifecycle-audit/data/open-positions.json'),fetchJson('data/price-backfill.json'),fetchJson('data/price-backfill-audit.json')]);
+ originalMarks=priceData.marks;
  $('asOfText').textContent=`Daily model through ${payload.metadata.cutoff_date} · source checked ${payload.metadata.source_checked_through ?? payload.metadata.source_review_date ?? 'not recorded'}`;
  const years=[...new Set(payload.daily_positions.map(d=>d.date.slice(0,4)))];years.forEach(y=>$('year').add(new Option(y,y)));
  $('year').value=years.at(-1);$('from').value=`${years.at(-1)}-01-01`;$('to').value=payload.metadata.cutoff_date;
  $('year').onchange=()=>{const y=$('year').value;$('from').value=y==='all'?ledger.days[0].date:`${y}-01-01`;$('to').value=y==='all'?payload.metadata.cutoff_date:[`${y}-12-31`,payload.metadata.cutoff_date].sort()[0];renderRange();};
  for(const id of ['from','to'])$(id).onchange=()=>{$('year').value='all';renderRange();};
- $('calculation-basis').onchange=rebuild;$('series').onchange=drawChart;$('actions-only').onchange=drawDaily;$('day-slider').oninput=()=>{const d=range.rows[Number($('day-slider').value)];if(d)selectDay(d.date);};$('export').onclick=exportCsv;
+ $('calculation-basis').onchange=rebuild;$('price-history').onchange=rebuild;$('series').onchange=drawChart;$('actions-only').onchange=drawDaily;$('day-slider').oninput=()=>{const d=range.rows[Number($('day-slider').value)];if(d)selectDay(d.date);};$('export').onclick=exportCsv;
  rebuild();
 }
 init().catch(e=>{$('coverage').textContent=`Unable to load daily audit: ${e.message}. Serve this folder over HTTP.`;$('export').disabled=true;console.error(e);});

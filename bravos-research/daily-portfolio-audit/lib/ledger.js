@@ -86,7 +86,7 @@ export function buildDailyLedger({trades, marks = {}, cutoff, startingCapital = 
       const u = p.trade.direction === 'LONG' ? value-p.cost : p.cost-value;
       if (p.trade.direction === 'LONG') longValue += value; else shortLiability += value;
       cost += p.cost; unrealized += u;
-      positions.push({positionId:p.trade.position_id,ticker:p.trade.ticker,direction:p.trade.direction,sector:p.trade.sector,weight:p.weight,shares:p.shares,cost:p.cost,mark:mark.close,markDate:mark.date,age,provenance,value,unrealized:u,recovered:Boolean(p.trade.recovery_basis)});
+      positions.push({positionId:p.trade.position_id,ticker:p.trade.ticker,direction:p.trade.direction,sector:p.trade.sector,weight:p.weight,shares:p.shares,cost:p.cost,mark:mark.close,markDate:mark.date,age,provenance,markSource:mark.source??provenance,markSymbol:mark.symbol??p.trade.ticker,markCurrency:mark.currency??null,markBasis:mark.priceBasis??'Original nominal price basis',markUrl:mark.sourceUrl??null,proxy:Boolean(mark.proxy),value,unrealized:u,recovered:Boolean(p.trade.recovery_basis)});
     }
     equity = cash+longValue-shortLiability;
     const realized = events.reduce((sum,e)=>sum+e.realized,0);

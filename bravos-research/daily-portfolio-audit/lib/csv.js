@@ -1,5 +1,5 @@
 export function dailyCsv(rows, basis) {
   const fields=['date','openingEquity','equity','cash','longValue','shortLiability','activeNetValue','pnl','realized','realizedTotal','unrealized','unrealizedChange','provisional','carriedMarks','negativeCash','identityError','dailyError'];
   const cell=x=>'"'+String(x??'').replace(/"/g,'""')+'"';
-  return '\uFEFF'+[fields.concat(['calculationBasis','actions']).join(','),...rows.map(d=>fields.map(k=>cell(d[k])).concat(cell(basis),cell(d.events.map(e=>`${e.ticker} ${e.type} @ ${e.price}; realized ${e.realized}; ${e.sourceLink??''}`).join(' | '))).join(','))].join('\r\n');
+  return '\uFEFF'+[fields.concat(['calculationBasis','actions','priceMarks']).join(','),...rows.map(d=>fields.map(k=>cell(d[k])).concat(cell(basis),cell(d.events.map(e=>`${e.ticker} ${e.type} @ ${e.price}; realized ${e.realized}; ${e.sourceLink??''}`).join(' | ')),cell(d.positions.map(p=>`${p.ticker}: ${p.mark} ${p.markCurrency??'original nominal unit'} @ ${p.markDate}; ${p.markSource??p.provenance}; ${p.markSymbol??p.ticker}; ${p.markBasis??'original basis'}; ${p.proxy?'PROXY; ':''}${p.markUrl??''}`).join(' | '))).join(','))].join('\r\n');
 }

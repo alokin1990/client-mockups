@@ -1,1 +1,1 @@
-{"name":"bravos-daily-portfolio-audit","private":true,"type":"module","scripts":{"test":"node --test --test-isolation=none tests/ledger.test.js tests/navigation.test.js","prepare":"node scripts/prepare-data.js","preview":"node scripts/serve.js"}}
+{"name":"bravos-daily-portfolio-audit","private":true,"type":"module","scripts":{"test":"node --test --test-isolation=none tests/ledger.test.js tests/navigation.test.js tests/price-backfill.test.js","prepare":"node scripts/prepare-data.js","backfill":"node scripts/backfill-prices.js","preview":"node scripts/serve.js"}}

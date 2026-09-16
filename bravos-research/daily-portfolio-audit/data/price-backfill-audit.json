@@ -1,0 +1,354 @@
+{
+  "metadata": {
+    "fetched_at": "2026-09-16T17:51:44.746Z",
+    "cutoff_date": "2026-09-10",
+    "baseline": "data/marks.json",
+    "policy": "Missing-history overlay only; source executions and lifecycle eligibility unchanged",
+    "currency_note": "Marks match nominal action-price units; FX returns not modeled"
+  },
+  "applied": 15,
+  "unresolved": [
+    {
+      "ticker": "ORLA",
+      "symbol": "ORLA",
+      "currency": "USD",
+      "note": "US-listed Orla Mining",
+      "status": "Unresolved",
+      "reason": "No recent mark at first eligible entry; history still incomplete"
+    },
+    {
+      "ticker": "HES",
+      "symbol": "HES",
+      "currency": "USD",
+      "note": "Hess historical stock",
+      "status": "Unresolved",
+      "reason": "HTTP 404"
+    },
+    {
+      "ticker": "BLD",
+      "symbol": "BLD",
+      "currency": "USD",
+      "note": "TopBuild historical stock",
+      "status": "Unresolved",
+      "reason": "HTTP 404"
+    }
+  ],
+  "scenarios": {
+    "original": {
+      "before": {
+        "eligible": 292,
+        "endingEquity": 111873.05547377051,
+        "provisionalDays": 325,
+        "fallbackPositionDays": 394,
+        "stalePositionDays": 309,
+        "negativeCashDays": 2,
+        "maxIdentityError": 1.6007106751203537e-10,
+        "maxDailyError": 6.639311322942376e-11,
+        "gaps": [
+          {
+            "ticker": "ETHUSD",
+            "positionDays": 116,
+            "first": "2024-03-22",
+            "last": "2025-10-08"
+          },
+          {
+            "ticker": "BTCUSD",
+            "positionDays": 95,
+            "first": "2024-03-19",
+            "last": "2025-08-14"
+          },
+          {
+            "ticker": "SOLUSD",
+            "positionDays": 73,
+            "first": "2024-11-21",
+            "last": "2025-10-08"
+          },
+          {
+            "ticker": "U.UN",
+            "positionDays": 53,
+            "first": "2026-04-13",
+            "last": "2026-06-04"
+          },
+          {
+            "ticker": "COCOA",
+            "positionDays": 38,
+            "first": "2024-11-12",
+            "last": "2025-05-28"
+          },
+          {
+            "ticker": "NATGAS",
+            "positionDays": 17,
+            "first": "2024-11-29",
+            "last": "2024-12-16"
+          },
+          {
+            "ticker": "AR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          },
+          {
+            "ticker": "GPOR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          }
+        ]
+      },
+      "after": {
+        "eligible": 292,
+        "endingEquity": 111820.94202364802,
+        "provisionalDays": 1,
+        "fallbackPositionDays": 2,
+        "stalePositionDays": 0,
+        "negativeCashDays": 2,
+        "maxIdentityError": 8.731149137020111e-11,
+        "maxDailyError": 4.3655745685100555e-11,
+        "gaps": [
+          {
+            "ticker": "AR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          },
+          {
+            "ticker": "GPOR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          }
+        ]
+      },
+      "endingEquityChange": -52.11345012248785,
+      "excluded": 75,
+      "changedDays": 671,
+      "maxDailyPnlChange": 787.6605817321542,
+      "yearRanges": [
+        {
+          "year": "2024",
+          "beforePnl": -505.5427857465693,
+          "afterPnl": -852.5773280376598
+        },
+        {
+          "year": "2025",
+          "beforePnl": 6261.853599185284,
+          "afterPnl": 6567.117072204972
+        },
+        {
+          "year": "2026",
+          "beforePnl": 6116.744660331795,
+          "afterPnl": 6106.40227948071
+        }
+      ]
+    },
+    "recovery": {
+      "before": {
+        "eligible": 324,
+        "endingEquity": 124764.8394766059,
+        "provisionalDays": 637,
+        "fallbackPositionDays": 1129,
+        "stalePositionDays": 967,
+        "negativeCashDays": 4,
+        "maxIdentityError": 5.820766091346741e-11,
+        "maxDailyError": 5.4797055781818926e-11,
+        "gaps": [
+          {
+            "ticker": "3988/BACHF",
+            "positionDays": 189,
+            "first": "2025-01-29",
+            "last": "2025-08-05"
+          },
+          {
+            "ticker": "ALUM",
+            "positionDays": 173,
+            "first": "2025-12-19",
+            "last": "2026-06-09"
+          },
+          {
+            "ticker": "BTCUSD",
+            "positionDays": 149,
+            "first": "2024-03-19",
+            "last": "2025-08-14"
+          },
+          {
+            "ticker": "ETHUSD",
+            "positionDays": 124,
+            "first": "2024-03-22",
+            "last": "2025-10-08"
+          },
+          {
+            "ticker": "SOLUSD",
+            "positionDays": 73,
+            "first": "2024-11-21",
+            "last": "2025-10-08"
+          },
+          {
+            "ticker": "US_SMALL_CAP_2000",
+            "positionDays": 73,
+            "first": "2025-08-25",
+            "last": "2025-11-05"
+          },
+          {
+            "ticker": "6988",
+            "positionDays": 65,
+            "first": "2025-08-05",
+            "last": "2025-10-08"
+          },
+          {
+            "ticker": "U.UN",
+            "positionDays": 53,
+            "first": "2026-04-13",
+            "last": "2026-06-04"
+          },
+          {
+            "ticker": "ALA",
+            "positionDays": 46,
+            "first": "2024-08-08",
+            "last": "2024-09-22"
+          },
+          {
+            "ticker": "COCOA",
+            "positionDays": 38,
+            "first": "2024-11-12",
+            "last": "2025-05-28"
+          },
+          {
+            "ticker": "TRXUSD",
+            "positionDays": 35,
+            "first": "2025-07-16",
+            "last": "2025-08-19"
+          },
+          {
+            "ticker": "FI",
+            "positionDays": 28,
+            "first": "2024-12-13",
+            "last": "2025-01-09"
+          },
+          {
+            "ticker": "ORLA",
+            "positionDays": 23,
+            "first": "2025-08-26",
+            "last": "2025-09-17"
+          },
+          {
+            "ticker": "BLD",
+            "positionDays": 19,
+            "first": "2026-02-06",
+            "last": "2026-02-24"
+          },
+          {
+            "ticker": "NATGAS",
+            "positionDays": 17,
+            "first": "2024-11-29",
+            "last": "2024-12-16"
+          },
+          {
+            "ticker": "XRPUSD",
+            "positionDays": 14,
+            "first": "2025-09-08",
+            "last": "2025-09-21"
+          },
+          {
+            "ticker": "HES",
+            "positionDays": 6,
+            "first": "2025-01-29",
+            "last": "2025-02-03"
+          },
+          {
+            "ticker": "AAVE/USDT",
+            "positionDays": 2,
+            "first": "2025-08-13",
+            "last": "2025-08-14"
+          },
+          {
+            "ticker": "AR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          },
+          {
+            "ticker": "GPOR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          }
+        ]
+      },
+      "after": {
+        "eligible": 324,
+        "endingEquity": 124756.12179790626,
+        "provisionalDays": 52,
+        "fallbackPositionDays": 55,
+        "stalePositionDays": 33,
+        "negativeCashDays": 4,
+        "maxIdentityError": 1.1641532182693481e-10,
+        "maxDailyError": 5.002220859751105e-11,
+        "gaps": [
+          {
+            "ticker": "ORLA",
+            "positionDays": 23,
+            "first": "2025-08-26",
+            "last": "2025-09-17"
+          },
+          {
+            "ticker": "BLD",
+            "positionDays": 19,
+            "first": "2026-02-06",
+            "last": "2026-02-24"
+          },
+          {
+            "ticker": "HES",
+            "positionDays": 6,
+            "first": "2025-01-29",
+            "last": "2025-02-03"
+          },
+          {
+            "ticker": "3988/BACHF",
+            "positionDays": 6,
+            "first": "2025-01-29",
+            "last": "2025-04-21"
+          },
+          {
+            "ticker": "ALUM",
+            "positionDays": 2,
+            "first": "2025-12-28",
+            "last": "2026-04-06"
+          },
+          {
+            "ticker": "AR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          },
+          {
+            "ticker": "GPOR",
+            "positionDays": 1,
+            "first": "2025-06-19",
+            "last": "2025-06-19"
+          }
+        ]
+      },
+      "endingEquityChange": -8.71767869964242,
+      "excluded": 43,
+      "changedDays": 864,
+      "maxDailyPnlChange": 1478.0377302105044,
+      "yearRanges": [
+        {
+          "year": "2024",
+          "beforePnl": 3988.3044644198817,
+          "afterPnl": 3627.42472820096
+        },
+        {
+          "year": "2025",
+          "beforePnl": 13096.806096446307,
+          "afterPnl": 13538.891803941762
+        },
+        {
+          "year": "2026",
+          "beforePnl": 7679.728915739717,
+          "afterPnl": 7589.805265763542
+        }
+      ]
+    }
+  }
+}
