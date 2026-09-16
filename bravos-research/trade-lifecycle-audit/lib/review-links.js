@@ -9,6 +9,9 @@ function isWebLink(value) {
 }
 
 export function getTradeReviewLinks(trade) {
-  const links = [trade?.entry_link, trade?.exit_link].filter(isWebLink);
+  const actionLinks = Array.isArray(trade?.actions)
+    ? trade.actions.map((action) => action?.source_link)
+    : [];
+  const links = [trade?.entry_link, ...actionLinks, trade?.exit_link].filter(isWebLink);
   return [...new Set(links)];
 }

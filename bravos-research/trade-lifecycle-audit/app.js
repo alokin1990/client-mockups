@@ -10,11 +10,11 @@ import {
   buildPortfolioModel,
   getPortfolioPeriod,
   getTradeStats,
-  groupGainLoss,
   summarizeTradeStats,
   tradeWinRate,
 } from "./lib/portfolio-math.js";
 import { getTradeReviewLinks } from "./lib/review-links.js";
+import { categoryAttributionRows } from "./lib/category-attribution.js";
 
 const state = {
   trades: [],
@@ -68,6 +68,7 @@ const els = {
   annualizedReturn: document.querySelector("#annualizedReturn"),
   yearlyCapitalBody: document.querySelector("#yearlyCapitalBody"),
   categoryChart: document.querySelector("#categoryChart"),
+  categoryChartContext: document.querySelector("#categoryChartContext"),
   tableHead: document.querySelector("#tradeTable thead"),
   tableBody: document.querySelector("#tradeTable tbody"),
   empty: document.querySelector("#emptyState"),
@@ -265,24 +266,21 @@ function renderYearlyCapital() {
 }
 
 function renderCategoryChart() {
-  const totals = groupGainLoss(state.filtered, "sector", modeledTradeGain);
-  const sorted = [...totals.entries()].sort((a, b) => Math.abs(b[1]) - Math.abs(a[1]));
-  const displayed = sorted.slice(0, 8);
-  if (sorted.length > 8) displayed.push(["Other categories", sorted.slice(8).reduce((sum, [, value]) => sum + value, 0)]);
-  const max = Math.max(...displayed.map(([, value]) => Math.abs(value)), 0.000001);
+  const categories = els.category.value === "all"
+    ? [...new Set(state.trades.map((trade) => trade.sector).filter(Boolean))]
+    : [els.category.value];
+  const displayed = categoryAttributionRows(state.filtered, categories, modeledTradeGain);
+  const max = Math.max(...displayed.map((row) => Math.abs(row.gainLoss ?? 0)), 0.000001);
+  const period = selectedYear() === "all" ? "all covered years" : selectedYear();
+  els.categoryChartContext.textContent = `${displayed.length} sectors/themes shown for ${period}. Contributions use the current trade filters; no sectors are merged. Losses extend left and gains right. n.a. means no modeled P/L is available in this view.`;
 
-  if (!displayed.length) {
-    els.categoryChart.innerHTML = '<div class="empty-state">No modeled P/L is available for this view.</div>';
-    return;
-  }
-
-  els.categoryChart.innerHTML = displayed.map(([label, value]) => {
-    const width = Math.abs(value) / max * 50;
+  els.categoryChart.innerHTML = displayed.map(({ label, gainLoss: value }) => {
+    const width = Math.abs(value ?? 0) / max * 50;
     const left = value >= 0 ? 50 : 50 - width;
-    return `<div class="bar-row">
+    return `<div class="bar-row" role="listitem">
       <span class="bar-label" title="${escapeHtml(label)}">${escapeHtml(label)}</span>
       <span class="bar-track"><span class="bar-zero"></span><span class="bar-fill ${value < 0 ? "negative" : ""}" style="left:${left}%;width:${width}%"></span></span>
-      <span class="bar-value ${valueClass(value)}">${fmtSignedCurrency(value, 0)}</span>
+      <span class="bar-value ${valueClass(value)}">${isFiniteNumber(value) ? fmtSignedCurrency(value, 0) : "n.a."}</span>
     </div>`;
   }).join("");
 }
@@ -344,12 +342,12 @@ function setSourceLink(element, url) {
 function updateReviewTradeButton(trade) {
   const reviewLinks = getTradeReviewLinks(trade);
   els.reviewTrade.disabled = reviewLinks.length === 0;
-  els.reviewTrade.textContent = reviewLinks.length === 1 ? "OPEN AVAILABLE UPDATE" : "REVIEW TRADE UPDATES";
-  els.reviewTrade.title = reviewLinks.length === 2
-    ? "Open the Bravos entry and exit updates in two new tabs"
-    : reviewLinks.length === 1
-      ? "Open the available Bravos update in a new tab"
-      : "No Bravos entry or exit update is available for this trade";
+  els.reviewTrade.textContent = reviewLinks.length > 0
+    ? `OPEN ${reviewLinks.length} TRADE UPDATE${reviewLinks.length === 1 ? "" : "S"}`
+    : "NO TRADE UPDATES";
+  els.reviewTrade.title = reviewLinks.length > 0
+    ? `Open all ${reviewLinks.length} unique Bravos lifecycle reports in new tabs`
+    : "No Bravos lifecycle report is available for this trade";
 }
 
 function openSelectedTradeReview() {

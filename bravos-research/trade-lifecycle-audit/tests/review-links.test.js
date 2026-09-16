@@ -23,6 +23,26 @@ test("keeps one available link and removes duplicates", () => {
   ]);
 });
 
+test("returns every unique lifecycle action report in chronological order", () => {
+  assert.deepEqual(getTradeReviewLinks({
+    entry_link: "https://bravosresearch.com/entry/",
+    exit_link: "https://bravosresearch.com/final/",
+    actions: [
+      { source_link: "https://bravosresearch.com/entry/" },
+      { source_link: "https://bravosresearch.com/add/" },
+      { source_link: "https://bravosresearch.com/partial-one/" },
+      { source_link: "https://bravosresearch.com/partial-two/" },
+      { source_link: "https://bravosresearch.com/final/" },
+    ],
+  }), [
+    "https://bravosresearch.com/entry/",
+    "https://bravosresearch.com/add/",
+    "https://bravosresearch.com/partial-one/",
+    "https://bravosresearch.com/partial-two/",
+    "https://bravosresearch.com/final/",
+  ]);
+});
+
 test("rejects empty and non-web links", () => {
   assert.deepEqual(getTradeReviewLinks(null), []);
   assert.deepEqual(getTradeReviewLinks({ entry_link: "javascript:alert(1)", exit_link: "not-a-url" }), []);

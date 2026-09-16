@@ -111,6 +111,14 @@ The outcome filter is selected-period aware. A winner or loser must be closed, i
 
 ## Known limitations
 
+### Sector / theme and entry-setup provenance
+
+`sector` is assigned during reconstruction using a curated ticker-to-theme map, then keyword rules against the ticker and asset name, with `Other / Review` as the unresolved classification fallback. These are broad research themes, not a verified provider taxonomy or official Bravos sector labels. `setup` is separately inferred from trade direction and entry-report URL/evidence keywords; unmatched long entries default to `Tactical long`, which does not establish an explicit source strategy.
+
+The category chart groups the exact dataset `sector` field and sums selected-period modeled dollar contributions. It does not use `setup`. As of September 16, all 19 dataset sectors/themes are shown individually when All categories is selected, with full wrapped labels and no top-eight/Other-categories merging. Selecting one category shows that category. Other trade filters change contributions; categories with no finite modeled P/L show `n.a.`, while genuine net-zero contributions show $0. Classification is unchanged and portfolio-return formulas are unchanged.
+
+The remaining classification improvement is to expose per-trade classification provenance and review the curated map and fallback assignments against a documented taxonomy. Do not present these inferred themes as independently verified sectors.
+
 1. The source is reconstructed from research posts and historical prices, not reconciled to brokerage fills.
 2. Seventy-two excluded trades do not contribute to the modeled return.
 3. 2024 and 2026 are partial coverage periods; their annualized presentation extrapolates incomplete years.
