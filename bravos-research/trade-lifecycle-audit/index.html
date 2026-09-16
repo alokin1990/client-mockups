@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23032f67'/%3E%3Cpath d='M13 43V25h9l8 10 8-16h13L39 45H27L19 35v8z' fill='%2303a9d8'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="./styles.css?v=20260916-header">
-  <link rel="stylesheet" href="./dashboard-header.css?v=20260916-header">
+  <link rel="stylesheet" href="./dashboard-header.css?v=20260916-positions">
 </head>
 <body>
   <a class="skip-link" href="#main-content">Skip to trade analysis</a>
@@ -126,7 +126,10 @@
       <section class="yearly-capital" aria-labelledby="unrealizedTitle">
         <div class="section-heading"><div><p class="eyebrow">CONFIRMED OPEN POSITIONS</p><h2 id="unrealizedTitle">Unrealized gain / loss</h2></div><strong id="unrealizedTotal">—</strong></div>
         <p id="unrealizedContext" class="chart-note"></p>
-        <div class="yearly-table-shell"><table class="yearly-table"><thead><tr><th>Asset</th><th>Current weight</th><th>Recorded weight</th><th>Remaining cost</th><th>Marked value</th><th>Unrealized P/L</th><th>Price date / review note</th></tr></thead><tbody id="unrealizedBody"></tbody></table></div>
+        <details class="positions-disclosure">
+          <summary><span class="positions-show">View positions</span><span class="positions-hide">Hide positions</span></summary>
+          <div class="yearly-table-shell"><table class="yearly-table"><thead><tr><th>Asset</th><th>Current weight</th><th>Recorded weight</th><th>Remaining cost</th><th>Marked value</th><th>Unrealized P/L</th><th>Price date / review note</th></tr></thead><tbody id="unrealizedBody"></tbody></table></div>
+        </details>
       </section>
 
       <section class="yearly-capital" aria-labelledby="yearlyCapitalTitle">

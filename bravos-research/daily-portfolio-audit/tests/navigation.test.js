@@ -1,6 +1,22 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
+test('Both current-holdings tables start closed under View positions without hiding totals',()=>{
+ for(const [folder,body,total] of [['daily-portfolio-audit','open-positions','open-unrealized'],['trade-lifecycle-audit','unrealizedBody','unrealizedTotal']]){
+  const html=fs.readFileSync(new URL(`../../${folder}/index.html`,import.meta.url),'utf8');
+  const disclosure=html.match(/<details class="positions-disclosure"[^>]*>[\s\S]*?<\/details>/)?.[0];
+  assert.ok(disclosure);
+  assert.doesNotMatch(disclosure.match(/^<details[^>]*>/)[0],/\bopen\b/);
+  assert.ok(disclosure.includes('View positions'));
+  assert.ok(disclosure.includes('Hide positions'));
+  assert.ok(disclosure.includes(`<tbody id="${body}">`));
+  assert.ok(!disclosure.includes(`id="${total}"`));
+  assert.ok(html.includes(`id="${total}"`));
+ }
+ const css=fs.readFileSync(new URL('../../trade-lifecycle-audit/dashboard-header.css',import.meta.url),'utf8');
+ assert.ok(css.includes('.positions-disclosure[open] .positions-show { display: none; }'));
+ assert.ok(css.includes('.positions-disclosure[open] .positions-hide { display: inline; }'));
+});
 test('Both views have matching names, reciprocal links and a single current-page marker',()=>{
  for(const [folder,current] of [['daily-portfolio-audit','Daily Portfolio'],['trade-lifecycle-audit','Trade Review']]){
   const file=new URL(`../../${folder}/index.html`,import.meta.url);
