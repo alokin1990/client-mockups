@@ -52,7 +52,33 @@
 .economics-field > span:first-child { display: block; margin-bottom: 4px; }
 .economics-entry { display: flex; align-items: center; gap: 5px; }
 .economics-entry input { width: 100%; min-width: 0; padding: 7px 8px; border: 1px solid #cbd7e5; border-radius: 6px; font: inherit; color: #17233a; background: #fff; }
+.cohort-summary { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; margin: 16px 0; }
+.cohort-summary div { border: 1px solid #e1e7f0; background: #f8fbff; border-radius: 9px; padding: 12px; }
+.cohort-summary span { display: block; color: #66778e; font-size: .75rem; }
+.cohort-summary strong { display: block; margin-top: 5px; font-size: 1.15rem; font-variant-numeric: tabular-nums; }
+.cohort-legend { display: flex; gap: 20px; flex-wrap: wrap; color: #62738a; font-size: .76rem; }
+.cohort-legend span { display: inline-flex; align-items: center; gap: 7px; }
+.cohort-legend i { width: 20px; height: 4px; border-radius: 4px; display: inline-block; }
+.cohort-legend .revenue { background: #386fd6; }
+.cohort-legend .spend { background: #e1a000; }
+.cohort-plot-scroll { overflow-x: auto; }
+.cohort-plot { display: block; width: 100%; min-width: 660px; height: auto; }
+.cohort-plot .cohort-grid { stroke: #e5ebf2; stroke-width: 1; }
+.cohort-plot .cohort-axis, .cohort-plot .cohort-axis-title { fill: #687990; font: 11px Inter,ui-sans-serif,system-ui,sans-serif; }
+.cohort-plot .cohort-axis-title { font-size: 12px; }
+.cohort-plot .cohort-spend { fill: none; stroke: #e1a000; stroke-width: 2.5; }
+.cohort-plot .cohort-spend-label { fill: #9c6a00; font: 11px Inter,ui-sans-serif,system-ui,sans-serif; }
+.cohort-plot .cohort-revenue { fill: none; stroke: #386fd6; stroke-width: 3; }
+.cohort-plot .cohort-unknown-timing { stroke-dasharray: 6 5; }
+.cohort-plot .cohort-point { fill: #386fd6; stroke: #fff; stroke-width: 2; }
+.cohort-plot .cohort-empty { fill: #66778e; font: 14px Inter,ui-sans-serif,system-ui,sans-serif; }
+.cohort-status { border-left: 3px solid #8aa8d8; padding-left: 11px; }
+.cohort-panel .economics-grid { margin: 12px 0; }
+.cohort-panel details { margin-top: 14px; border-top: 1px solid #e1e7f0; padding-top: 12px; }
+.cohort-panel summary { cursor: pointer; font-weight: 650; }
+.cohort-formula { background: #f8fbff; border-radius: 8px; padding: 10px 12px; font-size: .82rem; }
 @media(max-width:650px) { .week-detail .week-stats { grid-template-columns: repeat(2,minmax(0,1fr)); } .economics-grid { grid-template-columns: 1fr; } }
+@media(max-width:650px) { .cohort-summary { grid-template-columns: 1fr; } }
 @media(max-width:550px) { .panel.hero-panel { padding: 18px 14px; } .hero-head { display: block; } .hero-select-label { margin-top: 12px; } }
 
 </style>
@@ -62,7 +88,7 @@
     .top{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;align-items:start}.eyebrow{font-size:.73rem;text-transform:uppercase;letter-spacing:.13em;color:#55779d;font-weight:700;margin:0 0 7px}
     h1{font-size:clamp(1.8rem,3vw,2.5rem);letter-spacing:-.04em;margin:0 0 8px}h2{font-size:1.16rem;letter-spacing:-.02em;margin:0 0 7px}p{line-height:1.5}.muted{color:#66778e;font-size:.85rem}.sub{color:#66778e;margin:0}
     .links{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;padding-top:7px}.notice{background:#fff3e5;border-left:4px solid #bd762b;border-radius:8px;color:#68421e;padding:13px 16px;margin:22px 0;font-size:.88rem}.notice strong{color:#583512}
-    .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.metric,.panel{background:#fff;border:1px solid #e1e7f0;border-radius:13px;box-shadow:0 2px 10px #1b35540a}.metric{padding:17px 19px}.metric span{display:block;font-size:.78rem;color:#65758d}.metric strong{display:block;font-size:1.55rem;letter-spacing:-.035em;margin:7px 0 2px;font-variant-numeric:tabular-nums}.metric small{font-size:.72rem;color:#77859a}
+    .metrics{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.metric,.panel{background:#fff;border:1px solid #e1e7f0;border-radius:13px;box-shadow:0 2px 10px #1b35540a}.metric{padding:17px 19px}.metric span{display:block;font-size:.78rem;color:#65758d}.metric strong{display:block;font-size:1.55rem;letter-spacing:-.035em;margin:7px 0 2px;font-variant-numeric:tabular-nums}.metric small{font-size:.72rem;color:#77859a}
     .panel{padding:21px;margin-top:18px}.chart-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.chart-grid .panel{min-width:0}.legend{display:flex;gap:16px;font-size:.75rem;color:#62738a;flex-wrap:wrap}.legend span{display:inline-flex;align-items:center;gap:6px}.swatch{width:12px;height:4px;border-radius:3px;background:#6684a6}.swatch.optimistic{background:#19946f}
     .plot-scroll,.table-scroll{overflow-x:auto}.plot{display:block;width:100%;min-width:530px;height:auto}.plot text{font:11px Inter,ui-sans-serif,system-ui,sans-serif;fill:#687990}.plot .grid{stroke:#e5ebf2;stroke-width:1}.plot .base{fill:none;stroke:#6684a6;stroke-width:2.5}.plot .optimistic{fill:none;stroke:#19946f;stroke-width:3}
     table{border-collapse:collapse;width:100%;font-size:.81rem}th,td{padding:10px;border-bottom:1px solid #e6ecf3;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}th{font-size:.73rem;color:#61728b;position:sticky;top:0;background:#fff}th:first-child,td:first-child{text-align:left}td:first-child{font-weight:600}.table-scroll{max-height:520px;overflow:auto}.error{color:#a52828}.evidence{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.evidence div{background:#f3f7fb;border-radius:9px;padding:14px}.evidence strong{display:block;font-size:1.15rem}.evidence span{font-size:.78rem;color:#596b83}
@@ -82,10 +108,23 @@
     <div class="metric"><span>Total modeled leads</span><strong id="totalLeads">—</strong><small id="leadsPerWeek">— / week · conversion proxy</small><br><small id="qualifiedTotal">— WC-qualified estimate</small></div>
     <div class="metric"><span>Total cost</span><strong id="totalCost">—</strong><small id="costPerWeek">— / week</small></div>
     <div class="metric"><span>Average CPA</span><strong id="averageCpa">—</strong><small>Total cost ÷ modeled leads</small></div>
-    <div class="metric"><span>Estimated total ROAS*</span><strong id="totalRoas">—</strong><small id="roasBasis">WC lead-value proxy</small></div>
+    <div class="metric"><span>Immediate ROAS*</span><strong id="totalRoas">—</strong><small id="roasBasis">Estimated value proxy, not collected revenue</small></div>
+    <div class="metric"><span>Long-term ROAS · 3 years</span><strong id="longTermRoas">—</strong><small id="longTermBasis">Planning estimate · not actual</small></div>
   </section>
   <section class="panel hero-panel" aria-label="Main weekly forecast chart"><div class="hero-head"><div><h2>Weekly conversions and cost</h2><p class="muted">Select a week on the graph to see cost, CPA, modeled conversions, and estimated ROAS. Orange cost uses the left axis; green modeled conversions use the right axis.</p></div><label class="hero-select-label" for="heroScenario">Forecast case <select id="heroScenario"><option value="optimistic" selected>Targeted</option><option value="base">Conservative</option></select></label></div><div class="hero-legend"><span><i class="hero-swatch cost"></i>Cost / week</span><span><i class="hero-swatch conversions"></i>Modeled conversions / week</span></div><div class="hero-plot-scroll"><svg id="heroChart" class="hero-plot" viewBox="0 0 1060 390" role="group" aria-label="Weekly modeled conversions and cost"></svg></div><div id="weekDetail" class="week-detail" aria-live="polite"><p class="muted">Select a week on the graph to inspect it.</p></div></section>
-  <section class="panel"><h2>How the estimated return is calculated</h2><p class="muted" id="peerStats">Loading WhatConverts-qualified peer benchmark…</p><p class="muted">By default, the ROAS* card is a <strong>provisional lead-value-to-spend estimate</strong>: modeled Ads conversion actions × peer WC-qualified share × peer imported value per qualified action ÷ modeled ad cost. WhatConverts may send a quote estimate or sales value to Ads; we have not verified which setting each peer uses. Repeated values suggest presets. This is not confirmed patient revenue or actual ROAS.</p><div id="economicsInputs" class="economics-grid"></div><p class="muted">Optional Walden-specific inputs replace the imported-value proxy: estimated WC-qualified leads × share becoming patients × revenue per new patient ÷ modeled ad cost. Leave both blank to retain the peer proxy. Inputs stay only in this browser; Google Ads and Docker are unchanged.</p></section>
+  <section class="panel cohort-panel" aria-labelledby="cohortHeading">
+    <h2 id="cohortHeading">3-year return from the same patient cohort</h2>
+    <p class="muted">This compares modeled cumulative patient value from this campaign with its <em>original</em> 20-week ad spend. It does not count later ad spend or automatically credit family members to the first patient.</p>
+    <div class="cohort-summary"><div><span>Original modeled ad spend</span><strong id="cohortCost">—</strong></div><div><span>Modeled acquired patients</span><strong id="cohortPatients">—</strong></div><div><span>36-month cumulative value estimate</span><strong id="cohortRevenue">—</strong></div></div>
+    <div class="cohort-legend"><span><i class="revenue"></i>Cumulative modeled patient value</span><span><i class="spend"></i>Original ad spend</span></div>
+    <div class="cohort-plot-scroll"><svg id="cohortChart" class="cohort-plot" viewBox="0 0 1060 340" role="img" aria-label="Patient-cohort value estimate and original ad spend over 36 months"></svg></div>
+    <p id="cohortStatus" class="muted cohort-status" role="status">Loading the data-informed planning estimate…</p>
+    <p class="cohort-formula">3-year ROAS = cumulative 36-month revenue from the <strong>same ad-attributed patients</strong> ÷ original ad spend that acquired them. The prefilled figure is a planning proxy, not measured revenue.</p>
+    <p id="cohortPriorDetail" class="muted">Loading the planning assumptions…</p>
+    <details><summary>Replace the planning estimate with your patient economics</summary><p class="muted">Any entered value switches the long-term box to a user scenario. Enter an immediate per-patient value, qualified-to-patient rate, and cumulative 36-month revenue; values must not decrease. These local inputs do not modify Docker or Google Ads.</p><div id="economicsInputs" class="economics-grid"></div><div id="ltvInputs" class="economics-grid"></div></details>
+    <p class="muted">The $284 follow-up payment is a <a href="https://meps.ahrq.gov/data_stats/download_data/pufs/h248b/h248bdoc.shtml">2023 U.S. MEPS national mean for visits where a hygienist was seen</a>, not a Walden fee or guaranteed patient visit. Recall timing is individualized; no six-visit, 20× ROAS, delayed-treatment, or family-referral uplift is assumed. Actual 3-year ROAS requires matched patient and transaction history from practice-management software.</p>
+  </section>
+  <section class="panel"><h2>How the immediate return estimate is calculated</h2><p class="muted" id="peerStats">Loading WhatConverts-qualified peer benchmark…</p><p class="muted">By default, immediate ROAS* is a <strong>provisional lead-value-to-spend estimate</strong>: modeled Ads conversion actions × peer WC-qualified share × peer imported value per qualified action ÷ modeled ad cost. WhatConverts may send a quote estimate or sales value to Ads; we have not verified which setting each peer uses. Repeated values suggest presets. This is not confirmed patient revenue or actual ROAS.</p><p class="muted">If you enter immediate revenue per patient and a qualified-lead-to-patient rate in the cohort panel, the immediate box uses those inputs instead of the peer proxy. Inputs stay only in this browser; Google Ads and Docker are unchanged.</p></section>
   <section class="panel"><h2>Conversion rate by week</h2><p class="muted">Selected forecast case; neither rate is an Austin keyword-specific estimate.</p><div class="legend"><span><i id="cvrSwatch" class="swatch optimistic"></i><span id="cvrCase">Targeted</span></span></div><div class="plot-scroll"><svg id="cvrChart" class="plot" viewBox="0 0 560 220" role="img" aria-label="Selected weekly click conversion rates"></svg></div></section>
   <section class="panel"><h2>Launch phases · <span id="stageCase">Targeted</span></h2><p class="muted">Weeks 13–20 span eight weeks; use modeled leads/week when comparing phases.</p><div class="table-scroll"><table><thead><tr><th>Campaign age</th><th>Spend</th><th>Clicks</th><th>CR</th><th>Modeled leads</th><th>Leads/week</th><th>CPA</th></tr></thead><tbody id="stageRows"></tbody></table></div></section>
   <section class="panel"><h2>Every delivery week · <span id="weekCase">Targeted</span></h2><div class="table-scroll"><table><thead><tr><th>Week</th><th>Spend</th><th>Clicks</th><th>CPC</th><th>CR</th><th>Modeled leads</th><th>CPA</th></tr></thead><tbody id="weekRows"></tbody></table></div></section>
@@ -215,6 +254,13 @@
   'use strict';
   const KEY = 'walden-patient-economics-v2';
   const SERVICES = ['general', 'emergency'];
+  const COHORT_MONTHS = [[0, 'patientRevenue'], [12, 'revenue12'], [24, 'revenue24'], [36, 'revenue36']];
+  // Planning priors, not observed Walden patient behavior or collected revenue.
+  const PRIOR = Object.freeze({
+    qualifiedToPatientRate: 0.5,
+    hygienistVisitPayment: 284, // AHRQ MEPS 2023 dental visits, Table 5; total payments including insurers.
+    expectedFollowupVisitsPerYear: Object.freeze({general: 0.5, emergency: 0.25}),
+  });
   let fallbackValue = '{}';
 
   function availableStorage() {
@@ -235,6 +281,9 @@
       result[service] = {
         patientRevenue: validNumber(item.patientRevenue) ? item.patientRevenue : null,
         closeRatePct: validNumber(item.closeRatePct, 100) ? item.closeRatePct : null,
+        revenue12: validNumber(item.revenue12) ? item.revenue12 : null,
+        revenue24: validNumber(item.revenue24) ? item.revenue24 : null,
+        revenue36: validNumber(item.revenue36) ? item.revenue36 : null,
       };
     }
     return result;
@@ -279,6 +328,117 @@
       ? 'patient-economics' : 'wc-proxy';
   }
 
+  function cohortProjection(services, modeledLeads, cost, assumptions, benchmark) {
+    if (!validNumber(cost) || cost === 0) return {cost, points: [], roas36: null, reason: 'Original ad spend is unavailable.'};
+    const cohorts = [];
+    for (const service of services) {
+      const qualified = qualifiedActions(service, modeledLeads?.[service], benchmark);
+      const item = assumptions?.[service];
+      if (qualified === null || !validNumber(item?.closeRatePct, 100) || !validNumber(item?.patientRevenue)) {
+        return {cost, points: [], roas36: null, reason: `Enter an immediate per-patient revenue and qualified-lead close rate for ${service}.`};
+      }
+      let last = item.patientRevenue;
+      for (const [, field] of COHORT_MONTHS.slice(1)) {
+        const value = item[field];
+        if (value !== null && value !== undefined) {
+          if (!validNumber(value) || value < last) {
+            return {cost, points: [], roas36: null, reason: `${service} cumulative revenue must never decrease between checkpoints.`};
+          }
+          last = value;
+        }
+      }
+      cohorts.push({service, patients: qualified * item.closeRatePct / 100, item});
+    }
+    const patients = cohorts.reduce((sum, cohort) => sum + cohort.patients, 0);
+    const points = COHORT_MONTHS.filter(([, field]) => cohorts.every(cohort => validNumber(cohort.item[field])))
+      .map(([month, field]) => ({month, revenue: cohorts.reduce((sum, cohort) => sum + cohort.patients * cohort.item[field], 0)}));
+    const lastPoint = points.find(point => point.month === 36);
+    return {
+      cost, patients, points,
+      revenue36: lastPoint?.revenue ?? null,
+      roas36: lastPoint ? lastPoint.revenue / cost : null,
+      reason: lastPoint ? null : 'Enter 36-month cumulative revenue per acquired patient for every included campaign.',
+    };
+  }
+
+  function cohortForecast(services, modeledLeads, cost, assumptions, benchmark) {
+    const fields = COHORT_MONTHS.map(([, field]) => field).concat('closeRatePct');
+    const hasUserInput = services.some(service => fields.some(field => assumptions?.[service]?.[field] !== null && assumptions?.[service]?.[field] !== undefined));
+    if (hasUserInput) return {...cohortProjection(services, modeledLeads, cost, assumptions, benchmark), basis: 'user-scenario'};
+    const prior = {};
+    for (const service of services) {
+      const peerValue = benchmark?.services?.[service]?.wc_value_per_qualified_action;
+      const visits = PRIOR.expectedFollowupVisitsPerYear[service];
+      if (!validNumber(peerValue) || !validNumber(visits)) {
+        return {cost, points: [], roas36: null, basis: 'planning-prior', reason: `${service} peer value is unavailable; no planning estimate can be shown.`};
+      }
+      // Calibrate the initial value to the existing per-qualified-action proxy. The
+      // close-rate prior changes patient count, not that already-calibrated proxy.
+      const patientRevenue = peerValue / PRIOR.qualifiedToPatientRate;
+      const annualFollowupValue = visits * PRIOR.hygienistVisitPayment;
+      prior[service] = {
+        patientRevenue, closeRatePct: PRIOR.qualifiedToPatientRate * 100,
+        revenue12: patientRevenue + annualFollowupValue,
+        revenue24: patientRevenue + annualFollowupValue * 2,
+        revenue36: patientRevenue + annualFollowupValue * 3,
+      };
+    }
+    return {...cohortProjection(services, modeledLeads, cost, prior, benchmark), basis: 'planning-prior', prior};
+  }
+
+  function priorDescription(services, benchmark) {
+    return services.map(service => {
+      const peer = benchmark?.services?.[service]?.wc_value_per_qualified_action;
+      return `${service === 'general' ? 'General' : 'Emergency'}: $${Math.round(peer || 0)} peer WC imported value per qualified action; ${PRIOR.expectedFollowupVisitsPerYear[service]} expected additional hygienist visits per patient per year.`;
+    }).join(' ') + ` Assumed qualified-lead-to-patient rate: ${PRIOR.qualifiedToPatientRate * 100}%. Follow-up visit payment: $${PRIOR.hygienistVisitPayment} (2023 U.S. MEPS mean). The close and return rates are judgment assumptions, not measured Walden rates. No restorative, delayed-treatment, or family-referral uplift is included.`;
+  }
+
+  function drawCohort(svg, projection) {
+    const ns = 'http://www.w3.org/2000/svg';
+    const money = amount => '$' + Math.round(amount).toLocaleString('en-US');
+    const add = (parent, tag, attrs, label) => {
+      const node = document.createElementNS(ns, tag);
+      for (const [key, value] of Object.entries(attrs)) node.setAttribute(key, String(value));
+      if (label !== undefined) node.textContent = label;
+      parent.append(node);
+      return node;
+    };
+    svg.replaceChildren();
+    const left = 85, right = 974, top = 24, bottom = 267;
+    const x = month => left + (right - left) * month / 36;
+    const ceiling = Math.max(1, projection.cost || 0, ...projection.points.map(point => point.revenue)) * 1.14;
+    const y = value => bottom - (bottom - top) * value / ceiling;
+    svg.setAttribute('role', 'img');
+    svg.setAttribute('aria-label', 'Same-patient 36-month cumulative revenue scenario in blue compared with fixed original ad spend in orange');
+    add(svg, 'title', {}, 'Three-year patient cohort return scenario');
+    add(svg, 'desc', {}, projection.basis === 'planning-prior'
+      ? 'A planning estimate from dental peer lead values, assumed patient conversion and follow-up visits, and national dental expenditure data. It is not observed Walden revenue.'
+      : 'Only entered revenue checkpoints are plotted. Dashed connections span months without revenue timing data. No Walden patient-management cohort has been imported.');
+    for (let tick = 0; tick <= 4; tick++) {
+      const level = ceiling * tick / 4, yy = y(level);
+      add(svg, 'line', {x1: left, y1: yy, x2: right, y2: yy, class: 'cohort-grid'});
+      add(svg, 'text', {x: left - 13, y: yy + 4, 'text-anchor': 'end', class: 'cohort-axis'}, money(level));
+    }
+    for (const month of [0, 12, 24, 36]) {
+      add(svg, 'text', {x: x(month), y: bottom + 25, 'text-anchor': 'middle', class: 'cohort-axis'}, String(month));
+    }
+    add(svg, 'text', {x: (left + right) / 2, y: 330, 'text-anchor': 'middle', class: 'cohort-axis-title'}, 'Months since acquisition');
+    add(svg, 'path', {d: `M ${left} ${y(projection.cost)} L ${right} ${y(projection.cost)}`, class: 'cohort-spend'});
+    add(svg, 'text', {x: right - 3, y: y(projection.cost) - 9, 'text-anchor': 'end', class: 'cohort-spend-label'}, `Original ad spend ${money(projection.cost)}`);
+    for (let index = 1; index < projection.points.length; index++) {
+      const previous = projection.points[index - 1], current = projection.points[index];
+      add(svg, 'path', {
+        d: `M ${x(previous.month)} ${y(previous.revenue)} L ${x(current.month)} ${y(current.revenue)}`,
+        class: current.month - previous.month > 12 ? 'cohort-revenue cohort-unknown-timing' : 'cohort-revenue',
+      });
+    }
+    for (const point of projection.points) {
+      const dot = add(svg, 'circle', {cx: x(point.month), cy: y(point.revenue), r: 5, class: 'cohort-point'});
+      add(dot, 'title', {}, `Month ${point.month}: ${money(point.revenue)} cumulative revenue scenario, ${(point.revenue / projection.cost).toFixed(2)} times original ad spend`);
+    }
+    if (!projection.points.length) add(svg, 'text', {x: (left + right) / 2, y: 119, 'text-anchor': 'middle', class: 'cohort-empty'}, 'Add patient-cohort assumptions to plot revenue');
+  }
+
   function bindInputs(container, services, onChange) {
     const assumptions = read();
     container.replaceChildren();
@@ -286,7 +446,7 @@
       const group = document.createElement('div'); group.className = 'economics-group';
       const title = document.createElement('strong'); title.textContent = service === 'general' ? 'General dentistry' : 'Emergency dentistry'; group.append(title);
       for (const [field, label, suffix, max] of [
-        ['patientRevenue', 'Estimated revenue per new patient', '$', null],
+        ['patientRevenue', 'Immediate revenue per acquired patient', '$', null],
         ['closeRatePct', 'WC-qualified leads becoming patients', '%', 100],
       ]) {
         const wrapper = document.createElement('label'); wrapper.className = 'economics-field';
@@ -309,7 +469,37 @@
     return assumptions;
   }
 
-  const api = {read, write, qualifiedActions, estimatedValue, estimatedRoas, combinedRoas, source, bindInputs};
+  function bindCohortInputs(container, services, onChange) {
+    const assumptions = read();
+    container.replaceChildren();
+    for (const service of services) {
+      const group = document.createElement('div'); group.className = 'economics-group';
+      const title = document.createElement('strong'); title.textContent = service === 'general' ? 'General dentistry · cumulative value' : 'Emergency dentistry · cumulative value'; group.append(title);
+      for (const [field, label] of [
+        ['revenue12', '12-month revenue per acquired patient'],
+        ['revenue24', '24-month revenue per acquired patient'],
+        ['revenue36', '36-month revenue per acquired patient'],
+      ]) {
+        const wrapper = document.createElement('label'); wrapper.className = 'economics-field';
+        const caption = document.createElement('span'); caption.textContent = label;
+        const entry = document.createElement('span'); entry.className = 'economics-entry';
+        const unit = document.createElement('span'); unit.textContent = '$';
+        const input = document.createElement('input'); input.type = 'number'; input.min = '0'; input.step = '1'; input.inputMode = 'decimal';
+        input.value = assumptions[service][field] ?? '';
+        input.setAttribute('aria-label', `${service} ${label}`);
+        input.addEventListener('input', () => {
+          const next = read(); const value = input.value.trim() === '' ? null : Number(input.value);
+          next[service][field] = value !== null && validNumber(value) ? value : null;
+          write(next); onChange(next);
+        });
+        entry.append(unit, input); wrapper.append(caption, entry); group.append(wrapper);
+      }
+      container.append(group);
+    }
+    return assumptions;
+  }
+
+  const api = {read, write, qualifiedActions, estimatedValue, estimatedRoas, combinedRoas, source, cohortProjection, cohortForecast, priorDescription, drawCohort, bindInputs, bindCohortInputs};
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   root.WaldenRoas = api;
 }(typeof window !== 'undefined' ? window : globalThis));
@@ -359,7 +549,7 @@
         weekStat(grid,'Cost',exact(week.spend));weekStat(grid,'CPA',money(week[scenario].cpa));
         weekStat(grid,'Modeled leads',num(week[scenario].conversions,2));
         weekStat(grid,'WC-qualified est.',num(WaldenRoas.qualifiedActions(service,week[scenario].conversions,benchmark),2));
-        weekStat(grid,'Estimated ROAS*',roasText(WaldenRoas.estimatedRoas(service,week[scenario].conversions,week.spend,WaldenRoas.read(),benchmark)));
+        weekStat(grid,'Immediate ROAS*',roasText(WaldenRoas.estimatedRoas(service,week[scenario].conversions,week.spend,WaldenRoas.read(),benchmark)));
         detail.append(grid);
         const note=document.createElement('p');note.className='muted';note.textContent=WaldenRoas.source(service,WaldenRoas.read())==='wc-proxy'?'*Value-to-spend proxy from peer WC-qualified actions; not confirmed revenue.':'*Planning estimate from your entered patient economics, not measured return.';detail.append(note);
       }
@@ -374,7 +564,16 @@
         $('costPerWeek').textContent=`${money(spend/20)} / week · ${exact(data.walden.weekly_budget)} saved full budget`;
         $('averageCpa').textContent=money(data.total[selected].cpa);
         $('totalRoas').textContent=roasText(WaldenRoas.estimatedRoas(service,total,spend,WaldenRoas.read(),benchmark));
-        $('roasBasis').textContent=WaldenRoas.source(service,WaldenRoas.read())==='wc-proxy'?'WC lead-value proxy · not actual ROAS':'Walden patient-economics scenario';
+        $('roasBasis').textContent=WaldenRoas.source(service,WaldenRoas.read())==='wc-proxy'?'WC lead-value proxy · not actual ROAS':'Patient-economics scenario · not measured';
+        const cohort=WaldenRoas.cohortForecast([service],{[service]:total},spend,WaldenRoas.read(),benchmark);
+        $('longTermRoas').textContent=cohort.roas36==null?'—':roasText(cohort.roas36);
+        $('longTermBasis').textContent=cohort.basis==='planning-prior'?'Data-informed planning estimate · not actual':cohort.roas36==null?'Complete your patient inputs':'User-input scenario · not actual';
+        $('cohortCost').textContent=money(spend);
+        $('cohortPatients').textContent=cohort.patients==null?'—':num(cohort.patients,1);
+        $('cohortRevenue').textContent=cohort.revenue36==null?'—':money(cohort.revenue36);
+        $('cohortStatus').textContent=cohort.reason||(cohort.basis==='planning-prior'?'Prefilled planning curve from dental-peer lead values and assumed follow-up care; neither patient count nor revenue is measured for Walden.':'Blue points use your cumulative per-patient values. This is a forecast scenario, not a matched practice-management cohort.');
+        $('cohortPriorDetail').textContent=WaldenRoas.priorDescription([service],benchmark);
+        WaldenRoas.drawCohort($('cohortChart'),cohort);
         $('cvrCase').textContent=selectedLabel;
         $('cvrSwatch').classList.toggle('optimistic',selected==='optimistic');
         $('stageCase').textContent=selectedLabel;
@@ -386,6 +585,7 @@
         $('weekRows').replaceChildren(...data.weekly.map(week=>{const row=document.createElement('tr');[week.week,exact(week.spend),num(week.clicks,1),exact(week.cpc),pct(week[selected].cvr),num(week[selected].conversions,2),money(week[selected].cpa)].forEach(value=>cell(row,value));return row}));
       }
       WaldenRoas.bindInputs($('economicsInputs'),[service],renderScenario);
+      WaldenRoas.bindCohortInputs($('ltvInputs'),[service],renderScenario);
       const peer=benchmark.services[service];
       $('peerStats').textContent=`Recent ${service} Search peers: ${peer.accounts} mapped accounts, ${num(peer.clicks,0)} clicks, ${num(peer.wc_qualified_actions,2)} WC-qualified action credits (${pct(peer.wc_qualified_cvr)} per click), and ${exact(peer.wc_value_per_qualified_action)} imported value per qualified action. The estimate applies their ${pct(peer.wc_qualified_per_primary_conversion)} WC-qualified-to-primary-conversion ratio to Walden’s modeled actions.`;
       heroSelect.addEventListener('change',renderScenario);renderScenario();
