@@ -20,21 +20,21 @@
 .hero-legend { display: flex; gap: 20px; flex-wrap: wrap; margin: 15px 0 2px; color: #62738a; font-size: .75rem; }
 .hero-legend span { display: inline-flex; gap: 7px; align-items: center; }
 .hero-swatch { display: inline-block; width: 20px; height: 4px; border-radius: 4px; }
-.hero-swatch.cost { background: #19946f; }
-.hero-swatch.conversions { background: #c67532; }
+.hero-swatch.cost { background: #e1a000; }
+.hero-swatch.conversions { background: #188038; }
 .hero-plot-scroll { overflow-x: auto; }
 .hero-plot { display: block; width: 100%; min-width: 660px; height: auto; }
 .hero-plot .hero-grid { stroke: #e5ebf2; stroke-width: 1; }
 .hero-plot .hero-phase { stroke: #d5deea; stroke-width: 1; stroke-dasharray: 3 6; }
 .hero-plot .hero-axis { fill: #687990; font: 11px Inter,ui-sans-serif,system-ui,sans-serif; }
 .hero-plot .hero-axis-title { fill: #687990; font: 12px Inter,ui-sans-serif,system-ui,sans-serif; }
-.hero-plot .hero-orange { fill: #b66626; }
-.hero-plot .hero-green { fill: #167c5e; }
-.hero-plot .hero-cost { fill: none; stroke: #19946f; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.hero-plot .hero-conversions { fill: none; stroke: #c67532; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.hero-plot .hero-orange { fill: #9c6a00; }
+.hero-plot .hero-green { fill: #137333; }
+.hero-plot .hero-cost { fill: none; stroke: #e1a000; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.hero-plot .hero-conversions { fill: none; stroke: #188038; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
 .hero-plot .hero-cost, .hero-plot .hero-conversions { pointer-events: none; }
-.hero-plot .hero-cost-point { fill: #19946f; stroke: #fff; stroke-width: 2; }
-.hero-plot .hero-conversions-point { fill: #c67532; stroke: #fff; stroke-width: 2; }
+.hero-plot .hero-cost-point { fill: #e1a000; stroke: #fff; stroke-width: 2; }
+.hero-plot .hero-conversions-point { fill: #188038; stroke: #fff; stroke-width: 2; }
 .hero-plot .hero-week-hit { cursor: pointer; }
 .hero-plot .hero-week-hit:hover, .hero-plot .hero-week-hit:focus { fill: rgba(33,91,155,.10); outline: none; }
 .hero-plot .hero-week-selected { fill: rgba(33,91,155,.08); }
@@ -84,7 +84,7 @@
     <div class="metric"><span>Average CPA</span><strong id="averageCpa">—</strong><small>Total cost ÷ modeled leads</small></div>
     <div class="metric"><span>Estimated total ROAS*</span><strong id="totalRoas">—</strong><small id="roasBasis">WC lead-value proxy</small></div>
   </section>
-  <section class="panel hero-panel" aria-label="Main weekly forecast chart"><div class="hero-head"><div><h2>Weekly modeled leads and CPA</h2><p class="muted">Select a week on the graph to see cost, CPA, modeled leads, and estimated ROAS. Orange uses the left axis; green uses the dollar axis on the right.</p></div><label class="hero-select-label" for="heroScenario">Forecast case <select id="heroScenario"><option value="optimistic" selected>Targeted</option><option value="base">Conservative</option></select></label></div><div class="hero-legend"><span><i class="hero-swatch cost"></i>CPA</span><span><i class="hero-swatch conversions"></i>Modeled leads / week</span></div><div class="hero-plot-scroll"><svg id="heroChart" class="hero-plot" viewBox="0 0 1060 390" role="group" aria-label="Weekly modeled lead proxy and cost per action"></svg></div><div id="weekDetail" class="week-detail" aria-live="polite"><p class="muted">Select a week on the graph to inspect it.</p></div></section>
+  <section class="panel hero-panel" aria-label="Main weekly forecast chart"><div class="hero-head"><div><h2>Weekly conversions and cost</h2><p class="muted">Select a week on the graph to see cost, CPA, modeled conversions, and estimated ROAS. Orange cost uses the left axis; green modeled conversions use the right axis.</p></div><label class="hero-select-label" for="heroScenario">Forecast case <select id="heroScenario"><option value="optimistic" selected>Targeted</option><option value="base">Conservative</option></select></label></div><div class="hero-legend"><span><i class="hero-swatch cost"></i>Cost / week</span><span><i class="hero-swatch conversions"></i>Modeled conversions / week</span></div><div class="hero-plot-scroll"><svg id="heroChart" class="hero-plot" viewBox="0 0 1060 390" role="group" aria-label="Weekly modeled conversions and cost"></svg></div><div id="weekDetail" class="week-detail" aria-live="polite"><p class="muted">Select a week on the graph to inspect it.</p></div></section>
   <section class="panel"><h2>How the estimated return is calculated</h2><p class="muted" id="peerStats">Loading WhatConverts-qualified peer benchmark…</p><p class="muted">By default, the ROAS* card is a <strong>provisional lead-value-to-spend estimate</strong>: modeled Ads conversion actions × peer WC-qualified share × peer imported value per qualified action ÷ modeled ad cost. WhatConverts may send a quote estimate or sales value to Ads; we have not verified which setting each peer uses. Repeated values suggest presets. This is not confirmed patient revenue or actual ROAS.</p><div id="economicsInputs" class="economics-grid"></div><p class="muted">Optional Walden-specific inputs replace the imported-value proxy: estimated WC-qualified leads × share becoming patients × revenue per new patient ÷ modeled ad cost. Leave both blank to retain the peer proxy. Inputs stay only in this browser; Google Ads and Docker are unchanged.</p></section>
   <section class="panel"><h2>Conversion rate by week</h2><p class="muted">Selected forecast case; neither rate is an Austin keyword-specific estimate.</p><div class="legend"><span><i id="cvrSwatch" class="swatch optimistic"></i><span id="cvrCase">Targeted</span></span></div><div class="plot-scroll"><svg id="cvrChart" class="plot" viewBox="0 0 560 220" role="img" aria-label="Selected weekly click conversion rates"></svg></div></section>
   <section class="panel"><h2>Launch phases · <span id="stageCase">Targeted</span></h2><p class="muted">Weeks 13–20 span eight weeks; use modeled leads/week when comparing phases.</p><div class="table-scroll"><table><thead><tr><th>Campaign age</th><th>Spend</th><th>Clicks</th><th>CR</th><th>Modeled leads</th><th>Leads/week</th><th>CPA</th></tr></thead><tbody id="stageRows"></tbody></table></div></section>
@@ -127,28 +127,28 @@
       throw new Error('The main chart needs 20 ordered forecast weeks');
     }
     if (rows.some(row => !Number.isFinite(row.conversions) || row.conversions < 0 ||
-                         !Number.isFinite(row.cpa) || row.cpa < 0)) {
-      throw new Error('The main chart received invalid modeled-lead or cost data');
+                         !Number.isFinite(row.cost) || row.cost < 0)) {
+      throw new Error('The main chart received invalid conversion or cost data');
     }
     svg.replaceChildren();
     const width = 1060, height = 390;
     const left = 84, right = 968, top = 31, bottom = 311;
     const plotWidth = right - left, plotHeight = bottom - top;
     const maxConversions = Math.max(1, ...rows.map(row => row.conversions)) * 1.14;
-    const maxCost = Math.max(1, ...rows.map(row => row.cpa)) * 1.14;
+    const maxCost = Math.max(1, ...rows.map(row => row.cost)) * 1.14;
     const x = week => left + plotWidth * (week - 1) / 19;
     const conversionY = value => bottom - plotHeight * value / maxConversions;
     const costY = value => bottom - plotHeight * value / maxCost;
     svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', `${label}: modeled lead actions in orange on the left axis and CPA in green on the right axis, weeks 1 to 20`);
+    svg.setAttribute('aria-label', `${label}: modeled conversion actions in green on the right axis and cost in orange on the left axis, weeks 1 to 20`);
     element(svg, 'title', {}, `Walden ${label} forecast`);
-    element(svg, 'desc', {}, 'Orange shows modeled Google Ads conversion actions as a lead proxy per week. Green shows modeled cost per action. Both axes start at zero. Select a week for cost, CPA, lead proxy, and ROAS details.');
+    element(svg, 'desc', {}, 'Orange shows modeled ad cost per week. Green shows modeled Google Ads conversion actions as a lead proxy per week. Both axes start at zero. Select a week for cost, CPA, lead proxy, and ROAS details.');
 
     for (let index = 0; index <= 4; index++) {
       const y = bottom - plotHeight * index / 4;
       element(svg, 'line', {x1: left, y1: y, x2: right, y2: y, class: 'hero-grid'});
-      element(svg, 'text', {x: left - 15, y: y + 4, 'text-anchor': 'end', class: 'hero-axis hero-orange'}, decimal(maxConversions * index / 4));
-      element(svg, 'text', {x: right + 15, y: y + 4, 'text-anchor': 'start', class: 'hero-axis hero-green'}, money(maxCost * index / 4));
+      element(svg, 'text', {x: left - 15, y: y + 4, 'text-anchor': 'end', class: 'hero-axis hero-orange'}, money(maxCost * index / 4));
+      element(svg, 'text', {x: right + 15, y: y + 4, 'text-anchor': 'start', class: 'hero-axis hero-green'}, decimal(maxConversions * index / 4));
     }
     for (const boundary of [4.5, 8.5, 12.5]) {
       element(svg, 'line', {x1: x(boundary), y1: top, x2: x(boundary), y2: bottom, class: 'hero-phase'});
@@ -157,8 +157,8 @@
       element(svg, 'text', {x: x(week), y: bottom + 27, 'text-anchor': 'middle', class: 'hero-axis'}, String(week));
     }
     element(svg, 'text', {x: (left + right) / 2, y: height - 10, 'text-anchor': 'middle', class: 'hero-axis-title'}, 'First-delivery week');
-    element(svg, 'text', {transform: `translate(20 ${(top + bottom) / 2}) rotate(-90)`, 'text-anchor': 'middle', class: 'hero-axis-title hero-orange'}, 'Modeled leads / week');
-    element(svg, 'text', {transform: `translate(${width - 14} ${(top + bottom) / 2}) rotate(90)`, 'text-anchor': 'middle', class: 'hero-axis-title hero-green'}, 'CPA ($)');
+    element(svg, 'text', {transform: `translate(20 ${(top + bottom) / 2}) rotate(-90)`, 'text-anchor': 'middle', class: 'hero-axis-title hero-orange'}, 'Cost ($)');
+    element(svg, 'text', {transform: `translate(${width - 14} ${(top + bottom) / 2}) rotate(90)`, 'text-anchor': 'middle', class: 'hero-axis-title hero-green'}, 'Modeled conversions / week');
 
     // Full-height targets make every delivery week easy to select.
     if (typeof options.onSelect === 'function') {
@@ -177,7 +177,7 @@
     }
 
     const series = [
-      {field: 'cpa', y: costY, className: 'hero-cost', format: money},
+      {field: 'cost', y: costY, className: 'hero-cost', format: money},
       {field: 'conversions', y: conversionY, className: 'hero-conversions', format: decimal},
     ];
     for (const item of series) {
@@ -188,7 +188,7 @@
           cx: x(row.week), cy: item.y(row[item.field]), r: 4.5,
           class: `${item.className}-point`, 'data-week': row.week,
         });
-        const unit = item.field === 'cpa' ? 'CPA' : 'modeled lead actions';
+        const unit = item.field === 'cost' ? 'cost' : 'modeled conversion actions';
         element(point, 'title', {}, `Week ${row.week}: ${item.format(row[item.field])} ${unit}`);
       }
     }
@@ -379,7 +379,7 @@
         $('cvrSwatch').classList.toggle('optimistic',selected==='optimistic');
         $('stageCase').textContent=selectedLabel;
         $('weekCase').textContent=selectedLabel;
-        WaldenDualMetricChart.draw($('heroChart'),data.weekly.map(row=>({week:row.week,conversions:row[selected].conversions,cpa:row[selected].cpa})),`${label} · ${selectedLabel.toLowerCase()}`,{selectedWeek,onSelect:week=>{selectedWeek=week;renderScenario()}});
+        WaldenDualMetricChart.draw($('heroChart'),data.weekly.map(row=>({week:row.week,conversions:row[selected].conversions,cost:row.spend})),`${label} · ${selectedLabel.toLowerCase()}`,{selectedWeek,onSelect:week=>{selectedWeek=week;renderScenario()}});
         renderWeekDetail(selectedWeek?data.weekly[selectedWeek-1]:null,selected);
         draw('cvrChart',data.weekly,'cvr',selected);
         $('stageRows').replaceChildren(...data.stages.map(stage=>{const row=document.createElement('tr');[stage.label,exact(stage.spend),num(stage.clicks,1),pct(stage[selected].cvr),num(stage[selected].conversions,1),num(stage[selected].conversions_per_week,2),money(stage[selected].cpa)].forEach(value=>cell(row,value));return row}));
