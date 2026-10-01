@@ -525,12 +525,15 @@
       marketRowsData=data.plan.keyword_rows;
       renderMarketRows($('heroScenario').value);
       $('peerCards').replaceChildren(...['emergency','general'].map(service=>{
-        const peer=data.peer_support[service],article=document.createElement('article'),title=document.createElement('strong');
+        const peer=data.peer_support[service],calibrated=data.peer_calibration[service],article=document.createElement('article'),title=document.createElement('strong');
         title.textContent=service==='emergency'?'Emergency dentistry':'General dentistry';article.append(title);
-        for(const line of [peer.launch_accounts+' launch clients · '+peer.launch_campaigns+' campaigns · '+peer.verified_launch_weeks+' verified weeks',peer.recent_active_accounts+' recent active peer clients','Recent peer CPC: '+exact(peer.recent_peer_cpc)]){const paragraph=document.createElement('p');paragraph.textContent=line;article.append(paragraph)}
+        for(const line of [calibrated.first20_accounts+' complete first-20-week clients · lower-quartile CVR '+pct(calibrated.first20_p25_cvr),
+          'Observed peer first-20-week pooled CPA '+money(calibrated.observed_first20.cpa)+' · not Walden forecast CPA',
+          calibrated.paired_mature_accounts+' of these clients have mature observations · pooled later CPA '+money(calibrated.observed_paired_weeks21_50.cpa),
+          'Original CPC cohort: '+peer.launch_accounts+' launch clients; recent peer CPC '+exact(peer.recent_peer_cpc)]){const paragraph=document.createElement('p');paragraph.textContent=line;article.append(paragraph)}
         return article;
       }));
-      $('diagnostic').textContent='Original peer-model whole-client holdout: absolute account-total conversion error was '+pct(data.holdout_diagnostic.emergency.account_total_absolute_error_ratio)+' for emergency and '+pct(data.holdout_diagnostic.general.account_total_absolute_error_ratio)+' for general. This uses known peer spend and does not validate the added warm-up rule, Walden delivery, Austin auction costs, or lead quality.';
+      $('diagnostic').textContent='The original CPC model’s whole-client historical conversion error was '+pct(data.holdout_diagnostic.emergency.account_total_absolute_error_ratio)+' for emergency and '+pct(data.holdout_diagnostic.general.account_total_absolute_error_ratio)+' for general. This diagnostic does not validate the new lower-quartile calibration, the warm-up rule, Walden delivery, Austin auction costs, or lead quality.';
       $('status').textContent='Model '+data.model_version+' · peer data through '+data.recent_window[1]+' · Austin DataForSEO task '+data.market.task_id+' ('+exact(data.market.cost_usd)+')';
     }catch(error){$('status').textContent=error.message;$('status').classList.add('error')}
   }

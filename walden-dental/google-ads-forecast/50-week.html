@@ -575,7 +575,7 @@
     }));
     $('peerSupport').textContent = services.map(service => {
       const s = data.support[service], c = data.peer_calibration[service];
-      return `${service === 'general' ? 'General' : 'Emergency'}: conservative first-20-week lower-quartile CVR ${pct(c.first20_p25_cvr)} from ${c.first20_accounts} clients; ${c.paired_mature_accounts} of these clients support the later age adjustment. Mature CPC uses ${s.mature_accounts} clients: ${s.age_window_weeks} age-window weeks, ${s.pooled_mature_weeks} pooled weeks, ${s.flat_late_launch_weeks} flat-fallback weeks. Local five-week windows ranged from ${s.min_local_accounts} to ${s.max_local_accounts} clients.`;
+      return `${service === 'general' ? 'General' : 'Emergency'}: conservative first-20-week lower-quartile CVR ${pct(c.first20_p25_cvr)} from ${c.first20_accounts} clients (observed pooled CPA ${money(c.observed_first20.cpa)}); ${c.paired_mature_accounts} of these clients support the later age adjustment (observed pooled later CPA ${money(c.observed_paired_weeks21_50.cpa)}). Peer CPAs are not Walden predictions. Mature CPC uses ${s.mature_accounts} clients: ${s.age_window_weeks} age-window weeks, ${s.pooled_mature_weeks} pooled weeks, ${s.flat_late_launch_weeks} flat-fallback weeks. Local five-week windows ranged from ${s.min_local_accounts} to ${s.max_local_accounts} clients.`;
     }).join(' ') + (data.source_support
       ? ` Source checks: ${data.source_support.source_files_hash_and_row_count_checked} files and ${data.source_support.source_raw_rows_checked.toLocaleString('en-US')} raw rows checked; live Docker parity pending.` : ' Source: live Docker database query.');
   }
