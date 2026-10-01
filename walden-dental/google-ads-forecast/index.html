@@ -527,7 +527,7 @@
       $('peerCards').replaceChildren(...['emergency','general'].map(service=>{
         const peer=data.peer_support[service],calibrated=data.peer_calibration[service],article=document.createElement('article'),title=document.createElement('strong');
         title.textContent=service==='emergency'?'Emergency dentistry':'General dentistry';article.append(title);
-        for(const line of [calibrated.first20_accounts+' complete first-20-week clients · lower-quartile CVR '+pct(calibrated.first20_p25_cvr),
+        for(const line of [calibrated.first20_accounts+' clients with at least 16 complete first-20 age weeks · lower-quartile CVR '+pct(calibrated.first20_p25_cvr),
           'Observed peer first-20-week pooled CPA '+money(calibrated.observed_first20.cpa)+' · not Walden forecast CPA',
           calibrated.paired_mature_accounts+' of these clients have mature observations · pooled later CPA '+money(calibrated.observed_paired_weeks21_50.cpa),
           'Original CPC cohort: '+peer.launch_accounts+' launch clients; recent peer CPC '+exact(peer.recent_peer_cpc)]){const paragraph=document.createElement('p');paragraph.textContent=line;article.append(paragraph)}
