@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Benchmark vs Scottsdale Implant Dentistry · July–September 2026</title><style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#17233a;background:#f5f7fb}
+    *{box-sizing:border-box}
+    body{margin:0}
+    main{max-width:1180px;margin:auto;padding:30px 22px 65px}
+    a{color:#215b9b}
+    button{font:inherit}
+    .top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .eyebrow{font-size:.73rem;text-transform:uppercase;letter-spacing:.12em;color:#55779d;font-weight:700;margin:0 0 6px}
+    h1{font-size:clamp(1.9rem,3vw,2.5rem);letter-spacing:-.04em;margin:0 0 8px}
+    h2{font-size:1.15rem;margin:0 0 8px}
+    h3{font-size:1rem;margin:0 0 7px}
+    .muted{color:#64758b;font-size:.86rem;line-height:1.5}
+    .links{display:flex;flex-wrap:wrap;gap:13px;align-content:start;font-size:.85rem}
+    .links button{color:#215b9b;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+    .notice{background:#fff3e5;border-left:4px solid #bd762b;border-radius:8px;color:#68421e;padding:13px 16px;margin:20px 0;font-size:.88rem;line-height:1.5}
+    .metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:18px}
+    .metric,.panel{background:#fff;border:1px solid #e1e7f0;border-radius:13px;box-shadow:0 2px 10px #1b35540a}
+    .metric{padding:17px}
+    .metric span{display:block;font-size:.78rem;color:#65758d}
+    .metric strong{display:block;font-size:1.5rem;letter-spacing:-.035em;margin:7px 0 3px;font-variant-numeric:tabular-nums}
+    .metric small{font-size:.72rem;color:#77859a}
+    .panel{padding:21px;margin-top:18px}
+    .panel p{line-height:1.5}
+    .hero-head{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .hero-legend{display:flex;gap:20px;flex-wrap:wrap;color:#62738a;font-size:.78rem;margin:12px 0}
+    .hero-legend i{display:inline-block;width:15px;height:4px;border-radius:3px;vertical-align:middle;margin-right:5px}
+    .hero-legend .cost{background:#f0a800}
+    .hero-legend .conversions{background:#18833a}
+    .hero-plot-scroll,.table-scroll{overflow-x:auto}
+    .hero-plot{display:block;width:100%;min-width:780px;height:auto}
+    .hero-grid{stroke:#e5ebf2;stroke-width:1}
+    .hero-phase{stroke:#d5deea;stroke-width:1;stroke-dasharray:3 6}
+    .hero-axis{fill:#687990;font:11px Inter,ui-sans-serif,system-ui,sans-serif}
+    .hero-axis-title{fill:#687990;font:12px Inter,ui-sans-serif,system-ui,sans-serif}
+    .hero-cost{fill:none;stroke:#e1a000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .hero-conversions{fill:none;stroke:#188038;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .hero-cost-point{fill:#e1a000;stroke:#fff;stroke-width:2;pointer-events:none}
+    .hero-conversions-point{fill:#188038;stroke:#fff;stroke-width:2;pointer-events:none}
+    .month-hit{cursor:pointer;fill:transparent}
+    .month-hit:hover,.month-hit:focus{fill:rgba(33,91,155,.10);outline:none}
+    .month-selected{fill:rgba(33,91,155,.08)}
+    .month-detail{margin-top:13px;padding:15px;border:1px solid #d8e3f0;background:#f8fbff;border-radius:10px}
+    .month-detail h3{margin:0 0 9px;font-size:.96rem}
+    .month-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .month-stat{border-radius:8px;background:#fff;border:1px solid #e1e7f0;padding:10px 12px}
+    .month-stat strong{display:block;font-size:1.14rem;font-variant-numeric:tabular-nums}
+    .month-stat span{display:block;color:#66778e;font-size:.74rem}
+    .findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .finding{border:1px solid #e1e7f0;background:#f8fbff;border-radius:9px;padding:14px}
+    .finding strong{display:block;margin-bottom:5px}
+    .finding p{margin:0;color:#52667f;font-size:.82rem}
+    .change-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .change{border-left:3px solid #8aa8d8;padding:4px 12px}
+    .change time{display:block;color:#55779d;font-size:.75rem;font-weight:700;margin-bottom:5px}
+    table{border-collapse:collapse;width:100%;font-size:.82rem}
+    th,td{padding:10px;border-bottom:1px solid #e6ecf3;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+    th:first-child,td:first-child{text-align:left}
+    th{position:sticky;top:0;background:#fff;color:#61728b}
+    .table-scroll{max-height:560px}
+    tbody tr{cursor:pointer}
+    tbody tr:hover td{background:#f5f8fc}
+    tbody tr.selected-month td{background:#eaf1fb}
+    .basis{font-size:.75rem;color:#65758d}
+    .source-list{margin:10px 0 0;padding-left:20px;color:#52667f;font-size:.85rem;line-height:1.55}
+    details{margin:10px 0;border:1px solid #e1e7f0;border-radius:9px;background:#f8fbff;padding:11px 13px}
+    summary{cursor:pointer;font-weight:650;color:#263a56}
+    .keyword-list{margin:9px 0 0;color:#52667f;font-size:.8rem;line-height:1.6}
+    .status-enabled{color:#137333;font-weight:700}
+    .status-paused{color:#9c6a00;font-weight:700}
+    .config-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+    .config-card{border:1px solid #e1e7f0;background:#f8fbff;border-radius:9px;padding:15px}
+    .config-card ul{margin:8px 0 0;padding-left:19px;color:#52667f;font-size:.83rem;line-height:1.55}
+    @media(max-width:960px){.metrics{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.findings,.change-list,.config-grid{grid-template-columns:1fr}.month-stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){main{padding:20px 12px 45px}.metrics{grid-template-columns:repeat(2,1fr)}.metric{padding:13px}.metric strong{font-size:1.27rem}.panel{padding:15px}.month-stats{grid-template-columns:repeat(2,1fr)}}
+
+    .compare-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .compare-card{min-width:0;border:1px solid #dfe7f0;border-radius:10px;padding:15px;background:#fbfdff}
+    .compare-card h3{margin:0 0 10px}
+    .compare-card.lovett{border-top:4px solid #f0a800}.compare-card.carolina{border-top:4px solid #215b9b}
+    .hero-lovett{fill:none;stroke:#f0a800;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+    .hero-carolina{fill:none;stroke:#215b9b;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+    .hero-lovett-point{fill:#f0a800;stroke:#fff;stroke-width:2;pointer-events:none}
+    .hero-carolina-point{fill:#215b9b;stroke:#fff;stroke-width:2;pointer-events:none}
+    .legend-blue{background:#215b9b!important}
+    .verdict{font-size:1.06rem;line-height:1.65}
+    @media(max-width:720px){.compare-columns{grid-template-columns:1fr}}
+
+    .report-nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px;padding:8px;background:#eef3f8;border:1px solid #d9e2ec;border-radius:12px}
+    .report-nav a{display:inline-block;padding:9px 14px;border-radius:8px;color:#274f77;text-decoration:none;font-weight:700}
+    .report-nav a:hover,.report-nav a:focus{background:#fff}
+    .report-nav a.active{background:#163a5f;color:#fff}
+    .client-jumps{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+    .client-jumps a{display:inline-block;padding:8px 11px;background:#fff;border:1px solid #d9e2ec;border-radius:999px;color:#215b9b;text-decoration:none;font-weight:700;font-size:.85rem}
+    .implementation-section{scroll-margin-top:18px}
+    .manager-note{margin:0 0 14px;padding:12px 14px;border-left:4px solid #47749a;border-radius:8px;background:#eef4fa;color:#29465f;line-height:1.55;text-align:left}
+    .section-title-row{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px}
+    .section-title-row h2{margin-bottom:5px}
+    .section-title-row>a{white-space:nowrap}
+    .implementation-table-wrap{width:100%;overflow:visible}
+    .implementation-table{width:100%;min-width:0;table-layout:fixed}
+    .implementation-table .col-step{width:10%}
+    .implementation-table .col-where{width:15%}
+    .implementation-table .col-change{width:55%}
+    .implementation-table .col-final{width:20%}
+    .implementation-table th,.implementation-table td{text-align:left;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
+    .change-details{margin-top:8px;border:1px solid #d9e2ec;border-radius:10px;background:#f8fafc}
+    .change-details summary{cursor:pointer;padding:10px 12px;color:#215b9b;font-weight:800;list-style-position:inside}
+    .change-details[open] summary{border-bottom:1px solid #d9e2ec}
+    .detail-body{padding:12px}
+    .detail-body h4{margin:12px 0 7px}
+    .detail-body h4:first-child{margin-top:0}
+    .detail-list{margin:0;padding-left:18px}
+    .target-list,.asset-list,.asset-actions{columns:2;column-gap:24px}
+    .detail-list li{break-inside:avoid;margin:0 0 6px}
+    .match-tag{display:inline-block;padding:2px 6px;border-radius:999px;background:#e8eef5;color:#36506b;font-size:.68rem;font-weight:800;text-transform:uppercase}
+    .remove-item{padding:7px 9px;border-left:3px solid #c43b3b;background:#fff1f1;color:#a32020;list-style-position:inside}
+    .remove-tag{background:#f8d5d5;color:#8c1717}
+    .add-item{padding:7px 9px;border-left:3px solid #1f6b45;background:#eef8f2;color:#1f5c3b;list-style-position:inside}
+    .keep-item{padding:7px 9px;border-left:3px solid #47749a;background:#eef4fa;color:#29465f;list-style-position:inside}
+    @media(max-width:620px){.implementation-table{font-size:.72rem}.implementation-table th,.implementation-table td{padding:8px 5px}.target-list,.asset-list,.asset-actions{columns:1}}
+    </style></head><body><main>
+<nav class="report-nav" aria-label="Report navigation"><a href="lovett-general-dentistry-comparisons-jul-sep-2026.html">Overview</a><a href="benchmark-campaign-changes.html#scottsdale">Exact campaign changes</a></nav>
+<div class="top"><div><p class="eyebrow">MATCHED-PERIOD GOOGLE ADS COMPARISON</p><h1>Benchmark vs Scottsdale Implant Dentistry</h1><p class="muted">General-dentistry Search campaigns · July 1–September 30, 2026 · Performance Max excluded</p></div><div class="links"><button id="downloadCsv" type="button">Download comparison CSV</button></div></div>
+<div class="notice"><strong>Scope:</strong> Pure general-dentistry Search campaign. General dentistry: 38 keyword criteria. Only the selected Search campaign is analyzed; PMax campaigns are excluded. Benchmark primary conversions: 120.5 Calls from ads. Scottsdale Implant Dentistry primary conversions: 5 Calls From Landers; 5 Calls From Ads; 2 Reached Thank You Page.</div>
+<p class="muted">Saved, offline-capable comparison · October 2, 2026. Sources: verified campaign-only Google Ads API exports for campaign IDs 22222118836 and 23519206281.</p>
+
+<section class="panel"><h2>Executive comparison</h2><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Metric · Jul–Sep 2026</th><th>Benchmark</th><th>Scottsdale Implant Dentistry</th><th>What the matched period shows</th></tr></thead><tbody><tr><td>Impressions</td><td>9,213</td><td>4,085</td><td>Benchmark was 125.5% higher on this measure.</td></tr>
+<tr><td>Clicks</td><td>344</td><td>125</td><td>Benchmark was 175.2% higher on this measure.</td></tr>
+<tr><td>Cost</td><td>$1,400.15</td><td>$3,643.95</td><td>Benchmark was 61.6% lower on this measure.</td></tr>
+<tr><td>Average CPC</td><td>$4.07</td><td>$29.15</td><td>Benchmark was 86.0% lower on this measure.</td></tr>
+<tr><td>Primary conversions</td><td>120.5</td><td>12</td><td>Benchmark was 904.1% higher on this measure.</td></tr>
+<tr><td>Google Ads CPA</td><td>$11.62</td><td>$303.66</td><td>Benchmark was 96.2% lower on this measure.</td></tr>
+<tr><td>Conversion rate</td><td>35.03%</td><td>9.60%</td><td>Benchmark was 264.9% higher on this measure.</td></tr>
+<tr><td>Calls ≥60 seconds</td><td>144</td><td>7</td><td>Benchmark was 1957.1% higher on this measure.</td></tr>
+<tr><td>Spend / call ≥60s</td><td>$9.72</td><td>$520.56</td><td>Diagnostic only; not the official Google Ads CPA.</td></tr>
+<tr><td>Calls ≥180 seconds</td><td>81</td><td>2</td><td>Benchmark was 3950.0% higher on this measure.</td></tr>
+<tr><td>Spend / call ≥180s</td><td>$17.29</td><td>$1,821.98</td><td>Diagnostic only; not the official Google Ads CPA.</td></tr></tbody></table></div><div class="notice verdict" style="margin-top:14px"><strong>Headline result:</strong> Benchmark recorded the lower Google Ads CPA ($11.62 vs $303.66) and lower average CPC ($4.07 vs $29.15). The result is observational: market costs, conversion definitions, campaign maturity and targeting differ.</div></section>
+
+<section class="panel"><h2>Provided planning targets and recommended budget</h2><p class="muted">The revised estimate is treated as estimated CPC because the budget objective is to match Benchmark's click pace. The resulting budget is a recommended starting change, not an observed result, live setting, bid cap or delivery guarantee.</p><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Planning field</th><th>Target</th><th>How to use it</th></tr></thead><tbody><tr><td>Forecast scope</td><td>General Dentistry</td><td>Matches the general-dentistry comparison scope.</td></tr><tr><td>Revised estimated CPC</td><td>$12.41</td><td>Planning input for the click-based budget calculation; compare with observed CPC after restructuring.</td></tr><tr><td>Benchmark daily click target</td><td>3.74</td><td>344 clicks across 92 calendar days in Benchmark's matched July–September period.</td></tr><tr><td>Recommended daily budget</td><td><strong>$46.40</strong></td><td>Revised estimated CPC × 3.74 clicks/day.</td></tr><tr><td>Approx. 30.4-day budget</td><td>$1,410.64</td><td>Planning equivalent for an average month; actual spend can vary.</td></tr><tr><td>Monthly keyword volume</td><td>4,400</td><td>Demand input for the supplied scope, not guaranteed available clicks.</td></tr><tr><td>20-week Ads actions</td><td>54</td><td>Modeled action target, not unique patients or confirmed bookings.</td></tr><tr><td>Target Action CPA</td><td><strong>$121.89</strong></td><td>Use as the staged tCPA destination after service scope and conversion measurement are aligned.</td></tr></tbody></table></div></section>
+
+<section class="panel"><div class="hero-head"><div><h2>Weekly spend comparison</h2><p class="muted">Click a week to update the boxes below the graph. The first and final plotted weeks are partial boundary weeks.</p></div></div><div class="hero-legend"><span><i class="cost"></i>Benchmark</span><span><i class="legend-blue"></i>Scottsdale Implant Dentistry</span></div><div class="hero-plot-scroll"><svg id="heroChart" class="hero-plot" viewBox="0 0 1080 420" role="img" aria-label="Weekly spend comparison"></svg></div><div id="weekDetail" class="month-detail" aria-live="polite"></div></section>
+
+<section class="panel"><h2>Matched monthly performance</h2><div class="table-scroll"><table><thead><tr><th rowspan="2">Month</th><th colspan="6">Benchmark</th><th colspan="6">Scottsdale Implant Dentistry</th></tr><tr><th>Cost</th><th>Clicks</th><th>Conv.</th><th>CPC</th><th>CPA</th><th>CR</th><th>Cost</th><th>Clicks</th><th>Conv.</th><th>CPC</th><th>CPA</th><th>CR</th></tr></thead><tbody><tr><td>July 2026</td><td>$506.11</td><td>128</td><td>44.5</td><td>$3.95</td><td>$11.37</td><td>34.76%</td><td>$1,553.20</td><td>61</td><td>1</td><td>$25.46</td><td>$1,553.20</td><td>1.64%</td></tr>
+<tr><td>August 2026</td><td>$431.25</td><td>115</td><td>35</td><td>$3.75</td><td>$12.32</td><td>30.43%</td><td>$1,422.71</td><td>38</td><td>8</td><td>$37.44</td><td>$177.84</td><td>21.05%</td></tr>
+<tr><td>September 2026</td><td>$462.79</td><td>101</td><td>41</td><td>$4.58</td><td>$11.29</td><td>40.59%</td><td>$668.04</td><td>26</td><td>3</td><td>$25.69</td><td>$222.68</td><td>11.54%</td></tr></tbody></table></div><div class="findings"><article class="finding"><strong>Benchmark’s period pattern</strong><p>Observed CPC $4.07, CPA $11.62, conversion rate 35.03%.</p></article><article class="finding"><strong>Scottsdale Implant Dentistry period pattern</strong><p>Observed CPC $29.15, CPA $303.66, conversion rate 9.60%. Monthly rows show the pace and volatility.</p></article><article class="finding"><strong>Market-cost context</strong><p>DataForSEO’s October 2 estimate for “dentist near me” in Scottsdale: CPC $24.82, bid range $15.43–$44.73, monthly volume 4,400. This is a market estimate, not observed campaign CPC.</p></article></div></section>
+
+<section class="panel"><h2>Call length and call-quality proxy</h2><p class="muted">Call duration is a screening signal, not confirmation of a qualified lead, appointment or new patient.</p><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Call metric · Jul–Sep 2026</th><th>Benchmark</th><th>Scottsdale Implant Dentistry</th></tr></thead><tbody>
+<tr><td>Tracked calls</td><td>167</td><td>13</td></tr><tr><td>Received / missed</td><td>167 / 0</td><td>13 / 0</td></tr><tr><td>Average call length</td><td>4m 20s</td><td>1m 41s</td></tr><tr><td>Median call length</td><td>2m 52s</td><td>1m 09s</td></tr><tr><td>Longest call</td><td>19m 32s</td><td>5m 08s</td></tr><tr><td>Calls ≥60 seconds</td><td>144 · 86.23%</td><td>7 · 53.85%</td></tr><tr><td>Calls ≥180 seconds</td><td>81 · 48.50%</td><td>2 · 15.38%</td></tr><tr><td>Spend / call ≥180 seconds</td><td>$17.29</td><td>$1,821.98</td></tr><tr><td>Enabled primary call threshold(s)</td><td>60s</td><td>30s</td></tr>
+</tbody></table></div></section>
+
+<section class="panel"><h2>Campaign setup comparison</h2><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Setting</th><th>Benchmark</th><th>Scottsdale Implant Dentistry</th><th>Interpretation</th></tr></thead><tbody>
+<tr><td>Campaign</td><td>Benchmark campaign</td><td>SERP | Dr. Bleeker - General Dentistry | Search Campaign</td><td>Pure general-dentistry Search campaign.</td></tr><tr><td>Status / start</td><td>ENABLED · 2025-02-10</td><td>ENABLED · 2026-02-02</td><td>Current status and configured start date.</td></tr><tr><td>Type / network</td><td>SEARCH · Google Search only</td><td>SEARCH · Google Search only</td><td>Performance Max is not included.</td></tr><tr><td>Bidding</td><td>Maximize Conversions</td><td>Target Cpa</td><td>Current bidding configuration.</td></tr><tr><td>Target CPA</td><td>$11.36</td><td>$170.00</td><td>Current target, not assumed constant across the whole period.</td></tr><tr><td>Current daily budget</td><td>$15.70</td><td>$25.00</td><td>Current setting, not historical budget reconstruction.</td></tr><tr><td>Enabled ad groups</td><td>1 · General Dentist</td><td>2 · SERP | General Dentistry - Near Me, SERP | General Dentistry - Geo</td><td>Current effective structure.</td></tr><tr><td>Enabled keywords / match</td><td>21 · 5 broad, 16 phrase</td><td>46 · 39 exact, 7 phrase</td><td>Advertiser criteria, not search terms.</td></tr><tr><td>Campaign negatives</td><td>5</td><td>2</td><td>Current campaign-level negative count.</td></tr><tr><td>Location targeting</td><td>5-mile radius</td><td>City: Carefree, Cave Creek, Fountain Hills, Paradise Valley, Rio Verde, Scottsdale; Neighborhood: Desert View Village, Paradise Valley Village, DC Ranch, Grayhawk, Troon North, Troon Village, McCormick Ranch, Tatum Ranch, Desert Mountain; Postal Code: 85022, 85032, 85253, 85255, 85258, 85259, 85260, 85262, 85263, 85331</td><td>Configured targeting, not confirmed user location.</td></tr><tr><td>Location option</td><td>Presence</td><td>Presence</td><td>Current positive geo option.</td></tr><tr><td>Schedule</td><td>Mon 09:00–19:00; Tue 09:00–19:00; Wed 09:00–19:00; Thu 09:00–19:00; Fri 09:00–19:00; Sat 09:00–16:00</td><td>Mon 08:00–16:00; Tue 08:00–16:00; Wed 08:00–16:00; Thu 08:00–16:00; Fri 08:00–16:00</td><td>Current enabled ad schedule.</td></tr><tr><td>Primary conversion composition</td><td>120.5 Calls from ads</td><td>5 Calls From Landers; 5 Calls From Ads; 2 Reached Thank You Page</td><td>Definitions may differ materially.</td></tr>
+</tbody></table></div></section>
+
+<section class="panel"><h2>Keyword performance comparison</h2><div class="compare-columns"><article class="compare-card lovett"><h3>Benchmark</h3><p class="muted">Top delivered advertiser keywords in the matched period.</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Match</th><th>Status</th><th>Clicks</th><th>Cost</th><th>Conv.</th><th>CPA</th><th>CR</th><th>Phone calls ≥180s</th></tr></thead><tbody><tr><td>dentist near me</td><td>BROAD</td><td class="status-enabled">ENABLED</td><td>313</td><td>$1,268.55</td><td>109</td><td>$11.64</td><td>34.82%</td><td>—</td></tr>
+<tr><td>family dentistry</td><td>BROAD</td><td class="status-enabled">ENABLED</td><td>13</td><td>$44.69</td><td>3.5</td><td>$12.77</td><td>26.92%</td><td>—</td></tr>
+<tr><td>fix my teeth near me</td><td>BROAD</td><td class="status-enabled">ENABLED</td><td>4</td><td>$28.54</td><td>3</td><td>$9.51</td><td>75.00%</td><td>—</td></tr>
+<tr><td>dental clinic near me</td><td>BROAD</td><td class="status-enabled">ENABLED</td><td>6</td><td>$18.40</td><td>1</td><td>$18.40</td><td>16.67%</td><td>—</td></tr>
+<tr><td>fix my teeth</td><td>PHRASE</td><td class="status-enabled">ENABLED</td><td>4</td><td>$17.93</td><td>3</td><td>$5.98</td><td>75.00%</td><td>—</td></tr>
+<tr><td>best dental service</td><td>PHRASE</td><td class="status-enabled">ENABLED</td><td>3</td><td>$15.79</td><td>1</td><td>$15.79</td><td>33.33%</td><td>—</td></tr>
+<tr><td>family dentistry</td><td>PHRASE</td><td class="status-paused">REMOVED</td><td>1</td><td>$6.25</td><td>0</td><td>—</td><td>0.00%</td><td>—</td></tr>
+<tr><td>dentist near me</td><td>PHRASE</td><td class="status-enabled">ENABLED</td><td>0</td><td>$0.00</td><td>0</td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div></article><article class="compare-card carolina"><h3>Scottsdale Implant Dentistry</h3><p class="muted">Top delivered advertiser keywords in the matched period. Scope mix: General dentistry: 38 keyword criteria.</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Match</th><th>Status</th><th>Clicks</th><th>Cost</th><th>Conv.</th><th>CPA</th><th>CR</th><th>Phone calls ≥180s</th></tr></thead><tbody><tr><td>dentist near me</td><td>EXACT</td><td class="status-enabled">ENABLED</td><td>16</td><td>$943.15</td><td>2</td><td>$471.58</td><td>12.50%</td><td>—</td></tr>
+<tr><td>dentist nearby</td><td>PHRASE</td><td class="status-paused">PAUSED</td><td>17</td><td>$494.53</td><td>2</td><td>$247.26</td><td>11.76%</td><td>—</td></tr>
+<tr><td>scottsdale dentist</td><td>EXACT</td><td class="status-enabled">ENABLED</td><td>8</td><td>$394.67</td><td>1</td><td>$394.67</td><td>12.50%</td><td>—</td></tr>
+<tr><td>dental doctor</td><td>PHRASE</td><td class="status-paused">REMOVED</td><td>20</td><td>$392.19</td><td>0</td><td>—</td><td>0.00%</td><td>—</td></tr>
+<tr><td>dentist near me</td><td>PHRASE</td><td class="status-enabled">ENABLED</td><td>13</td><td>$302.25</td><td>3</td><td>$100.75</td><td>23.08%</td><td>—</td></tr>
+<tr><td>dentist office near me</td><td>PHRASE</td><td class="status-paused">PAUSED</td><td>11</td><td>$267.44</td><td>0</td><td>—</td><td>0.00%</td><td>—</td></tr>
+<tr><td>dentists near me</td><td>EXACT</td><td class="status-enabled">ENABLED</td><td>5</td><td>$129.78</td><td>0</td><td>—</td><td>0.00%</td><td>—</td></tr>
+<tr><td>dental office near me</td><td>PHRASE</td><td class="status-paused">PAUSED</td><td>2</td><td>$114.08</td><td>0</td><td>—</td><td>0.00%</td><td>—</td></tr></tbody></table></div></article></div><p class="muted"><strong>Phone-call attribution note:</strong> Campaign call-detail records do not identify the keyword criterion, so ≥180-second calls cannot be assigned reliably to individual keyword rows. “—” means unavailable, not zero.</p></section>
+
+<div class="notice"><strong>Implementation steps:</strong> Open <a href="benchmark-campaign-changes.html#scottsdale">Exact campaign changes</a> for the precise Google Ads area, setting and final value for this client.</div>
+
+<section class="panel"><h2>Evidence limits</h2><ul class="source-list"><li>Both totals use the identical inclusive July 1–September 30, 2026 window and reconcile to campaign daily exports.</li><li>Only the named Search campaigns are included; Performance Max is excluded.</li><li>The revised estimated CPC, monthly volume, 20-week actions and Action CPA are user-supplied planning targets, not observed results or live campaign settings.</li><li>The recommended daily budget is calculated as revised estimated CPC × Benchmark's 3.74 matched-period clicks/day; it does not guarantee spend, traffic or conversions.</li><li>Mixed-campaign reports contain all delivery from the selected Search campaign, not only rows manually classified as general dentistry.</li><li>Bid keywords are advertiser criteria and remain separate from user search terms.</li><li>Configured location targets are not confirmed user locations.</li><li>Google Ads conversions are attributed actions, not necessarily unique people, qualified leads, appointments or new patients.</li><li>DataForSEO CPC is an external market estimate and is not substituted for observed Google Ads CPC.</li></ul></section>
+</main><script>
+const clientName="Scottsdale Implant Dentistry";const fileStem="lovett-vs-scottsdale-general-jul-sep-2026";const weeks=[{"week":"2026-06-29","lovett":{"impressions":392.0,"clicks":8.0,"cost":12.947686,"conv":0.0,"cpc":1.61846075,"cpa":null,"cr":0.0},"client":{"impressions":361.0,"clicks":13.0,"cost":112.406381,"conv":0.0,"cpc":8.646644692307692,"cpa":null,"cr":0.0}},{"week":"2026-07-06","lovett":{"impressions":968.0,"clicks":38.0,"cost":151.143685,"conv":16.999598,"cpc":3.9774653947368424,"cpa":8.891015246360533,"cr":44.73578421052631},"client":{"impressions":626.0,"clicks":20.0,"cost":420.605731,"conv":0.0,"cpc":21.03028655,"cpa":null,"cr":0.0}},{"week":"2026-07-13","lovett":{"impressions":763.0,"clicks":27.0,"cost":104.41079,"conv":7.501035,"cpc":3.8670662962962967,"cpa":13.919517773213965,"cr":27.78161111111111},"client":{"impressions":263.0,"clicks":7.0,"cost":422.95,"conv":0.0,"cpc":60.42142857142857,"cpa":null,"cr":0.0}},{"week":"2026-07-20","lovett":{"impressions":892.0,"clicks":29.0,"cost":123.820216,"conv":8.995783,"cpc":4.2696626206896555,"cpa":13.764251094095979,"cr":31.019941379310346},"client":{"impressions":438.0,"clicks":7.0,"cost":194.4,"conv":0.0,"cpc":27.771428571428572,"cpa":null,"cr":0.0}},{"week":"2026-07-27","lovett":{"impressions":662.0,"clicks":27.0,"cost":115.649385,"conv":12.00041,"cpc":4.2833105555555555,"cpa":9.63711948175104,"cr":44.445962962962966},"client":{"impressions":349.0,"clicks":14.0,"cost":402.84,"conv":1.0,"cpc":28.774285714285714,"cpa":402.84,"cr":7.142857142857142}},{"week":"2026-08-03","lovett":{"impressions":827.0,"clicks":25.0,"cost":79.801982,"conv":5.0,"cpc":3.1920792799999997,"cpa":15.960396399999999,"cr":20.0},"client":{"impressions":363.0,"clicks":8.0,"cost":271.10383,"conv":3.0,"cpc":33.88797875,"cpa":90.36794333333334,"cr":37.5}},{"week":"2026-08-10","lovett":{"impressions":695.0,"clicks":21.0,"cost":84.609666,"conv":8.500335,"cpc":4.029031714285715,"cpa":9.9536860606082,"cr":40.477785714285716},"client":{"impressions":246.0,"clicks":8.0,"cost":498.431268,"conv":1.0,"cpc":62.3039085,"cpa":498.431268,"cr":12.5}},{"week":"2026-08-17","lovett":{"impressions":674.0,"clicks":27.0,"cost":114.016462,"conv":6.999399,"cpc":4.222831925925926,"cpa":16.289464566886384,"cr":25.9237},"client":{"impressions":325.0,"clicks":13.0,"cost":375.938584,"conv":2.0,"cpc":28.918352615384613,"cpa":187.969292,"cr":15.384615384615385}},{"week":"2026-08-24","lovett":{"impressions":734.0,"clicks":34.0,"cost":134.200166,"conv":11.499905,"cpc":3.947063705882353,"cpa":11.669676053845661,"cr":33.82325},"client":{"impressions":145.0,"clicks":7.0,"cost":218.529,"conv":1.0,"cpc":31.21842857142857,"cpa":218.529,"cr":14.285714285714285}},{"week":"2026-08-31","lovett":{"impressions":561.0,"clicks":32.0,"cost":130.066406,"conv":9.999666,"cpc":4.0645751875,"cpa":13.007075036306214,"cr":31.24895625},"client":{"impressions":348.0,"clicks":13.0,"cost":479.968079,"conv":1.0,"cpc":36.92062146153846,"cpa":479.968079,"cr":7.6923076923076925}},{"week":"2026-09-07","lovett":{"impressions":511.0,"clicks":16.0,"cost":64.143284,"conv":6.0,"cpc":4.00895525,"cpa":10.690547333333333,"cr":37.5},"client":{"impressions":166.0,"clicks":5.0,"cost":68.45,"conv":0.0,"cpc":13.690000000000001,"cpa":null,"cr":0.0}},{"week":"2026-09-14","lovett":{"impressions":797.0,"clicks":32.0,"cost":161.187292,"conv":16.001318,"cpc":5.037102875,"cpa":10.073375955655653,"cr":50.00411875},"client":{"impressions":144.0,"clicks":2.0,"cost":17.41,"conv":0.0,"cpc":8.705,"cpa":null,"cr":0.0}},{"week":"2026-09-21","lovett":{"impressions":503.0,"clicks":23.0,"cost":102.590676,"conv":8.999341,"cpc":4.460464173913044,"cpa":11.399798718595063,"cr":39.12756956521739},"client":{"impressions":173.0,"clicks":6.0,"cost":124.869378,"conv":3.0,"cpc":20.811563,"cpa":41.623126,"cr":50.0}},{"week":"2026-09-28","lovett":{"impressions":234.0,"clicks":5.0,"cost":21.564667,"conv":2.0,"cpc":4.3129334,"cpa":10.7823335,"cr":40.0},"client":{"impressions":138.0,"clicks":2.0,"cost":36.05,"conv":0.0,"cpc":18.025,"cpa":null,"cr":0.0}}];
+const money=value=>value==null?'—':'$'+value.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});const number=value=>value.toLocaleString('en-US',{maximumFractionDigits:2});const svgNS='http://www.w3.org/2000/svg';let selectedIndex=weeks.length-1;
+function svgEl(name,attrs={},text=''){const el=document.createElementNS(svgNS,name);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));if(text)el.textContent=text;return el}
+function renderChart(){const svg=document.getElementById('heroChart');svg.replaceChildren();const width=1080,height=420,left=68,right=36,top=35,bottom=58,plotW=width-left-right,plotH=height-top-bottom;const rawMax=Math.max(1,...weeks.flatMap(w=>[w.lovett.cost,w.client.cost]));const maxCost=Math.max(50,Math.ceil(rawMax/50)*50);const x=i=>left+(plotW/(weeks.length-1))*i,y=v=>top+plotH-(v/maxCost)*plotH;for(let i=0;i<=5;i++){const py=top+(plotH/5)*i;svg.append(svgEl('line',{x1:left,y1:py,x2:width-right,y2:py,class:'hero-grid'}));svg.append(svgEl('text',{x:left-10,y:py+4,'text-anchor':'end',class:'hero-axis'},'$'+Math.round(maxCost-(maxCost/5)*i)))}svg.append(svgEl('text',{x:12,y:top+plotH/2,transform:`rotate(-90 12 ${top+plotH/2})`,'text-anchor':'middle',class:'hero-axis-title'},'Weekly cost'));weeks.forEach((w,i)=>{const step=plotW/(weeks.length-1);const rect=svgEl('rect',{x:x(i)-step/2,y:top,width:step,height:plotH,class:'month-hit'+(i===selectedIndex?' month-selected':''),tabindex:'0','data-index':i,'aria-label':w.week});rect.addEventListener('click',()=>selectWeek(i));rect.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectWeek(i)}});svg.append(rect)});svg.append(svgEl('polyline',{points:weeks.map((w,i)=>`${x(i)},${y(w.lovett.cost)}`).join(' '),class:'hero-lovett'}));svg.append(svgEl('polyline',{points:weeks.map((w,i)=>`${x(i)},${y(w.client.cost)}`).join(' '),class:'hero-carolina'}));weeks.forEach((w,i)=>{svg.append(svgEl('circle',{cx:x(i),cy:y(w.lovett.cost),r:4.5,class:'hero-lovett-point'}));svg.append(svgEl('circle',{cx:x(i),cy:y(w.client.cost),r:4.5,class:'hero-carolina-point'}));if(i%2===0||i===weeks.length-1)svg.append(svgEl('text',{x:x(i),y:height-24,'text-anchor':'middle',class:'hero-axis'},w.week.slice(5).replace('-','/')+'/'+w.week.slice(2,4)))})}
+function campaignDetail(title,m,cls){return `<article class="compare-card ${cls}"><h3>${title}</h3><div class="month-stats"><div class="month-stat"><strong>${m.impressions.toLocaleString('en-US')}</strong><span>Impressions</span></div><div class="month-stat"><strong>${number(m.clicks)}</strong><span>Clicks</span></div><div class="month-stat"><strong>${money(m.cost)}</strong><span>Cost</span></div><div class="month-stat"><strong>${number(m.conv)}</strong><span>Conversions</span></div><div class="month-stat"><strong>${money(m.cpc)}</strong><span>CPC</span></div><div class="month-stat"><strong>${money(m.cpa)}</strong><span>CPA</span></div><div class="month-stat"><strong>${m.cr==null?'—':m.cr.toFixed(2)+'%'}</strong><span>Conversion rate</span></div></div></article>`}
+function renderDetail(){const w=weeks[selectedIndex];const partial=selectedIndex===0?' · partial opening week':selectedIndex===weeks.length-1?' · partial final week':'';document.getElementById('weekDetail').innerHTML=`<h3>Week of ${w.week}${partial}</h3><div class="compare-columns">${campaignDetail('Benchmark',w.lovett,'lovett')}${campaignDetail(clientName,w.client,'carolina')}</div>`}function selectWeek(i){selectedIndex=i;renderChart();renderDetail()}
+function downloadCsv(){const header=['week_start','lovett_cost','lovett_clicks','lovett_conversions','lovett_cpc','lovett_cpa','client_cost','client_clicks','client_conversions','client_cpc','client_cpa'];const rows=weeks.map(w=>[w.week,w.lovett.cost.toFixed(2),w.lovett.clicks,w.lovett.conv.toFixed(2),w.lovett.cpc==null?'':w.lovett.cpc.toFixed(2),w.lovett.cpa==null?'':w.lovett.cpa.toFixed(2),w.client.cost.toFixed(2),w.client.clicks,w.client.conv.toFixed(2),w.client.cpc==null?'':w.client.cpc.toFixed(2),w.client.cpa==null?'':w.client.cpa.toFixed(2)]);const csv=[header,...rows].map(r=>r.join(',')).join('\n');const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download=fileStem+'-weekly.csv';a.click();URL.revokeObjectURL(url)}document.getElementById('downloadCsv').addEventListener('click',downloadCsv);renderChart();renderDetail();
+</script></body></html>

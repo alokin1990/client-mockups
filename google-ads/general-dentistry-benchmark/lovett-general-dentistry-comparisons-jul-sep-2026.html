@@ -1,0 +1,123 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Benchmark general-dentistry Search comparisons</title><style>
+    :root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;color:#17233a;background:#f5f7fb}
+    *{box-sizing:border-box}
+    body{margin:0}
+    main{max-width:1180px;margin:auto;padding:30px 22px 65px}
+    a{color:#215b9b}
+    button{font:inherit}
+    .top{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    .eyebrow{font-size:.73rem;text-transform:uppercase;letter-spacing:.12em;color:#55779d;font-weight:700;margin:0 0 6px}
+    h1{font-size:clamp(1.9rem,3vw,2.5rem);letter-spacing:-.04em;margin:0 0 8px}
+    h2{font-size:1.15rem;margin:0 0 8px}
+    h3{font-size:1rem;margin:0 0 7px}
+    .muted{color:#64758b;font-size:.86rem;line-height:1.5}
+    .links{display:flex;flex-wrap:wrap;gap:13px;align-content:start;font-size:.85rem}
+    .links button{color:#215b9b;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
+    .notice{background:#fff3e5;border-left:4px solid #bd762b;border-radius:8px;color:#68421e;padding:13px 16px;margin:20px 0;font-size:.88rem;line-height:1.5}
+    .metrics{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px;margin-top:18px}
+    .metric,.panel{background:#fff;border:1px solid #e1e7f0;border-radius:13px;box-shadow:0 2px 10px #1b35540a}
+    .metric{padding:17px}
+    .metric span{display:block;font-size:.78rem;color:#65758d}
+    .metric strong{display:block;font-size:1.5rem;letter-spacing:-.035em;margin:7px 0 3px;font-variant-numeric:tabular-nums}
+    .metric small{font-size:.72rem;color:#77859a}
+    .panel{padding:21px;margin-top:18px}
+    .panel p{line-height:1.5}
+    .hero-head{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+    .hero-legend{display:flex;gap:20px;flex-wrap:wrap;color:#62738a;font-size:.78rem;margin:12px 0}
+    .hero-legend i{display:inline-block;width:15px;height:4px;border-radius:3px;vertical-align:middle;margin-right:5px}
+    .hero-legend .cost{background:#f0a800}
+    .hero-legend .conversions{background:#18833a}
+    .hero-plot-scroll,.table-scroll{overflow-x:auto}
+    .hero-plot{display:block;width:100%;min-width:780px;height:auto}
+    .hero-grid{stroke:#e5ebf2;stroke-width:1}
+    .hero-phase{stroke:#d5deea;stroke-width:1;stroke-dasharray:3 6}
+    .hero-axis{fill:#687990;font:11px Inter,ui-sans-serif,system-ui,sans-serif}
+    .hero-axis-title{fill:#687990;font:12px Inter,ui-sans-serif,system-ui,sans-serif}
+    .hero-cost{fill:none;stroke:#e1a000;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .hero-conversions{fill:none;stroke:#188038;stroke-width:3;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+    .hero-cost-point{fill:#e1a000;stroke:#fff;stroke-width:2;pointer-events:none}
+    .hero-conversions-point{fill:#188038;stroke:#fff;stroke-width:2;pointer-events:none}
+    .month-hit{cursor:pointer;fill:transparent}
+    .month-hit:hover,.month-hit:focus{fill:rgba(33,91,155,.10);outline:none}
+    .month-selected{fill:rgba(33,91,155,.08)}
+    .month-detail{margin-top:13px;padding:15px;border:1px solid #d8e3f0;background:#f8fbff;border-radius:10px}
+    .month-detail h3{margin:0 0 9px;font-size:.96rem}
+    .month-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+    .month-stat{border-radius:8px;background:#fff;border:1px solid #e1e7f0;padding:10px 12px}
+    .month-stat strong{display:block;font-size:1.14rem;font-variant-numeric:tabular-nums}
+    .month-stat span{display:block;color:#66778e;font-size:.74rem}
+    .findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .finding{border:1px solid #e1e7f0;background:#f8fbff;border-radius:9px;padding:14px}
+    .finding strong{display:block;margin-bottom:5px}
+    .finding p{margin:0;color:#52667f;font-size:.82rem}
+    .change-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .change{border-left:3px solid #8aa8d8;padding:4px 12px}
+    .change time{display:block;color:#55779d;font-size:.75rem;font-weight:700;margin-bottom:5px}
+    table{border-collapse:collapse;width:100%;font-size:.82rem}
+    th,td{padding:10px;border-bottom:1px solid #e6ecf3;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+    th:first-child,td:first-child{text-align:left}
+    th{position:sticky;top:0;background:#fff;color:#61728b}
+    .table-scroll{max-height:560px}
+    tbody tr{cursor:pointer}
+    tbody tr:hover td{background:#f5f8fc}
+    tbody tr.selected-month td{background:#eaf1fb}
+    .basis{font-size:.75rem;color:#65758d}
+    .source-list{margin:10px 0 0;padding-left:20px;color:#52667f;font-size:.85rem;line-height:1.55}
+    details{margin:10px 0;border:1px solid #e1e7f0;border-radius:9px;background:#f8fbff;padding:11px 13px}
+    summary{cursor:pointer;font-weight:650;color:#263a56}
+    .keyword-list{margin:9px 0 0;color:#52667f;font-size:.8rem;line-height:1.6}
+    .status-enabled{color:#137333;font-weight:700}
+    .status-paused{color:#9c6a00;font-weight:700}
+    .config-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+    .config-card{border:1px solid #e1e7f0;background:#f8fbff;border-radius:9px;padding:15px}
+    .config-card ul{margin:8px 0 0;padding-left:19px;color:#52667f;font-size:.83rem;line-height:1.55}
+    @media(max-width:960px){.metrics{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:720px){.findings,.change-list,.config-grid{grid-template-columns:1fr}.month-stats{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){main{padding:20px 12px 45px}.metrics{grid-template-columns:repeat(2,1fr)}.metric{padding:13px}.metric strong{font-size:1.27rem}.panel{padding:15px}.month-stats{grid-template-columns:repeat(2,1fr)}}
+
+    .compare-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    .compare-card{min-width:0;border:1px solid #dfe7f0;border-radius:10px;padding:15px;background:#fbfdff}
+    .compare-card h3{margin:0 0 10px}
+    .compare-card.lovett{border-top:4px solid #f0a800}.compare-card.carolina{border-top:4px solid #215b9b}
+    .hero-lovett{fill:none;stroke:#f0a800;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+    .hero-carolina{fill:none;stroke:#215b9b;stroke-width:4;stroke-linejoin:round;stroke-linecap:round}
+    .hero-lovett-point{fill:#f0a800;stroke:#fff;stroke-width:2;pointer-events:none}
+    .hero-carolina-point{fill:#215b9b;stroke:#fff;stroke-width:2;pointer-events:none}
+    .legend-blue{background:#215b9b!important}
+    .verdict{font-size:1.06rem;line-height:1.65}
+    @media(max-width:720px){.compare-columns{grid-template-columns:1fr}}
+
+    .report-nav{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 24px;padding:8px;background:#eef3f8;border:1px solid #d9e2ec;border-radius:12px}
+    .report-nav a{display:inline-block;padding:9px 14px;border-radius:8px;color:#274f77;text-decoration:none;font-weight:700}
+    .report-nav a:hover,.report-nav a:focus{background:#fff}
+    .report-nav a.active{background:#163a5f;color:#fff}
+    .client-jumps{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0 24px}
+    .client-jumps a{display:inline-block;padding:8px 11px;background:#fff;border:1px solid #d9e2ec;border-radius:999px;color:#215b9b;text-decoration:none;font-weight:700;font-size:.85rem}
+    .implementation-section{scroll-margin-top:18px}
+    .manager-note{margin:0 0 14px;padding:12px 14px;border-left:4px solid #47749a;border-radius:8px;background:#eef4fa;color:#29465f;line-height:1.55;text-align:left}
+    .section-title-row{display:flex;justify-content:space-between;gap:18px;align-items:flex-start;flex-wrap:wrap;margin-bottom:14px}
+    .section-title-row h2{margin-bottom:5px}
+    .section-title-row>a{white-space:nowrap}
+    .implementation-table-wrap{width:100%;overflow:visible}
+    .implementation-table{width:100%;min-width:0;table-layout:fixed}
+    .implementation-table .col-step{width:10%}
+    .implementation-table .col-where{width:15%}
+    .implementation-table .col-change{width:55%}
+    .implementation-table .col-final{width:20%}
+    .implementation-table th,.implementation-table td{text-align:left;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
+    .change-details{margin-top:8px;border:1px solid #d9e2ec;border-radius:10px;background:#f8fafc}
+    .change-details summary{cursor:pointer;padding:10px 12px;color:#215b9b;font-weight:800;list-style-position:inside}
+    .change-details[open] summary{border-bottom:1px solid #d9e2ec}
+    .detail-body{padding:12px}
+    .detail-body h4{margin:12px 0 7px}
+    .detail-body h4:first-child{margin-top:0}
+    .detail-list{margin:0;padding-left:18px}
+    .target-list,.asset-list,.asset-actions{columns:2;column-gap:24px}
+    .detail-list li{break-inside:avoid;margin:0 0 6px}
+    .match-tag{display:inline-block;padding:2px 6px;border-radius:999px;background:#e8eef5;color:#36506b;font-size:.68rem;font-weight:800;text-transform:uppercase}
+    .remove-item{padding:7px 9px;border-left:3px solid #c43b3b;background:#fff1f1;color:#a32020;list-style-position:inside}
+    .remove-tag{background:#f8d5d5;color:#8c1717}
+    .add-item{padding:7px 9px;border-left:3px solid #1f6b45;background:#eef8f2;color:#1f5c3b;list-style-position:inside}
+    .keep-item{padding:7px 9px;border-left:3px solid #47749a;background:#eef4fa;color:#29465f;list-style-position:inside}
+    @media(max-width:620px){.implementation-table{font-size:.72rem}.implementation-table th,.implementation-table td{padding:8px 5px}.target-list,.asset-list,.asset-actions{columns:1}}
+    </style></head><body><main><nav class="report-nav" aria-label="Report navigation"><a class="active" href="lovett-general-dentistry-comparisons-jul-sep-2026.html">Overview</a><a href="benchmark-campaign-changes.html">Exact campaign changes</a></nav><div class="top"><div><p class="eyebrow">GOOGLE ADS REPORT SET</p><h1>Benchmark vs general-dentistry Search campaigns</h1><p class="muted">July 1–September 30, 2026 · Performance Max excluded</p></div></div><div class="notice"><strong>Scope:</strong> Six eligible campaign comparisons plus one no-delivery report for Simply Veneers. Mixed Search campaigns are labeled; no PMax campaign is used as a substitute. Revised estimated CPC and Action CPA values are planning targets, not observed performance. Daily budgets are recommended changes calculated to support Benchmark's average click pace. Use <a href="benchmark-campaign-changes.html">Exact campaign changes</a> for implementation instructions.</div><section class="panel"><h2>Report index and supplied targets</h2><p class="muted">Current cost, monthly leads and calls over 180 seconds are monthly averages from July–September 2026. Targeted cost is the recommended daily budget × 30.4 days. Targeted monthly leads are targeted cost ÷ targeted CPA. Targeted 180-second calls use Benchmark's matched-period ratio of 81 long calls to 120.5 primary conversions. “Leads” here means Google Ads primary actions, not confirmed unique patients.</p><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Client report</th><th>Current CPC</th><th>Targeted CPC</th><th>Current CPA</th><th>Targeted CPA</th><th>Current Cost</th><th>Targeted Cost</th><th>Current Monthly Leads</th><th>Targeted Monthly Leads</th><th>180 Sec &gt; Current</th><th>180 Sec Targeted</th></tr></thead><tbody><tr><td><a href="lovett-vs-scottsdale-general-jul-sep-2026.html">Scottsdale Center for Implant Dentistry</a></td><td>$29.15</td><td><strong>$12.41</strong></td><td>$303.66</td><td><strong>$121.89</strong></td><td>$1,214.65</td><td><strong>$1,410.64</strong></td><td>4</td><td><strong>11.6</strong></td><td>0.7</td><td><strong>7.8</strong></td></tr><tr><td><a href="lovett-vs-north-atlanta-general-jul-sep-2026.html">North Atlanta Center for Cosmetic &amp; Implant Dentistry</a></td><td>$15.22</td><td><strong>$11.19</strong></td><td>$95.84</td><td><strong>$73.40</strong></td><td>$1,182.05</td><td><strong>$1,271.96</strong></td><td>12.3</td><td><strong>17.3</strong></td><td>3</td><td><strong>11.6</strong></td></tr><tr><td><a href="lovett-vs-cap-dental-general-jul-sep-2026.html">CAP Dental</a></td><td>$23.35</td><td><strong>$14.37</strong></td><td>$110.27</td><td><strong>$63.81</strong></td><td>$1,984.76</td><td><strong>$1,633.43</strong></td><td>18</td><td><strong>25.6</strong></td><td>3.7</td><td><strong>17.2</strong></td></tr><tr><td><a href="lovett-vs-farhoumand-general-jul-sep-2026.html">Farhoumand Dentistry</a></td><td>$15.93</td><td><strong>$6.43</strong></td><td>$165.24</td><td><strong>$61.72</strong></td><td>$1,487.06</td><td><strong>$730.90</strong></td><td>9</td><td><strong>11.8</strong></td><td>4</td><td><strong>8</strong></td></tr><tr><td><a href="lovett-vs-wagner-general-jul-sep-2026.html">Wagner Dentistry</a></td><td>$10.25</td><td><strong>$8.12</strong></td><td>$86.58</td><td><strong>$67.70<sup>*</sup></strong></td><td>$942.68</td><td><strong>$923.00</strong></td><td>10.9</td><td><strong>13.6</strong></td><td>3.3</td><td><strong>9.2</strong></td></tr><tr><td><a href="lovett-vs-simply-veneers-general-jul-sep-2026.html">Simply Veneers</a></td><td>—</td><td><strong>$9.87</strong></td><td>—</td><td><strong>$121.34<sup>*</sup></strong></td><td>$0.00</td><td><strong>$1,121.92</strong></td><td>0</td><td><strong>9.2</strong></td><td>0</td><td><strong>6.2</strong></td></tr><tr><td><a href="lovett-vs-commonwealth-general-jul-sep-2026.html">Commonwealth Family Dentistry</a></td><td>$13.36</td><td><strong>$5.81</strong></td><td>$74.09</td><td><strong>$31.52</strong></td><td>$1,407.76</td><td><strong>$660.42</strong></td><td>19</td><td><strong>21</strong></td><td>7.3</td><td><strong>14.1</strong></td></tr></tbody></table></div><p class="muted"><sup>*</sup> Wagner's $67.70 target applies to Sedation Dentistry. Simply Veneers' $121.34 target applies to Veneers. Their general-dentistry campaigns need separate tCPA targets after qualified conversion data is available.</p></section><section class="panel"><h2>Recommended daily budget plan</h2><p class="muted">Formula: revised estimated CPC × 3.74 clicks/day, based on Benchmark's 344 clicks across 92 calendar days. These are recommended starting budgets; Google Ads delivery and actual CPC can vary.</p><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Location</th><th>Revised estimated CPC</th><th>Benchmark clicks/day</th><th>Recommended daily budget</th><th>Approx. 30.4-day budget</th></tr></thead><tbody><tr><td>Scottsdale</td><td>$12.41</td><td>3.74</td><td><strong>$46.40</strong></td><td>$1,410.64</td></tr><tr><td>Buford</td><td>$11.19</td><td>3.74</td><td><strong>$41.84</strong></td><td>$1,271.96</td></tr><tr><td>Boynton Beach</td><td>$14.37</td><td>3.74</td><td><strong>$53.73</strong></td><td>$1,633.43</td></tr><tr><td>Vienna</td><td>$6.43</td><td>3.74</td><td><strong>$24.04</strong></td><td>$730.90</td></tr><tr><td>Indianapolis</td><td>$8.12</td><td>3.74</td><td><strong>$30.36</strong></td><td>$923.00</td></tr><tr><td>Newport Beach</td><td>$9.87</td><td>3.74</td><td><strong>$36.91</strong></td><td>$1,121.92</td></tr><tr><td>Chester</td><td>$5.81</td><td>3.74</td><td><strong>$21.72</strong></td><td>$660.42</td></tr></tbody></table></div></section><section class="panel"><h2>Benchmark baseline</h2><p class="muted">Search · July–September 2026: $1,400.15 spend, $4.07 CPC, 120.5 primary conversions, $11.62 CPA, 35.03% conversion rate and 81 calls lasting at least 180 seconds. Its current $15.70/day setting is observed context, not the calculation used for the location recommendations.</p></section></main></body></html>
