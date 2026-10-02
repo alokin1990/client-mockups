@@ -1,0 +1,1 @@
+const toggle=document.querySelector('.menu-toggle');const menu=document.querySelector('[data-menu]');if(toggle&&menu){toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')==='true';toggle.setAttribute('aria-expanded',String(!open));menu.setAttribute('data-open',String(!open));});}
