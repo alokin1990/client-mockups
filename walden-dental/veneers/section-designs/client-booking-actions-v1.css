@@ -1,0 +1,9 @@
+.wd-booking-section .wd-shell{width:min(100% - 48px,1280px);margin-inline:auto}
+.wd-booking-section{padding:80px 0;background:#003e51;color:#fff}
+.wd-booking-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:60px;align-items:center}
+.wd-booking-copy h2{color:#fff;margin:0 0 20px;font-family:'Playfair Display',Georgia,serif}
+.wd-booking-actions{display:flex;justify-content:flex-end;align-items:center;gap:12px;flex-wrap:wrap}
+.wd-booking-actions a{min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.wd-booking-actions a:focus-visible{outline:3px solid #d4a039;outline-offset:4px}
+@media(max-width:780px){.wd-booking-section{padding:64px 0}.wd-booking-grid{grid-template-columns:1fr;gap:28px}.wd-booking-actions{justify-content:flex-start}}
+@media(max-width:480px){.wd-booking-actions{display:grid}.wd-booking-actions a{width:100%}}

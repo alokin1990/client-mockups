@@ -1,0 +1,6 @@
+/* Page-local contrast fix; approved pattern CSS remains byte-for-byte unchanged. */
+.wd-care-process .eyebrow,
+.wd-office-map .eyebrow,
+.wd-booking-section .eyebrow {
+  color: #f3c65b;
+}

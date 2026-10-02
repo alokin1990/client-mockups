@@ -1,0 +1,10 @@
+/* Cosmetic-specific content fits the approved Walden section anatomy. */
+.wd-service-hero{--wd-header-height:85px;background-color:#002f3c}
+.wd-hero-main{padding-block:clamp(42px,5.5vw,88px)}
+#cosmetic-hero .wd-hero-media img{object-fit:cover;object-position:center 42%}
+.wd-financial-card .button-dark{color:#fff}
+.wd-financial-access .wd-financial-card .eyebrow{font-weight:700}
+.wd-article-grid article{height:100%}
+.wd-article-grid article>div{padding:24px}
+@media(max-width:900px){.wd-hero-main{padding-block:32px}.wd-hero-media img{max-height:260px}}
+@media(max-width:640px){.wd-service-hero{--wd-header-height:73px}.wd-hero-main{padding-block:20px}.wd-hero-media img{max-height:95px}}

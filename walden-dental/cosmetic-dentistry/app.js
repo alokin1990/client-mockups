@@ -26,3 +26,15 @@ if (menuButton && menu) {
     if (!menu.contains(event.target) && !menuButton.contains(event.target)) closeMenu();
   });
 }
+
+document.querySelectorAll('#before-after-cases .ba-item').forEach(card => {
+  const toggle = card.querySelector('.ba-toggle');
+  if (!toggle) return;
+  toggle.addEventListener('click', () => {
+    const showBefore = card.dataset.view !== 'before';
+    card.dataset.view = showBefore ? 'before' : 'after';
+    card.dataset.interacted = 'true';
+    toggle.setAttribute('aria-pressed', String(showBefore));
+    toggle.setAttribute('aria-label', `Show ${showBefore ? 'after' : 'before'} photo for case ${card.dataset.case}`);
+  });
+});

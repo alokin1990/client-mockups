@@ -1,0 +1,51 @@
+@font-face {
+  font-family: Playfair;
+  src: url(assets/576ff9c33a472cc3.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: Playfair;
+  src: url(assets/5d2286941a6b02a2.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/8909904ab6c872eb.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/f3779f1efccc4bdc.woff2) format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/f9a06e79cd3a2a20.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/6f56409fd3d64bb8.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url(assets/576ff9c33a472cc3.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url(assets/5d2286941a6b02a2.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+h1{letter-spacing:normal!important}

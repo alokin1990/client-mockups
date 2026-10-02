@@ -1,0 +1,20 @@
+/* Styling-only preview: approved Walden section values, without claiming formal pattern registration. */
+#evaluation-and-next-steps{background:#002f3c;color:#d9e8eb;padding-block:clamp(70px,8vw,118px)}
+#evaluation-and-next-steps h2,#evaluation-and-next-steps h3{color:#fff}
+#evaluation-and-next-steps .process-grid{border-top:1px solid #ffffff45;border-left:1px solid #ffffff45}
+#evaluation-and-next-steps .process-grid>*{border-right:1px solid #ffffff45;border-bottom:1px solid #ffffff45}
+#location-and-contact{background:#002f3c;color:#d9e8eb;padding-block:clamp(70px,8vw,118px)}
+#location-and-contact h2{color:#fff}
+#location-and-contact .location-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px,6vw,80px)}
+#location-and-contact .map-frame{border:5px solid #ffffff2e;border-top-color:#d4a039}
+#cost-and-payment{background:#fff;color:#002a38;padding-block:clamp(70px,8vw,118px)}
+#cost-and-payment .financial-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(44px,7vw,100px)}
+#cost-and-payment .access-panel{background:#eef3f5;border-top:4px solid #d4a039;box-shadow:0 16px 36px #002a3812}
+#extraction-faq{background:#f7f4ed;color:#002a38;padding-block:clamp(70px,8vw,118px)}
+#extraction-faq .faq-layout{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(44px,8vw,110px)}
+#extraction-faq .faq-list{border-top:1px solid #bfc9c6}
+#extraction-faq .faq-list details{border-bottom:1px solid #bfc9c6}
+#final-cta{background:#002f3c;color:#fff;padding-block:clamp(70px,8vw,118px)}
+#final-cta h2{color:#fff}
+@media(max-width:900px){#location-and-contact .location-grid,#cost-and-payment .financial-grid,#extraction-faq .faq-layout{grid-template-columns:1fr;gap:36px}}
+@media(max-width:640px){#evaluation-and-next-steps,#location-and-contact,#cost-and-payment,#extraction-faq,#final-cta{padding-block:64px}}

@@ -1,0 +1,38 @@
+/* Smile-specific fit adjustments; approved base pattern files remain byte-for-byte. */
+.wd-service-hero {
+  min-height: calc(100svh - var(--header, 76px));
+  background-color: #002f3c;
+}
+
+.wd-service-hero .wd-hero-main { padding-block: 24px; }
+.wd-service-hero .wd-hero-media { background: transparent; box-shadow: none; }
+.wd-service-hero .hero-accent {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  min-width: 0;
+  min-height: 320px;
+  padding: clamp(30px, 4vw, 56px);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.25);
+  border-left: 5px solid #d4a039;
+  background: linear-gradient(145deg,rgba(0,42,56,.92),rgba(0,78,95,.72));
+  box-shadow: 0 28px 70px rgba(0,0,0,.16);
+}
+
+.wd-service-hero .hero-accent strong { font-size: 2.7vw; }
+.wd-service-hero .eyebrow,
+.wd-coordinated-options .eyebrow,
+.wd-office-map .eyebrow,
+.wd-booking-section .eyebrow { color: #f3c65b; }
+
+@media (max-width: 900px) {
+  .wd-service-hero .wd-hero-main { padding-block: 28px; }
+  .wd-service-hero .wd-hero-media { display: none; }
+}
+
+@media (max-width: 640px) {
+  .wd-service-hero .wd-hero-main { padding-block: 22px; }
+}

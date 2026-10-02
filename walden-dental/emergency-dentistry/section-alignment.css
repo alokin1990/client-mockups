@@ -1,0 +1,20 @@
+/* Styling-only preview: shared section rhythm; urgent call-first hero and safety guidance stay unchanged. */
+#emergency-visit{background:#002f3c;color:#d9e8eb;padding-block:clamp(70px,8vw,118px)}
+#emergency-visit h2,#emergency-visit h3{color:#fff}
+#emergency-visit .process-grid{border-top:1px solid #ffffff45;border-left:1px solid #ffffff45}
+#emergency-visit .process-grid>*{border-right:1px solid #ffffff45;border-bottom:1px solid #ffffff45}
+#emergency-location{background:#002f3c;color:#d9e8eb;padding-block:clamp(70px,8vw,118px)}
+#emergency-location h2{color:#fff}
+#emergency-location .office-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(36px,6vw,80px)}
+#emergency-location .map-frame{border:5px solid #ffffff2e;border-top-color:#d4a039}
+#emergency-cost{background:#fff;color:#002a38;padding-block:clamp(70px,8vw,118px)}
+#emergency-cost .financial-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:clamp(44px,7vw,100px)}
+#emergency-cost .financial-card{background:#eef3f5;border-top:4px solid #d4a039;box-shadow:0 16px 36px #002a3812}
+#emergency-faqs{background:#f7f4ed;color:#002a38;padding-block:clamp(70px,8vw,118px)}
+#emergency-faqs .faq-grid{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:clamp(44px,8vw,110px)}
+#emergency-faqs .faq-list{border-top:1px solid #bfc9c6}
+#emergency-faqs .faq-list details{border-bottom:1px solid #bfc9c6}
+#book-emergency-call{background:#002f3c;color:#fff;padding-block:clamp(70px,8vw,118px)}
+#book-emergency-call h2{color:#fff}
+@media(max-width:900px){#emergency-location .office-grid,#emergency-cost .financial-grid,#emergency-faqs .faq-grid{grid-template-columns:1fr;gap:36px}}
+@media(max-width:640px){#emergency-visit,#emergency-location,#emergency-cost,#emergency-faqs,#book-emergency-call{padding-block:64px}}

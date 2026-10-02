@@ -1,0 +1,19 @@
+        window._userway_config = {
+            position: '5',      // widget position (1â€“6 depending on placement)
+            size: 'large',      // small or large
+            color: '#92c46e',   // widget color
+            account: 'AYlpdpfpex' // your account ID
+            // optional:
+            // language: 'en-US',
+            // type: '1',  // icon type: person=1, chair=2, eye=3
+            // mobile: true // enable on mobile
+        };
+
+        // Load the widget script after setting config
+        (function(){
+            var script = document.createElement('script');
+            script.src = 'https://cdn.userway.org/widget.js';
+            script.async = true;
+            document.body.appendChild(script);
+        })();
+    

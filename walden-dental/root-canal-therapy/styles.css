@@ -1,0 +1,63 @@
+@font-face {
+  font-family: Playfair;
+  src: url(assets/576ff9c33a472cc3.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: Playfair;
+  src: url(assets/5d2286941a6b02a2.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/8909904ab6c872eb.woff2) format("woff2");
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/f3779f1efccc4bdc.woff2) format("woff2");
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/f9a06e79cd3a2a20.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: Inter;
+  src: url(assets/6f56409fd3d64bb8.woff2) format("woff2");
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url(assets/576ff9c33a472cc3.woff2) format("woff2");
+  font-weight: 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Playfair Display";
+  src: url(assets/5d2286941a6b02a2.woff2) format("woff2");
+  font-weight: 600;
+  font-display: swap;
+}
+
+h1{letter-spacing:normal!important}
+/* Approved shared-section adaptation for this local forward review. */
+:root{--wd-header-height:79px}
+.wd-service-hero{background-color:#002f3c}
+.wd-service-hero .wd-hero-main{grid-template-columns:minmax(0,1fr);padding-block:clamp(28px,4vw,56px)}
+.wd-service-hero .wd-hero-copy{max-width:850px}
+.wd-service-hero .eyebrow,.wd-care-process .eyebrow,.wd-office-map .eyebrow,.wd-booking-section .eyebrow{color:#f0bc56}
+@media(max-width:900px){:root{--wd-header-height:71px}.wd-service-hero .wd-hero-main{padding-block:26px}}
+@media(max-width:640px){.wd-service-hero .wd-hero-main{padding-block:18px}}
+.patient-reviews blockquote{font-family:var(--sans);font-weight:400}
+.footer h2{font-family:"Playfair Display",Georgia,serif;font-weight:600}
+.nav-dropdown>button::after{content:"";display:inline-block;width:5px;height:5px;margin:0 0 3px 7px;border-right:1px solid currentColor;border-bottom:1px solid currentColor;transform:rotate(45deg)}
+@media(min-width:641px) and (max-width:900px){:root{--wd-header-height:79px}}
