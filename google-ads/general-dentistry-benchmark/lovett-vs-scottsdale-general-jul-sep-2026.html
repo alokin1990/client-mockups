@@ -107,6 +107,13 @@
     .implementation-table .col-change{width:55%}
     .implementation-table .col-final{width:20%}
     .implementation-table th,.implementation-table td{text-align:left;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
+    .setup-table-wrap{width:100%;overflow:visible}
+    .setup-table{width:100%;min-width:0;table-layout:fixed}
+    .setup-table .col-setting{width:15%}
+    .setup-table .col-benchmark{width:20%}
+    .setup-table .col-client{width:30%}
+    .setup-table .col-interpretation{width:35%}
+    .setup-table th,.setup-table td{text-align:left;vertical-align:top;white-space:normal;overflow-wrap:anywhere;word-break:normal;hyphens:auto}
     .change-details{margin-top:8px;border:1px solid #d9e2ec;border-radius:10px;background:#f8fafc}
     .change-details summary{cursor:pointer;padding:10px 12px;color:#215b9b;font-weight:800;list-style-position:inside}
     .change-details[open] summary{border-bottom:1px solid #d9e2ec}
@@ -121,7 +128,7 @@
     .remove-tag{background:#f8d5d5;color:#8c1717}
     .add-item{padding:7px 9px;border-left:3px solid #1f6b45;background:#eef8f2;color:#1f5c3b;list-style-position:inside}
     .keep-item{padding:7px 9px;border-left:3px solid #47749a;background:#eef4fa;color:#29465f;list-style-position:inside}
-    @media(max-width:620px){.implementation-table{font-size:.72rem}.implementation-table th,.implementation-table td{padding:8px 5px}.target-list,.asset-list,.asset-actions{columns:1}}
+    @media(max-width:620px){.implementation-table,.setup-table{font-size:.72rem}.implementation-table th,.implementation-table td,.setup-table th,.setup-table td{padding:8px 5px}.target-list,.asset-list,.asset-actions{columns:1}}
     </style></head><body><main>
 <nav class="report-nav" aria-label="Report navigation"><a href="lovett-general-dentistry-comparisons-jul-sep-2026.html">Overview</a><a href="benchmark-campaign-changes.html#scottsdale">Exact campaign changes</a></nav>
 <div class="top"><div><p class="eyebrow">MATCHED-PERIOD GOOGLE ADS COMPARISON</p><h1>Benchmark vs Scottsdale Implant Dentistry</h1><p class="muted">General-dentistry Search campaigns · July 1–September 30, 2026 · Performance Max excluded</p></div><div class="links"><button id="downloadCsv" type="button">Download comparison CSV</button></div></div>
@@ -152,7 +159,7 @@
 <tr><td>Tracked calls</td><td>167</td><td>13</td></tr><tr><td>Received / missed</td><td>167 / 0</td><td>13 / 0</td></tr><tr><td>Average call length</td><td>4m 20s</td><td>1m 41s</td></tr><tr><td>Median call length</td><td>2m 52s</td><td>1m 09s</td></tr><tr><td>Longest call</td><td>19m 32s</td><td>5m 08s</td></tr><tr><td>Calls ≥60 seconds</td><td>144 · 86.23%</td><td>7 · 53.85%</td></tr><tr><td>Calls ≥180 seconds</td><td>81 · 48.50%</td><td>2 · 15.38%</td></tr><tr><td>Spend / call ≥180 seconds</td><td>$17.29</td><td>$1,821.98</td></tr><tr><td>Enabled primary call threshold(s)</td><td>60s</td><td>30s</td></tr>
 </tbody></table></div></section>
 
-<section class="panel"><h2>Campaign setup comparison</h2><div class="table-scroll" style="max-height:none"><table><thead><tr><th>Setting</th><th>Benchmark</th><th>Scottsdale Implant Dentistry</th><th>Interpretation</th></tr></thead><tbody>
+<section class="panel"><h2>Campaign setup comparison</h2><div class="setup-table-wrap"><table class="setup-table"><colgroup><col class="col-setting"><col class="col-benchmark"><col class="col-client"><col class="col-interpretation"></colgroup><thead><tr><th>Setting</th><th>Benchmark</th><th>Scottsdale Implant Dentistry</th><th>Interpretation</th></tr></thead><tbody>
 <tr><td>Campaign</td><td>Benchmark campaign</td><td>SERP | Dr. Bleeker - General Dentistry | Search Campaign</td><td>Pure general-dentistry Search campaign.</td></tr><tr><td>Status / start</td><td>ENABLED · 2025-02-10</td><td>ENABLED · 2026-02-02</td><td>Current status and configured start date.</td></tr><tr><td>Type / network</td><td>SEARCH · Google Search only</td><td>SEARCH · Google Search only</td><td>Performance Max is not included.</td></tr><tr><td>Bidding</td><td>Maximize Conversions</td><td>Target Cpa</td><td>Current bidding configuration.</td></tr><tr><td>Target CPA</td><td>$11.36</td><td>$170.00</td><td>Current target, not assumed constant across the whole period.</td></tr><tr><td>Current daily budget</td><td>$15.70</td><td>$25.00</td><td>Current setting, not historical budget reconstruction.</td></tr><tr><td>Enabled ad groups</td><td>1 · General Dentist</td><td>2 · SERP | General Dentistry - Near Me, SERP | General Dentistry - Geo</td><td>Current effective structure.</td></tr><tr><td>Enabled keywords / match</td><td>21 · 5 broad, 16 phrase</td><td>46 · 39 exact, 7 phrase</td><td>Advertiser criteria, not search terms.</td></tr><tr><td>Campaign negatives</td><td>5</td><td>2</td><td>Current campaign-level negative count.</td></tr><tr><td>Location targeting</td><td>5-mile radius</td><td>City: Carefree, Cave Creek, Fountain Hills, Paradise Valley, Rio Verde, Scottsdale; Neighborhood: Desert View Village, Paradise Valley Village, DC Ranch, Grayhawk, Troon North, Troon Village, McCormick Ranch, Tatum Ranch, Desert Mountain; Postal Code: 85022, 85032, 85253, 85255, 85258, 85259, 85260, 85262, 85263, 85331</td><td>Configured targeting, not confirmed user location.</td></tr><tr><td>Location option</td><td>Presence</td><td>Presence</td><td>Current positive geo option.</td></tr><tr><td>Schedule</td><td>Mon 09:00–19:00; Tue 09:00–19:00; Wed 09:00–19:00; Thu 09:00–19:00; Fri 09:00–19:00; Sat 09:00–16:00</td><td>Mon 08:00–16:00; Tue 08:00–16:00; Wed 08:00–16:00; Thu 08:00–16:00; Fri 08:00–16:00</td><td>Current enabled ad schedule.</td></tr><tr><td>Primary conversion composition</td><td>120.5 Calls from ads</td><td>5 Calls From Landers; 5 Calls From Ads; 2 Reached Thank You Page</td><td>Definitions may differ materially.</td></tr>
 </tbody></table></div></section>
 
