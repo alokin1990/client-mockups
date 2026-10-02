@@ -1,0 +1,49 @@
+/* Exact common prefix of the current editorial review pages. */
+:root{--teal:#003e51;--teal-dark:#002a38;--teal-mid:#07576c;--gold:#d4a039;--gold-light:#f0c96d;--surface:#eef3f5;--ink:#2b2d42;--muted:#536168;--white:#fff;--line:rgba(0,62,81,.17);--serif:"Playfair Display",Georgia,serif;--sans:"Inter",Arial,sans-serif;--shadow:0 24px 70px rgba(0,42,56,.14)}
+body{margin:0;color:var(--ink);font:16px/1.65 var(--sans);background:#fff}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit}
+button{font:inherit}
+.shell{width:min(1180px,calc(100% - 48px));margin-inline:auto}
+.skip-link{position:fixed;left:12px;top:12px;z-index:1000;padding:10px 14px;background:#fff;color:var(--teal);transform:translateY(-150%)}
+.skip-link:focus{transform:none}
+.eyebrow{margin:0 0 14px;color:var(--teal);font-size:.74rem;font-weight:700;letter-spacing:.19em;text-transform:uppercase}
+.eyebrow-gold{color:var(--gold-light)}
+h1,h2,h3{font-family:var(--serif);line-height:1.08;margin:0;color:var(--teal-dark)}
+h1{font-size:clamp(2.7rem,5.4vw,5.49rem);letter-spacing:normal}
+h2{font-size:clamp(1.9975rem,3.825vw,3.91rem);letter-spacing:-.035em}
+h3{font-size:clamp(1.3rem,2vw,1.8rem)}
+p{margin:0 0 1.1em}
+.section{padding:clamp(78px,9vw,132px)0}
+.section-heading{max-width:780px}
+.section-heading>p:last-child{font-size:1.08rem;color:var(--muted)}
+.button-row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.button{display:inline-flex;min-height:50px;padding:13px 22px;align-items:center;justify-content:center;border:1px solid transparent;text-decoration:none;font-weight:700;line-height:1.15;transition:transform .2s ease,background .2s ease}
+.button:hover{transform:translateY(-2px)}
+.button-gold{background:var(--gold);color:var(--teal-dark)}
+.button-gold:hover{background:var(--gold-light)}
+.button-outline-light{border-color:rgba(255,255,255,.7);color:#fff;background:transparent}
+.arrow-link{display:inline-flex;gap:9px;align-items:center;color:var(--teal);font-weight:700;text-decoration-color:var(--gold);text-underline-offset:5px}
+[data-containment="strict"]{min-width:0;overflow-wrap:anywhere}
+a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid var(--gold-light);outline-offset:4px}
+.site-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.97);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.header-inner{height:84px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand{width:185px;flex:0 0 auto}
+.primary-nav{display:flex;align-items:center;gap:16px;font-size:.79rem;font-weight:600}
+.primary-nav>a,.nav-dropdown summary{text-decoration:none;white-space:nowrap}
+.primary-nav>a:hover,.nav-dropdown summary:hover,.sub-menu a:hover{text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:5px}
+.nav-dropdown{position:relative}
+.nav-dropdown summary{display:flex;align-items:center;gap:7px;cursor:pointer;list-style:none}
+.nav-dropdown summary::-webkit-details-marker{display:none}
+.nav-dropdown summary:after{content:"";width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+.sub-menu{display:none;position:absolute;z-index:20;top:calc(100% + 18px);left:-18px;min-width:235px;margin:0;padding:12px 0;list-style:none;background:#fff;border-top:3px solid var(--gold);box-shadow:0 18px 38px rgba(0,42,56,.18)}
+.nav-dropdown[open]>.sub-menu{display:block}
+.sub-menu a{display:block;padding:9px 18px;color:var(--teal-dark);text-decoration:none;white-space:nowrap}
+.nav-phone{color:var(--teal);font-weight:700;white-space:nowrap}
+.nav-actions{display:flex;align-items:center;gap:12px}
+.nav-actions .button{min-height:44px;padding:11px 16px;white-space:nowrap}
+.menu-toggle{display:none;border:0;background:none;color:var(--teal);font-weight:700}
+.menu-lines{display:inline-block;width:22px;height:14px;margin-left:8px;border-top:2px solid currentColor;border-bottom:2px solid currentColor}
+.blog-hero{position:relative;overflow:hidden;padding:clamp(72px,9vw,128px)0;background:linear-gradient(125deg,var(--teal-dark),var(--teal) 68%,#0a6676);color:#fff}
+.blog-hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% 14%,rgba(212,160,57,.32),transparent 33%)}
+h1{letter-spacing:normal!important}
