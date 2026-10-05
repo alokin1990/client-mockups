@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 900" role="img" aria-labelledby="title desc">
+  <title id="title">Greenville office photo placeholder</title>
+  <desc id="desc">Placeholder indicating where a photograph of the Greenville office should be added.</desc>
+  <rect width="900" height="900" fill="#e7f1f6"/>
+  <rect x="115" y="170" width="670" height="500" rx="8" fill="#ffffff" stroke="#324971" stroke-width="8"/>
+  <path d="M175 365 450 190l275 175" fill="none" stroke="#b59545" stroke-linecap="round" stroke-linejoin="round" stroke-width="24"/>
+  <path d="M205 360v260h490V360" fill="#eef7fb" stroke="#324971" stroke-width="12"/>
+  <rect x="380" y="445" width="140" height="175" fill="#324971"/>
+  <rect x="245" y="415" width="85" height="90" fill="#ffffff" stroke="#324971" stroke-width="9"/>
+  <rect x="570" y="415" width="85" height="90" fill="#ffffff" stroke="#324971" stroke-width="9"/>
+  <text x="450" y="755" fill="#26324a" font-family="Arial, sans-serif" font-size="46" font-weight="700" text-anchor="middle">GREENVILLE OFFICE</text>
+  <text x="450" y="815" fill="#52627b" font-family="Arial, sans-serif" font-size="30" text-anchor="middle">PHOTO PLACEHOLDER</text>
+</svg>
