@@ -124,7 +124,6 @@ p { line-height: 1.65; }
 .product-body p strong { color: var(--navy); }
 .product-body a { margin-top: auto; color: var(--navy); font-size: 14px; font-weight: 800; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 .product-body a:hover { color: var(--accent); }
-.product-note { margin: 20px 0 0; color: var(--muted); font-size: 13px; }
 
 .gallery-section { background: #fff; }
 .gallery-layout { display: grid; grid-template-columns: minmax(260px,.55fr) minmax(0,1fr); gap: clamp(45px,7vw,100px); align-items: start; }
