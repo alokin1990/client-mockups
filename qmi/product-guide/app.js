@@ -75,6 +75,52 @@ const OPTION_ICONS = {
   com_specialty: { equipment: 'cog', kiosk: 'store', fixture: 'shelving-unit', other: 'shapes' }
 };
 
+// BEGIN GENERATED INLINE ICONS
+const ICON_MARKUP = Object.freeze({
+  "blinds": "<path d=\"M3 3h18\" />\n  <path d=\"M20 7H8\" />\n  <path d=\"M20 11H8\" />\n  <path d=\"M10 19h10\" />\n  <path d=\"M8 15h12\" />\n  <path d=\"M4 3v14\" />\n  <circle cx=\"4\" cy=\"19\" r=\"2\" />",
+  "blocks": "<path d=\"M10 22V7a1 1 0 0 0-1-1H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5a1 1 0 0 0-1-1H2\" />\n  <rect x=\"14\" y=\"2\" width=\"8\" height=\"8\" rx=\"1\" />",
+  "chart-no-axes-column-increasing": "<path d=\"M5 21v-6\" />\n  <path d=\"M12 21V9\" />\n  <path d=\"M19 21V3\" />",
+  "circle-question-mark": "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3\" />\n  <path d=\"M12 17h.01\" />",
+  "circle-x": "<circle cx=\"12\" cy=\"12\" r=\"10\" />\n  <path d=\"m15 9-6 6\" />\n  <path d=\"m9 9 6 6\" />",
+  "cloud-lightning": "<path d=\"M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973\" />\n  <path d=\"m13 12-3 5h4l-3 5\" />",
+  "cloud-rain": "<path d=\"M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242\" />\n  <path d=\"M16 14v6\" />\n  <path d=\"M8 14v6\" />\n  <path d=\"M12 16v6\" />",
+  "cog": "<path d=\"M11 10.27 7 3.34\" />\n  <path d=\"m11 13.73-4 6.93\" />\n  <path d=\"M12 22v-2\" />\n  <path d=\"M12 2v2\" />\n  <path d=\"M14 12h8\" />\n  <path d=\"m17 20.66-1-1.73\" />\n  <path d=\"m17 3.34-1 1.73\" />\n  <path d=\"M2 12h2\" />\n  <path d=\"m20.66 17-1.73-1\" />\n  <path d=\"m20.66 7-1.73 1\" />\n  <path d=\"m3.34 17 1.73-1\" />\n  <path d=\"m3.34 7 1.73 1\" />\n  <circle cx=\"12\" cy=\"12\" r=\"2\" />\n  <circle cx=\"12\" cy=\"12\" r=\"8\" />",
+  "columns-2": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <path d=\"M12 3v18\" />",
+  "door-closed": "<path d=\"M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16\" />\n  <path d=\"M2 21h20\" />\n  <path d=\"M9 12h.01\" />",
+  "door-closed-locked": "<path d=\"M19 8V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16\" />\n  <path d=\"M2 21h8\" />\n  <path d=\"M20 16v-2a2 2 0 00-4 0v2\" />\n  <path d=\"M9 12h.01\" />\n  <rect x=\"14\" y=\"16\" width=\"8\" height=\"5\" rx=\"1\" />",
+  "expand": "<path d=\"m15 15 6 6\" />\n  <path d=\"m15 9 6-6\" />\n  <path d=\"M21 16v5h-5\" />\n  <path d=\"M21 8V3h-5\" />\n  <path d=\"M3 16v5h5\" />\n  <path d=\"m3 21 6-6\" />\n  <path d=\"M3 8V3h5\" />\n  <path d=\"M9 9 3 3\" />",
+  "eye": "<path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\" />\n  <circle cx=\"12\" cy=\"12\" r=\"3\" />",
+  "flame": "<path d=\"M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4\" />",
+  "glass-door": "<rect x=\"5\" y=\"2\" width=\"14\" height=\"20\" rx=\"1.5\"/>\n  <path d=\"M8 5h8v14H8zM14 12h2\"/>",
+  "grid-3x3": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <path d=\"M3 9h18\" />\n  <path d=\"M3 15h18\" />\n  <path d=\"M9 3v18\" />\n  <path d=\"M15 3v18\" />",
+  "house": "<path d=\"M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8\" />\n  <path d=\"M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z\" />",
+  "key-round": "<path d=\"M2.586 17.414A2 2 0 0 0 2 18.828V21a1 1 0 0 0 1 1h3a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h1a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1h.172a2 2 0 0 0 1.414-.586l.814-.814a6.5 6.5 0 1 0-4-4z\" />\n  <circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" />",
+  "layout-grid": "<rect width=\"7\" height=\"7\" x=\"3\" y=\"3\" rx=\"1\" />\n  <rect width=\"7\" height=\"7\" x=\"14\" y=\"3\" rx=\"1\" />\n  <rect width=\"7\" height=\"7\" x=\"14\" y=\"14\" rx=\"1\" />\n  <rect width=\"7\" height=\"7\" x=\"3\" y=\"14\" rx=\"1\" />",
+  "maximize-2": "<path d=\"M15 3h6v6\" />\n  <path d=\"m21 3-7 7\" />\n  <path d=\"m3 21 7-7\" />\n  <path d=\"M9 21H3v-6\" />",
+  "minimize-2": "<path d=\"m14 10 7-7\" />\n  <path d=\"M20 10h-6V4\" />\n  <path d=\"m3 21 7-7\" />\n  <path d=\"M4 14h6v6\" />",
+  "minus": "<path d=\"M5 12h14\" />",
+  "move-horizontal": "<path d=\"m18 8 4 4-4 4\" />\n  <path d=\"M2 12h20\" />\n  <path d=\"m6 8-4 4 4 4\" />",
+  "package": "<path d=\"M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z\" />\n  <path d=\"M12 22V12\" />\n  <polyline points=\"3.29 7 12 12 20.71 7\" />\n  <path d=\"m7.5 4.27 9 5.15\" />",
+  "package-check": "<path d=\"M12 22V12\" />\n  <path d=\"m16 17 2 2 4-4\" />\n  <path d=\"M21 11.127V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.729l7 4a2 2 0 0 0 2 .001l1.32-.753\" />\n  <path d=\"M3.29 7 12 12l8.71-5\" />\n  <path d=\"m7.5 4.27 8.997 5.148\" />",
+  "panel-top": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <path d=\"M3 9h18\" />",
+  "panel-top-close": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <path d=\"M3 9h18\" />\n  <path d=\"m9 16 3-3 3 3\" />",
+  "panel-top-open": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <path d=\"M3 9h18\" />\n  <path d=\"m15 14-3 3-3-3\" />",
+  "route": "<circle cx=\"6\" cy=\"19\" r=\"3\" />\n  <path d=\"M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15\" />\n  <circle cx=\"18\" cy=\"5\" r=\"3\" />",
+  "ruler": "<path d=\"M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z\" />\n  <path d=\"m14.5 12.5 2-2\" />\n  <path d=\"m11.5 9.5 2-2\" />\n  <path d=\"m8.5 6.5 2-2\" />\n  <path d=\"m17.5 15.5 2-2\" />",
+  "shapes": "<path d=\"M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z\" />\n  <rect x=\"3\" y=\"14\" width=\"7\" height=\"7\" rx=\"1\" />\n  <circle cx=\"17.5\" cy=\"17.5\" r=\"3.5\" />",
+  "shelving-unit": "<path d=\"M12 12V9a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v3\" />\n  <path d=\"M16 20v-3a1 1 0 0 0-1-1h-2a1 1 0 0 0-1 1v3\" />\n  <path d=\"M20 22V2\" />\n  <path d=\"M4 12h16\" />\n  <path d=\"M4 20h16\" />\n  <path d=\"M4 2v20\" />\n  <path d=\"M4 4h16\" />",
+  "shield": "<path d=\"M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z\" />",
+  "shopping-bag": "<path d=\"M16 10a4 4 0 0 1-8 0\" />\n  <path d=\"M3.103 6.034h17.794\" />\n  <path d=\"M3.4 5.467a2 2 0 0 0-.4 1.2V20a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6.667a2 2 0 0 0-.4-1.2l-2-2.667A2 2 0 0 0 17 2H7a2 2 0 0 0-1.6.8z\" />",
+  "sliding-door": "<rect x=\"2\" y=\"3\" width=\"20\" height=\"18\" rx=\"1.5\"/>\n  <path d=\"M12 3v18M9.5 11v3M14.5 11v3\"/>",
+  "square-arrow-right-exit": "<path d=\"M10 12h11\" />\n  <path d=\"m17 16 4-4-4-4\" />\n  <path d=\"M21 6.344V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-1.344\" />",
+  "store": "<path d=\"M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5\" />\n  <path d=\"M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244\" />\n  <path d=\"M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05\" />",
+  "vault": "<rect width=\"18\" height=\"18\" x=\"3\" y=\"3\" rx=\"2\" />\n  <circle cx=\"7.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" />\n  <path d=\"m7.9 7.9 2.7 2.7\" />\n  <circle cx=\"16.5\" cy=\"7.5\" r=\".5\" fill=\"currentColor\" />\n  <path d=\"m13.4 10.6 2.7-2.7\" />\n  <circle cx=\"7.5\" cy=\"16.5\" r=\".5\" fill=\"currentColor\" />\n  <path d=\"m7.9 16.1 2.7-2.7\" />\n  <circle cx=\"16.5\" cy=\"16.5\" r=\".5\" fill=\"currentColor\" />\n  <path d=\"m13.4 13.4 2.7 2.7\" />\n  <circle cx=\"12\" cy=\"12\" r=\"2\" />",
+  "warehouse": "<path d=\"M18 21V10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1v11\" />\n  <path d=\"M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8a2 2 0 0 1 1.132-1.803l7.95-3.974a2 2 0 0 1 1.837 0l7.948 3.974A2 2 0 0 1 22 8z\" />\n  <path d=\"M6 13h12\" />\n  <path d=\"M6 17h12\" />",
+  "wind": "<path d=\"M12.8 19.6A2 2 0 1 0 14 16H2\" />\n  <path d=\"M17.5 8a2.5 2.5 0 1 1 2 4H2\" />\n  <path d=\"M9.8 4.4A2 2 0 1 1 11 8H2\" />",
+  "window-frame": "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"1.5\"/>\n  <path d=\"M12 3v18M3 12h18\"/>"
+});
+// END GENERATED INLINE ICONS
+
 function opt(value, title, desc = '') {
   return { value, title, desc, icon: OPTION_ICONS[state.stage]?.[value] || 'circle-question-mark' };
 }
@@ -388,7 +434,8 @@ function renderQuestion() {
   const cards = question.options.map(option => {
     const on = selectedValues.includes(option.value);
     const rank = question.multi && on ? `<span class="choice-number">${selectedValues.indexOf(option.value) + 1}</span>` : `<span class="choice-arrow" aria-hidden="true">${question.multi ? '+' : '→'}</span>`;
-    return `<button type="button" class="choice ${on ? 'selected' : ''}" data-choice="${escapeHTML(option.value)}" ${question.multi ? `aria-pressed="${on ? 'true' : 'false'}"` : ''}><span class="choice-icon" aria-hidden="true"><svg class="choice-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><use href="./assets/icons/sprite.svg#${escapeHTML(option.icon)}"></use></svg></span><span class="choice-copy"><span class="choice-title">${escapeHTML(option.title)}</span><span class="choice-desc">${escapeHTML(option.desc)}</span></span>${rank}</button>`;
+    const icon = ICON_MARKUP[option.icon] || ICON_MARKUP['circle-question-mark'];
+    return `<button type="button" class="choice ${on ? 'selected' : ''}" data-choice="${escapeHTML(option.value)}" ${question.multi ? `aria-pressed="${on ? 'true' : 'false'}"` : ''}><span class="choice-icon" aria-hidden="true"><svg class="choice-symbol" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">${icon}</svg></span><span class="choice-copy"><span class="choice-title">${escapeHTML(option.title)}</span><span class="choice-desc">${escapeHTML(option.desc)}</span></span>${rank}</button>`;
   }).join('');
   const backButton = state.history.length ? '<button type="button" class="text-button" data-action="back">← Back</button>' : '';
   const nextControl = question.multi ? `<button type="button" class="primary-button" data-action="continue" ${selectedValues.filter(Boolean).length ? '' : 'disabled'}>Continue <span aria-hidden="true">→</span></button>` : '<span class="helper-line">Select one to continue</span>';
