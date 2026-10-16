@@ -1,0 +1,67 @@
+:root{font-family:'Segoe UI',system-ui,sans-serif;background:#f7f8f5;color:#202720;font-synthesis:none}
+*{box-sizing:border-box}
+body{margin:0}
+button,textarea,input{font:inherit}
+button{cursor:pointer}
+.shell{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+.sidebar{display:flex;flex-direction:column;background:#edf0e9;border-right:1px solid #dfe5db;padding:30px 16px 20px}
+.brand{display:flex;align-items:center;gap:10px;padding:0 13px;font-size:17px;letter-spacing:-.045em}
+.brand strong{font-weight:800}
+.brand-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:9px;background:#173d2b;color:#fff;font-size:22px;line-height:1}
+.nav-label{font-size:10px;font-weight:800;letter-spacing:.13em;color:#889389;margin:53px 12px 13px}
+.nav-item{display:flex;align-items:center;gap:12px;border:1px solid #cbd8ca;background:#dfeade;border-radius:10px;padding:12px;color:#25372b}
+.nav-item strong,.nav-item small{display:block}
+.nav-item strong{font-size:13px}
+.nav-item small{font-size:11px;color:#6b7d70;margin-top:3px}
+.spark{display:grid;place-items:center;width:33px;height:33px;border-radius:8px;background:#c5d8c3;color:#1b5135}
+.sidebar-foot{margin-top:auto;border-top:1px solid #dce3d8;padding:14px 12px 0;color:#718074;font-size:11px}
+.ready-dot,.eyebrow-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#52ad7b;margin-right:6px}
+main{min-width:0}
+.topbar{height:78px;border-bottom:1px solid #e9ede6;display:flex;justify-content:space-between;align-items:center;padding:0 clamp(22px,4vw,62px);color:#748178;font-size:12px}
+.slash{color:#b6c1b8;margin:0 9px}
+.edit-button,.close-button{border:0;background:transparent;color:#5a6e60;font-size:12px;font-weight:700}
+.edit-button:hover,.close-button:hover{color:#188057}
+.content{max-width:1000px;margin:auto;padding:64px clamp(22px,5vw,74px) 80px}
+.eyebrow{font-size:10px;color:#438967;font-weight:800;letter-spacing:.15em}
+h1{font-size:clamp(35px,4vw,52px);line-height:1.12;letter-spacing:-.065em;margin:16px 0}
+.intro{font-size:15px;color:#7c897e;max-width:590px;line-height:1.7;margin:0 0 40px}
+.card{background:#fff;border:1px solid #e3e9e1;border-radius:16px;box-shadow:0 10px 35px rgba(31,62,41,.035);padding:28px}
+.card-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+h2{letter-spacing:-.04em}
+.card-head h2{font-size:18px;margin:0 0 5px}
+.card-head p{font-size:12px;color:#8b968d;margin:0}
+.step{font-size:11px;font-weight:800;color:#adb7ad;white-space:nowrap}
+#instructions{display:block;width:100%;min-height:184px;resize:vertical;margin:26px 0 16px;padding:19px 20px;border:1px solid #dfe7dd;border-radius:11px;background:#fbfcfa;color:#27362b;line-height:1.6;outline:none}
+#instructions::placeholder{color:#a3aea4}
+#instructions:focus,dialog input:focus,dialog textarea:focus{border-color:#67aa7c;box-shadow:0 0 0 3px #d9eede}
+.workspace-row{display:flex;gap:10px;align-items:center;background:#f5f8f3;border-radius:8px;padding:12px 15px;color:#7c8a7d;font-size:11px}
+.folder-icon{font-size:16px;color:#679875}
+.workspace-row strong{margin-left:auto;max-width:67%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#46654d;font-weight:600}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:23px}
+.primary-action,.secondary-action{display:inline-flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;border-radius:9px;padding:12px 17px;font-size:12px;font-weight:800}
+.primary-action{background:#18472f;color:white;border:1px solid #18472f}
+.primary-action:hover{background:#24633f}
+.secondary-action{background:white;color:#2b5939;border:1px solid #ccdacf}
+.secondary-action:hover{background:#f3f8f3}
+.arrow{margin-left:12px}
+.note{font-size:11px;color:#9aa59c;margin:17px 0 0;line-height:1.6}
+.preview{margin-top:21px;border:1px solid #e3e9e1;border-radius:10px;background:#fff;overflow:hidden}
+.preview summary{cursor:pointer;padding:15px 19px;font-size:12px;font-weight:700;color:#5f7565}
+.preview pre{margin:0;border-top:1px solid #e9eee8;background:#fbfcfa;padding:19px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 'Segoe UI',system-ui,sans-serif;color:#4b5a4e}
+.privacy-note{font-size:11px;color:#9aa59c;margin-top:25px;line-height:1.6}
+dialog{border:1px solid #dfe8de;border-radius:16px;padding:0;width:min(590px,calc(100vw - 30px));box-shadow:0 20px 80px #203d2a30}
+dialog::backdrop{background:#1f3529a0}
+dialog form{padding:27px}
+.dialog-head{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:24px}
+.dialog-head h2{font-size:22px;margin:5px 0}
+.close-button{font-size:25px}
+dialog label{display:block;font-size:11px;color:#506558;font-weight:800;margin:15px 0}
+dialog label small{display:block;margin-top:4px;font-weight:400;color:#879589;line-height:1.5}
+dialog input,dialog textarea{display:block;width:100%;margin-top:7px;border:1px solid #dae3d8;border-radius:7px;padding:11px;color:#27362b;outline:0;font-size:12px;font-weight:400}
+dialog textarea{line-height:1.55;resize:vertical}
+.dialog-actions{display:flex;justify-content:flex-end;gap:8px;align-items:center;margin-top:23px}
+.dialog-actions .reset-button{margin-right:auto;border:0;background:transparent;color:#88988c;font-size:11px}
+.toast{position:fixed;right:24px;bottom:24px;max-width:360px;padding:12px 16px;border-radius:8px;background:#203e2d;color:white;font-size:12px;box-shadow:0 8px 30px #18342530;opacity:0;transform:translateY(8px);pointer-events:none;transition:opacity .2s,transform .2s}
+.toast.show{opacity:1;transform:translateY(0)}
+.visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:760px){.shell{grid-template-columns:1fr}.sidebar{padding:14px}.brand{padding:0}.nav-label,.nav-item,.sidebar-foot{display:none}.topbar{height:57px}.content{padding-top:42px}.intro{margin-bottom:27px}.card{padding:20px}h1 br{display:none}}
