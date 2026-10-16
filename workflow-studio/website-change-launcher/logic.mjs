@@ -2,7 +2,7 @@ export const INITIAL_INSTRUCTIONS = "Use GSC skill to pull data for last 28 days
 
 export const DEFAULT_WORKFLOW = Object.freeze({
   name: "GSC test",
-  description: "Open Codex with a ready-to-run GSC data request.",
+  description: "Start a Codex chat with a ready-to-run GSC data request.",
   template: "{{instructions}}",
   path: ""
 });

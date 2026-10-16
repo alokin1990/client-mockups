@@ -1,4 +1,4 @@
-import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt, codexLaunchUrl } from "./logic.mjs?v=gsc-28d";
+import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt, codexLaunchUrl } from "./logic.mjs?v=chat-2";
 
 const $ = selector => document.querySelector(selector);
 const STORAGE_KEY = "workflow-studio.gsc-test.v1";
@@ -7,14 +7,19 @@ const LOCAL_BASE = "http://127.0.0.1:4177/api/hosted";
 let workflow = { ...DEFAULT_WORKFLOW };
 let draft = INITIAL_INSTRUCTIONS;
 let activeSession = null;
+let chats = [];
 let refreshingChat = false;
 let renderedMessages = "";
+let renderedApproval = "";
 
 try {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
   if (saved && typeof saved === "object") {
     if (saved.workflow && typeof saved.workflow === "object") {
       workflow = { ...DEFAULT_WORKFLOW, ...saved.workflow };
+      if (workflow.description === "Open Codex with a ready-to-run GSC data request.") {
+        workflow.description = DEFAULT_WORKFLOW.description;
+      }
     }
     if (typeof saved.draft === "string") draft = saved.draft;
   }
@@ -74,16 +79,19 @@ async function hostedApi(path, options = {}) {
   return data;
 }
 
-function renderChat(session, needsApproval = false) {
+function renderChat(session, pendingApprovals = []) {
   const changedChat = activeSession?.id !== session.id;
   activeSession = session;
+  $("#start-card").hidden = true;
+  $("#prompt-preview-card").hidden = true;
   $("#chat-card").hidden = false;
-  $("#chat-status").textContent = needsApproval ? "Needs approval" : session.status;
-  $("#chat-help").textContent = needsApproval
-    ? "Open Codex to review its request before the chat can continue."
+  $("#chat-status").textContent = pendingApprovals.length ? "Needs input" : session.status;
+  $("#chat-help").textContent = pendingApprovals.length
+    ? "Respond to Codex below to continue this chat."
     : session.status === "running" ? "Codex is working. Replies appear here as they arrive."
       : session.status === "offline" ? "Start the local Workflow Studio to reconnect to this chat."
-        : "Codex replies appear here. Send your next prompt below.";
+        : session.status === "interrupted" ? "The last turn was interrupted. Send a new instruction to continue."
+          : "Codex replies appear here. Send your next instruction below.";
   const desktopLink = $("#chat-desktop-link");
   desktopLink.hidden = !session.threadId;
   if (session.threadId) desktopLink.href = `codex://threads/${encodeURIComponent(session.threadId)}`;
@@ -92,6 +100,7 @@ function renderChat(session, needsApproval = false) {
   $("#send-followup").disabled = !canSend;
   $("#chat-error").hidden = !session.error;
   $("#chat-error").textContent = session.error || "";
+  renderApproval(session, pendingApprovals);
 
   const messages = $("#chat-messages");
   const signature = JSON.stringify(session.messages || []);
@@ -120,11 +129,131 @@ function renderChat(session, needsApproval = false) {
     renderedMessages = signature;
     if (nearBottom) messages.scrollTop = messages.scrollHeight;
   }
+  if (changedChat) renderChatList();
 }
 
-function selectChat(session, needsApproval = false) {
-  try { sessionStorage.setItem(ACTIVE_CHAT_KEY, session.id); } catch {}
-  renderChat(session, needsApproval);
+function selectChat(session, pendingApprovals = []) {
+  try { localStorage.setItem(ACTIVE_CHAT_KEY, session.id); } catch {}
+  renderChat(session, pendingApprovals);
+}
+
+function renderApproval(session, pendingApprovals) {
+  const box = $("#chat-approval");
+  const pending = pendingApprovals[0];
+  if (!pending) {
+    box.hidden = true;
+    renderedApproval = "";
+    return;
+  }
+  const key = `${session.id}:${pending.id}`;
+  if (renderedApproval === key) return;
+  renderedApproval = key;
+  box.replaceChildren();
+  box.hidden = false;
+
+  const title = document.createElement("strong");
+  title.textContent = pending.method === "item/tool/requestUserInput" ? "Codex has a question" : "Codex needs your approval";
+  const details = document.createElement("p");
+  details.textContent = pending.params.reason || pending.params.command || "Review this request before continuing.";
+  box.append(title, details);
+
+  const send = async payload => {
+    const buttons = [...box.querySelectorAll("button")];
+    buttons.forEach(button => { button.disabled = true; });
+    try {
+      await hostedApi(`/sessions/${encodeURIComponent(session.id)}/approval`, {
+        method: "POST", body: JSON.stringify({ id: pending.id, ...payload })
+      });
+      box.hidden = true;
+      renderedApproval = "";
+      void refreshChat();
+    } catch (error) {
+      showToast(error.message);
+      buttons.forEach(button => { button.disabled = false; });
+    }
+  };
+
+  if (pending.method === "item/tool/requestUserInput") {
+    const fields = {};
+    for (const question of pending.params.questions || []) {
+      const label = document.createElement("label");
+      label.textContent = question.question;
+      const input = document.createElement("input");
+      input.placeholder = question.options?.map(option => option.label).join(" / ") || "Your answer";
+      label.append(input);
+      box.append(label);
+      fields[question.id] = input;
+    }
+    const answer = document.createElement("button");
+    answer.type = "button";
+    answer.className = "primary-action";
+    answer.textContent = "Send answer";
+    answer.addEventListener("click", () => void send({
+      answers: Object.fromEntries(Object.entries(fields).map(([id, input]) => [id, input.value]))
+    }));
+    box.append(answer);
+    return;
+  }
+
+  if (!["item/commandExecution/requestApproval", "item/fileChange/requestApproval"].includes(pending.method)) {
+    details.textContent = "Open this chat in Codex to answer this request.";
+    return;
+  }
+  for (const decision of ["accept", "decline"]) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = decision === "accept" ? "primary-action" : "secondary-action";
+    button.textContent = decision === "accept" ? "Approve once" : "Decline";
+    button.addEventListener("click", () => void send({ decision }));
+    box.append(button);
+  }
+}
+
+function showStart() {
+  activeSession = null;
+  renderedMessages = "";
+  renderedApproval = "";
+  $("#chat-card").hidden = true;
+  $("#start-card").hidden = false;
+  $("#prompt-preview-card").hidden = false;
+  renderChatList();
+}
+
+function renderChatList() {
+  const list = $("#chat-list");
+  list.replaceChildren();
+  if (!chats.length) {
+    const empty = document.createElement("span");
+    empty.className = "chat-list-empty";
+    empty.textContent = "Start a chat to see it here.";
+    list.append(empty);
+    return;
+  }
+  for (const chat of chats) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = chat.id === activeSession?.id ? "active" : "";
+    const title = document.createElement("strong");
+    title.textContent = chat.title.replace(/\s+/g, " ").trim();
+    const detail = document.createElement("small");
+    detail.textContent = `${new Date(chat.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · ${chat.status}`;
+    button.append(title, detail);
+    button.addEventListener("click", () => {
+      selectChat({ id: chat.id, status: "connecting", messages: [] });
+      void refreshChat();
+    });
+    list.append(button);
+  }
+}
+
+async function loadChats() {
+  try {
+    const data = await hostedApi("/sessions");
+    chats = data.sessions;
+    renderChatList();
+  } catch {
+    // Existing chat remains visible while the local runner is offline.
+  }
 }
 
 async function refreshChat() {
@@ -133,13 +262,13 @@ async function refreshChat() {
   refreshingChat = true;
   try {
     const data = await hostedApi(`/sessions/${encodeURIComponent(id)}`);
-    if (activeSession?.id === id) renderChat(data.session, data.needsApproval);
+    if (activeSession?.id === id) renderChat(data.session, data.pendingApprovals || []);
   } catch (error) {
     if (activeSession?.id !== id) return;
     if (error.status === 404) {
-      activeSession = null;
-      $("#chat-card").hidden = true;
-      try { sessionStorage.removeItem(ACTIVE_CHAT_KEY); } catch {}
+      try { localStorage.removeItem(ACTIVE_CHAT_KEY); } catch {}
+      showStart();
+      void loadChats();
       showToast("The previous chat is no longer available in the local runner.");
     } else {
       renderChat({ ...activeSession, status: "offline" });
@@ -171,7 +300,8 @@ $("#run-now").addEventListener("click", async () => {
       body: JSON.stringify({ prompt, path: workflow.path })
     });
     selectChat(result.session);
-    showToast("Chat started. Send follow-up prompts below.");
+    void loadChats();
+    showToast("Chat started. Add your next instruction below.");
     $("#chat-card").scrollIntoView({ behavior: "smooth", block: "start" });
   } catch (error) {
     showToast(error instanceof TypeError
@@ -179,13 +309,19 @@ $("#run-now").addEventListener("click", async () => {
       : error.message);
   } finally {
     button.disabled = false;
-    button.innerHTML = '<span>✦</span> Run now in Codex <span class="arrow">↗</span>';
+    button.innerHTML = '<span>✦</span> Send to Codex <span class="arrow">↗</span>';
   }
+});
+
+$("#new-chat").addEventListener("click", () => {
+  try { localStorage.removeItem(ACTIVE_CHAT_KEY); } catch {}
+  showStart();
+  $("#instructions").focus();
 });
 
 $("#followup-form").addEventListener("submit", async event => {
   event.preventDefault();
-  if (!activeSession || activeSession.status === "running") return;
+  if (!activeSession || ["running", "connecting", "offline"].includes(activeSession.status)) return;
   const text = $("#followup").value.trim();
   if (!text) return;
   const id = activeSession.id;
@@ -196,6 +332,7 @@ $("#followup-form").addEventListener("submit", async event => {
     });
     $("#followup").value = "";
     selectChat(result.session);
+    void loadChats();
     void refreshChat();
   } catch (error) {
     showToast(error instanceof TypeError
@@ -271,11 +408,15 @@ $("#settings-form").addEventListener("submit", event => {
 });
 
 render();
+void loadChats();
 try {
-  const savedChat = sessionStorage.getItem(ACTIVE_CHAT_KEY);
+  const savedChat = localStorage.getItem(ACTIVE_CHAT_KEY) || sessionStorage.getItem(ACTIVE_CHAT_KEY);
   if (savedChat) {
+    localStorage.setItem(ACTIVE_CHAT_KEY, savedChat);
+    sessionStorage.removeItem(ACTIVE_CHAT_KEY);
     renderChat({ id: savedChat, status: "connecting", messages: [] });
     void refreshChat();
   }
 } catch {}
 setInterval(() => { if (activeSession) void refreshChat(); }, 2000);
+setInterval(() => { void loadChats(); }, 10000);

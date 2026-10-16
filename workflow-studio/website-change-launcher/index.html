@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f5">
   <title>Workflow Studio — GSC test</title>
   <meta name="description" content="Open a local Codex chat with a prepared GSC data request.">
-  <link rel="stylesheet" href="./style.css?v=chat-1">
-  <script type="module" src="./app.js?v=chat-1"></script>
+  <link rel="stylesheet" href="./style.css?v=chat-2">
+  <script type="module" src="./app.js?v=chat-2"></script>
 </head>
 <body>
   <div class="shell">
@@ -15,6 +15,8 @@
       <div class="brand"><span class="brand-icon">◇</span><span>Workflow <strong>Studio</strong></span></div>
       <div class="nav-label">YOUR WORKFLOW</div>
       <div class="nav-item"><span class="spark">✦</span><span><strong id="nav-name">GSC test</strong><small>Codex workflow chat</small></span></div>
+      <div class="nav-label chat-list-label">CHATS</div>
+      <div id="chat-list" class="chat-list"><span class="chat-list-empty">Start a chat to see it here.</span></div>
       <div class="sidebar-foot"><span class="ready-dot"></span> Runs with Codex on this computer</div>
     </aside>
     <main>
@@ -23,39 +25,40 @@
         <button id="edit-button" class="edit-button" type="button">⚙ <span>Edit workflow</span></button>
       </header>
       <div class="content">
-        <div class="eyebrow"><span class="eyebrow-dot"></span> CODEX DESKTOP WORKFLOW</div>
-        <h1>Run your GSC test<br>in Codex.</h1>
+        <div class="eyebrow"><span class="eyebrow-dot"></span> CODEX WORKFLOW CHAT</div>
+        <h1>Give Codex an instruction.<br>Continue the conversation here.</h1>
         <p class="intro" id="description">Start a Codex chat with a ready-to-run GSC data request.</p>
 
-        <section class="card">
-          <div class="card-head"><div><h2>Instructions for this run</h2><p>Edit the request before starting a new chat if needed.</p></div><span class="step">01 / 02</span></div>
+        <section id="start-card" class="card">
+          <div class="card-head"><div><h2>Start a chat</h2><p>Edit the first instruction, then send it to Codex.</p></div></div>
           <label class="visually-hidden" for="instructions">Codex instructions</label>
           <textarea id="instructions" rows="8" maxlength="8000" placeholder="Enter the instructions you want to run in Codex."></textarea>
           <div class="workspace-row"><span class="folder-icon">▤</span><span>Workspace</span><strong id="workspace-display">Choose in Codex</strong></div>
           <div class="actions">
-            <button id="run-now" class="primary-action" type="button"><span>✦</span> Run now in Codex <span class="arrow">↗</span></button>
+            <button id="run-now" class="primary-action" type="button"><span>✦</span> Send to Codex <span class="arrow">↗</span></button>
             <a id="open-codex" class="secondary-action" href="codex://threads/new">Open draft only</a>
             <button id="copy-prompt" class="secondary-action" type="button">Copy instructions</button>
           </div>
-          <p class="note"><strong>Run now</strong> starts a new chat through <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">Workflow Studio running on this computer</a>. Continue the conversation below. <strong>Open draft only</strong> fills a new Codex chat for you to send later.</p>
+          <p class="note">Codex runs through <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">Workflow Studio on this computer</a>. Replies and follow-up instructions stay in this chat.</p>
         </section>
 
         <section id="chat-card" class="card chat-card" hidden>
-          <div class="chat-header"><div><h2>Current chat</h2><p id="chat-help">Codex replies appear here. Send your next prompt below.</p></div><div class="chat-actions"><span id="chat-status" class="chat-status">Connecting</span><a id="chat-desktop-link" href="#">Open in Codex ↗</a></div></div>
+          <div class="chat-header"><div><h2>Current chat</h2><p id="chat-help">Codex replies appear here. Send your next instruction below.</p></div><div class="chat-actions"><span id="chat-status" class="chat-status">Connecting</span><a id="chat-desktop-link" href="#">Open in Codex ↗</a><button id="new-chat" class="secondary-action" type="button">New chat</button></div></div>
           <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
+          <div id="chat-approval" class="chat-approval" hidden></div>
           <p id="chat-error" class="chat-error" hidden></p>
           <form id="followup-form" class="followup-form">
-            <label for="followup">Next prompt</label>
-            <textarea id="followup" rows="3" maxlength="20000" placeholder="Ask Codex to continue, clarify, or do the next step."></textarea>
-            <div class="followup-actions"><span>Enter to send · Shift+Enter for a new line</span><button id="send-followup" class="primary-action" type="submit">Send prompt ↗</button></div>
+            <label for="followup">Next instruction</label>
+            <textarea id="followup" rows="3" maxlength="20000" placeholder="Tell Codex what to do next, or ask a question."></textarea>
+            <div class="followup-actions"><span>Enter to send · Shift+Enter for a new line</span><button id="send-followup" class="primary-action" type="submit">Send to Codex ↗</button></div>
           </form>
         </section>
 
-        <details class="preview">
+        <details id="prompt-preview-card" class="preview">
           <summary>Preview complete instructions</summary>
           <pre id="prompt-preview">Add instructions above to preview the complete prompt.</pre>
         </details>
-        <div class="privacy-note">Your workflow edits stay in this browser. Chat history stays in the local Workflow Studio on your computer.</div>
+        <div class="privacy-note">Your workflow edits stay in this browser. Chats stay in the local Workflow Studio on your computer and can be reopened from the list.</div>
       </div>
     </main>
   </div>
