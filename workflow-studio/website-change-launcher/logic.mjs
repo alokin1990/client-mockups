@@ -1,7 +1,9 @@
+export const INITIAL_INSTRUCTIONS = "Use GSC skill to pull data for last 28 days for lovettdental.com";
+
 export const DEFAULT_WORKFLOW = Object.freeze({
-  name: "Website change",
-  description: "Open a new Codex chat with a specific website change.",
-  template: "Make this website change:\n\n{{instructions}}\n\nInspect the relevant files first, make the requested change, check the result, and summarize what changed.",
+  name: "GSC test",
+  description: "Open Codex with a ready-to-run GSC data request.",
+  template: "{{instructions}}",
   path: ""
 });
 
@@ -9,7 +11,7 @@ export function composePrompt(template, instructions) {
   const slot = "{{instructions}}";
   if (!template.includes(slot)) throw new Error("The template must include {{instructions}}.");
   const change = instructions.trim();
-  if (!change) throw new Error("Describe the website change first.");
+  if (!change) throw new Error("Enter instructions first.");
   return template.replaceAll(slot, change);
 }
 

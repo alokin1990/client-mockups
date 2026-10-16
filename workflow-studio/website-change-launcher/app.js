@@ -1,9 +1,9 @@
-import { DEFAULT_WORKFLOW, composePrompt, codexLaunchUrl } from "./logic.mjs";
+import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt, codexLaunchUrl } from "./logic.mjs?v=gsc-28d";
 
 const $ = selector => document.querySelector(selector);
-const STORAGE_KEY = "workflow-studio.website-change.v1";
+const STORAGE_KEY = "workflow-studio.gsc-test.v1";
 let workflow = { ...DEFAULT_WORKFLOW };
-let draft = "";
+let draft = INITIAL_INSTRUCTIONS;
 
 try {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -41,7 +41,7 @@ function render() {
 
 function updateLink() {
   draft = $("#instructions").value;
-  let preview = "Add a website change above to preview the complete instructions.";
+  let preview = "Add instructions above to preview the complete prompt.";
   let url = "codex://threads/new";
   try {
     const prompt = composePrompt(workflow.template, draft);

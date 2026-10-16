@@ -4,33 +4,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f8f5">
-  <title>Workflow Studio — Website change</title>
-  <meta name="description" content="Open a local Codex chat with prepared website-change instructions.">
+  <title>Workflow Studio — GSC test</title>
+  <meta name="description" content="Open a local Codex chat with a prepared GSC data request.">
   <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.js"></script>
+  <script type="module" src="./app.js?v=gsc-28d"></script>
 </head>
 <body>
   <div class="shell">
     <aside class="sidebar">
       <div class="brand"><span class="brand-icon">◇</span><span>Workflow <strong>Studio</strong></span></div>
       <div class="nav-label">YOUR WORKFLOW</div>
-      <div class="nav-item"><span class="spark">✦</span><span><strong id="nav-name">Website change</strong><small>Codex desktop launcher</small></span></div>
+      <div class="nav-item"><span class="spark">✦</span><span><strong id="nav-name">GSC test</strong><small>Codex desktop launcher</small></span></div>
       <div class="sidebar-foot"><span class="ready-dot"></span> Opens Codex on this computer</div>
     </aside>
     <main>
       <header class="topbar">
-        <span>Workflows <span class="slash">/</span> <span id="crumb-name">Website change</span></span>
+        <span>Workflows <span class="slash">/</span> <span id="crumb-name">GSC test</span></span>
         <button id="edit-button" class="edit-button" type="button">⚙ <span>Edit workflow</span></button>
       </header>
       <div class="content">
         <div class="eyebrow"><span class="eyebrow-dot"></span> CODEX DESKTOP WORKFLOW</div>
-        <h1>Open your next<br>website change in Codex.</h1>
-        <p class="intro" id="description">Describe the change once. Codex will open on this computer with the instructions ready in a new chat.</p>
+        <h1>Run your GSC test<br>in Codex.</h1>
+        <p class="intro" id="description">Open Codex with a ready-to-run GSC data request.</p>
 
         <section class="card">
-          <div class="card-head"><div><h2>What should change?</h2><p>Write the specific instructions for this run.</p></div><span class="step">01 / 02</span></div>
-          <label class="visually-hidden" for="instructions">Website change instructions</label>
-          <textarea id="instructions" rows="8" maxlength="8000" placeholder="For example: Update the homepage hero with the approved headline. Keep the existing branding and check the layout on desktop and mobile."></textarea>
+          <div class="card-head"><div><h2>Instructions for this run</h2><p>Edit the request before opening Codex if needed.</p></div><span class="step">01 / 02</span></div>
+          <label class="visually-hidden" for="instructions">Codex instructions</label>
+          <textarea id="instructions" rows="8" maxlength="8000" placeholder="Enter the instructions you want to run in Codex."></textarea>
           <div class="workspace-row"><span class="folder-icon">▤</span><span>Workspace</span><strong id="workspace-display">Choose in Codex</strong></div>
           <div class="actions">
             <a id="open-codex" class="primary-action" href="codex://threads/new"><span>✦</span> Open in Codex <span class="arrow">↗</span></a>
@@ -41,7 +41,7 @@
 
         <details class="preview">
           <summary>Preview complete instructions</summary>
-          <pre id="prompt-preview">Add a website change above to preview the complete instructions.</pre>
+          <pre id="prompt-preview">Add instructions above to preview the complete prompt.</pre>
         </details>
         <div class="privacy-note">This page runs in your browser. Your edits are saved only in this browser; a hosted copy does not access your computer’s files.</div>
       </div>
@@ -49,11 +49,11 @@
   </div>
   <dialog id="settings">
     <form id="settings-form" method="dialog">
-      <div class="dialog-head"><div><span class="eyebrow">WORKFLOW SETTINGS</span><h2>Edit website change</h2></div><button type="button" id="close-settings" class="close-button" aria-label="Close">×</button></div>
+      <div class="dialog-head"><div><span class="eyebrow">WORKFLOW SETTINGS</span><h2>Edit workflow</h2></div><button type="button" id="close-settings" class="close-button" aria-label="Close">×</button></div>
       <label>Workflow name<input id="workflow-name" maxlength="100" required></label>
       <label>Description<input id="workflow-description" maxlength="300"></label>
       <label>Local workspace path <small>Optional. Use the absolute folder path on the computer running Codex.</small><input id="workflow-path" placeholder="C:\Users\you\Projects\website"></label>
-      <label>Reusable instruction template <small>Include <code>{{instructions}}</code> where the change you type should appear.</small><textarea id="workflow-template" rows="8" maxlength="12000" required></textarea></label>
+      <label>Reusable instruction template <small>Include <code>{{instructions}}</code> where the instructions you type should appear.</small><textarea id="workflow-template" rows="8" maxlength="12000" required></textarea></label>
       <div class="dialog-actions"><button id="reset-workflow" class="reset-button" type="button">Reset defaults</button><button id="cancel-settings" class="secondary-action" type="button">Cancel</button><button class="primary-action" type="submit">Save workflow</button></div>
     </form>
   </dialog>
