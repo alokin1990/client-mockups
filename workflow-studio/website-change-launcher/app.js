@@ -85,8 +85,10 @@ function renderChat(session, pendingApprovals = []) {
   $("#start-card").hidden = true;
   $("#prompt-preview-card").hidden = true;
   $("#chat-card").hidden = false;
-  $("#chat-status").textContent = pendingApprovals.length ? "Needs input" : session.status;
-  $("#chat-help").textContent = pendingApprovals.length
+  $("#chat-status").textContent = session.mode === "desktop" ? "In Codex" : pendingApprovals.length ? "Needs input" : session.status;
+  $("#chat-help").textContent = session.mode === "desktop"
+    ? "Continue in Codex desktop. This page keeps a copy of the conversation."
+    : pendingApprovals.length
     ? "Respond to Codex below to continue this chat."
     : session.status === "running" ? "Codex is working. Replies appear here as they arrive."
       : session.status === "offline" ? "Start the local Workflow Studio to reconnect to this chat."
@@ -94,8 +96,10 @@ function renderChat(session, pendingApprovals = []) {
           : "Codex replies appear here. Send your next instruction below.";
   const desktopLink = $("#chat-desktop-link");
   desktopLink.hidden = !session.threadId;
-  if (session.threadId) desktopLink.href = `codex://threads/${encodeURIComponent(session.threadId)}`;
-  const canSend = !["running", "connecting", "offline"].includes(session.status);
+  desktopLink.disabled = !session.threadId || ["connecting", "offline"].includes(session.status);
+  desktopLink.textContent = session.mode === "desktop" ? "Open Codex ↗" : "Continue in Codex ↗";
+  $("#stop-chat").hidden = session.status !== "running" || session.mode === "desktop";
+  const canSend = session.mode !== "desktop" && !["running", "connecting", "offline"].includes(session.status);
   $("#followup").disabled = !canSend;
   $("#send-followup").disabled = !canSend;
   $("#chat-error").hidden = !session.error;
@@ -236,7 +240,7 @@ function renderChatList() {
     const title = document.createElement("strong");
     title.textContent = chat.title.replace(/\s+/g, " ").trim();
     const detail = document.createElement("small");
-    detail.textContent = `${new Date(chat.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })} · ${chat.status}`;
+    detail.textContent = `${new Date(chat.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", minute: "2-digit" })} · ${chat.mode === "desktop" ? "in Codex" : chat.status}`;
     button.append(title, detail);
     button.addEventListener("click", () => {
       selectChat({ id: chat.id, status: "connecting", messages: [] });
@@ -319,9 +323,51 @@ $("#new-chat").addEventListener("click", () => {
   $("#instructions").focus();
 });
 
+$("#stop-chat").addEventListener("click", async () => {
+  if (!activeSession || activeSession.status !== "running") return;
+  const id = activeSession.id;
+  $("#stop-chat").disabled = true;
+  try {
+    await hostedApi(`/sessions/${encodeURIComponent(id)}/interrupt`, {
+      method: "POST", body: "{}"
+    });
+    showToast("Stopping the current Codex run…");
+    void refreshChat();
+  } catch (error) {
+    showToast(error.message);
+  } finally {
+    $("#stop-chat").disabled = false;
+  }
+});
+
+$("#chat-desktop-link").addEventListener("click", async () => {
+  if (!activeSession?.threadId) return;
+  if (activeSession.status === "running" && activeSession.mode !== "desktop") {
+    showToast("Finish this run or choose Stop run before continuing in Codex desktop.");
+    return;
+  }
+  const id = activeSession.id;
+  const button = $("#chat-desktop-link");
+  button.disabled = true;
+  try {
+    if (activeSession.mode !== "desktop") {
+      const result = await hostedApi(`/sessions/${encodeURIComponent(id)}/handoff`, {
+        method: "POST", body: "{}"
+      });
+      if (activeSession?.id === id) selectChat(result.session);
+      void loadChats();
+    }
+    window.location.href = `codex://threads/${encodeURIComponent(activeSession.threadId)}`;
+  } catch (error) {
+    showToast(error.message);
+  } finally {
+    button.disabled = false;
+  }
+});
+
 $("#followup-form").addEventListener("submit", async event => {
   event.preventDefault();
-  if (!activeSession || ["running", "connecting", "offline"].includes(activeSession.status)) return;
+  if (!activeSession || activeSession.mode === "desktop" || ["running", "connecting", "offline"].includes(activeSession.status)) return;
   const text = $("#followup").value.trim();
   if (!text) return;
   const id = activeSession.id;

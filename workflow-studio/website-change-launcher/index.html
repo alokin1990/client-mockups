@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f5">
   <title>Workflow Studio — GSC test</title>
   <meta name="description" content="Open a local Codex chat with a prepared GSC data request.">
-  <link rel="stylesheet" href="./style.css?v=chat-2">
-  <script type="module" src="./app.js?v=chat-2"></script>
+  <link rel="stylesheet" href="./style.css?v=handoff-1">
+  <script type="module" src="./app.js?v=handoff-1"></script>
 </head>
 <body>
   <div class="shell">
@@ -39,11 +39,11 @@
             <a id="open-codex" class="secondary-action" href="codex://threads/new">Open draft only</a>
             <button id="copy-prompt" class="secondary-action" type="button">Copy instructions</button>
           </div>
-          <p class="note">Codex runs through <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">Workflow Studio on this computer</a>. Replies and follow-up instructions stay in this chat.</p>
+          <p class="note">Codex runs through <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">Workflow Studio on this computer</a>. Send follow-up instructions here, or hand a finished chat to Codex desktop and keep its history visible on this page.</p>
         </section>
 
         <section id="chat-card" class="card chat-card" hidden>
-          <div class="chat-header"><div><h2>Current chat</h2><p id="chat-help">Codex replies appear here. Send your next instruction below.</p></div><div class="chat-actions"><span id="chat-status" class="chat-status">Connecting</span><a id="chat-desktop-link" href="#">Open in Codex ↗</a><button id="new-chat" class="secondary-action" type="button">New chat</button></div></div>
+          <div class="chat-header"><div><h2>Current chat</h2><p id="chat-help">Codex replies appear here. Send your next instruction below.</p></div><div class="chat-actions"><span id="chat-status" class="chat-status">Connecting</span><button id="stop-chat" class="secondary-action" type="button" hidden>Stop run</button><button id="chat-desktop-link" class="secondary-action" type="button">Continue in Codex ↗</button><button id="new-chat" class="secondary-action" type="button">New chat</button></div></div>
           <div id="chat-messages" class="chat-messages" role="log" aria-live="polite"></div>
           <div id="chat-approval" class="chat-approval" hidden></div>
           <p id="chat-error" class="chat-error" hidden></p>
