@@ -2,6 +2,7 @@ import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt, codexLaunchUrl }
 
 const $ = selector => document.querySelector(selector);
 const STORAGE_KEY = "workflow-studio.gsc-test.v1";
+const LOCAL_RUN_URL = "http://127.0.0.1:4177/api/hosted/runs";
 let workflow = { ...DEFAULT_WORKFLOW };
 let draft = INITIAL_INSTRUCTIONS;
 
@@ -55,6 +56,40 @@ function updateLink() {
 $("#instructions").addEventListener("input", () => {
   updateLink();
   save();
+});
+
+$("#run-now").addEventListener("click", async () => {
+  let prompt;
+  try { prompt = composePrompt(workflow.template, $("#instructions").value); }
+  catch (error) {
+    $("#instructions").focus();
+    return showToast(error.message);
+  }
+  const button = $("#run-now");
+  button.disabled = true;
+  button.textContent = "Starting Codex…";
+  $("#run-result").hidden = true;
+  save();
+  try {
+    const response = await fetch(LOCAL_RUN_URL, {
+      method: "POST",
+      headers: { "content-type": "application/json", "x-workflow-studio": "run" },
+      body: JSON.stringify({ prompt, path: workflow.path })
+    });
+    const result = await response.json();
+    if (!response.ok) throw new Error(result.error || "Could not start Codex.");
+    $("#running-chat").href = result.desktopUrl;
+    $("#run-result").hidden = false;
+    showToast("Codex started the chat. No second Send is needed.");
+    window.location.href = result.desktopUrl;
+  } catch (error) {
+    showToast(error instanceof TypeError
+      ? "Start the local Workflow Studio, then allow local network access for this site."
+      : error.message);
+  } finally {
+    button.disabled = false;
+    button.innerHTML = '<span>✦</span> Run now in Codex <span class="arrow">↗</span>';
+  }
 });
 
 $("#open-codex").addEventListener("click", event => {

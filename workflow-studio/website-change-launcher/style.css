@@ -43,8 +43,11 @@ h2{letter-spacing:-.04em}
 .primary-action:hover{background:#24633f}
 .secondary-action{background:white;color:#2b5939;border:1px solid #ccdacf}
 .secondary-action:hover{background:#f3f8f3}
+.primary-action:disabled{opacity:.65;cursor:wait}
 .arrow{margin-left:12px}
 .note{font-size:11px;color:#9aa59c;margin:17px 0 0;line-height:1.6}
+.note a,.run-result a{color:#206443;font-weight:700}
+.run-result{margin:16px 0 0;padding:12px 14px;border-radius:8px;background:#e8f5e9;color:#22563a;font-size:12px}
 .preview{margin-top:21px;border:1px solid #e3e9e1;border-radius:10px;background:#fff;overflow:hidden}
 .preview summary{cursor:pointer;padding:15px 19px;font-size:12px;font-weight:700;color:#5f7565}
 .preview pre{margin:0;border-top:1px solid #e9eee8;background:#fbfcfa;padding:19px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 'Segoe UI',system-ui,sans-serif;color:#4b5a4e}

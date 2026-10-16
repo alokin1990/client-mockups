@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f5">
   <title>Workflow Studio — GSC test</title>
   <meta name="description" content="Open a local Codex chat with a prepared GSC data request.">
-  <link rel="stylesheet" href="./style.css">
-  <script type="module" src="./app.js?v=gsc-28d"></script>
+  <link rel="stylesheet" href="./style.css?v=run-now-1">
+  <script type="module" src="./app.js?v=run-now-1"></script>
 </head>
 <body>
   <div class="shell">
@@ -33,10 +33,12 @@
           <textarea id="instructions" rows="8" maxlength="8000" placeholder="Enter the instructions you want to run in Codex."></textarea>
           <div class="workspace-row"><span class="folder-icon">▤</span><span>Workspace</span><strong id="workspace-display">Choose in Codex</strong></div>
           <div class="actions">
-            <a id="open-codex" class="primary-action" href="codex://threads/new"><span>✦</span> Open in Codex <span class="arrow">↗</span></a>
+            <button id="run-now" class="primary-action" type="button"><span>✦</span> Run now in Codex <span class="arrow">↗</span></button>
+            <a id="open-codex" class="secondary-action" href="codex://threads/new">Open draft only</a>
             <button id="copy-prompt" class="secondary-action" type="button">Copy instructions</button>
           </div>
-          <p class="note">Codex opens a new chat with the text filled in. Press <strong>Send</strong> in Codex to start the agent.</p>
+          <p class="note"><strong>Run now</strong> starts the chat through <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">Workflow Studio running on this computer</a>. Your browser may ask to allow local network access or open Codex. <strong>Open draft only</strong> fills a new Codex chat for you to send later.</p>
+          <p id="run-result" class="run-result" hidden>Chat started. <a id="running-chat" href="#">Open the running chat in Codex ↗</a></p>
         </section>
 
         <details class="preview">
