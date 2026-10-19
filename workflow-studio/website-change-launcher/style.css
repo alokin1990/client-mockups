@@ -68,20 +68,7 @@ h2{letter-spacing:-.04em}
 .chat-message .who{font-size:10px;font-weight:800;color:#558064;margin-bottom:5px}
 .chat-message .text{font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
 .chat-empty{margin:auto;color:#96a39a;font-size:12px}
-.chat-approval{margin-top:16px;padding:16px;border:1px solid #e6d9a8;border-radius:10px;background:#fffaf0;color:#554a2a;font-size:12px}
-.chat-approval strong{display:block;font-size:13px}
-.chat-approval p{margin:8px 0 12px;line-height:1.5;white-space:pre-wrap;overflow-wrap:anywhere}
-.chat-approval label{display:block;margin:10px 0;font-weight:700}
-.chat-approval input{display:block;width:100%;margin-top:5px;padding:10px;border:1px solid #d9cfac;border-radius:7px;background:#fff}
-.chat-approval button{margin-right:8px}
 .chat-error{color:#a44037;background:#fff0ed;border-radius:8px;padding:11px 14px;font-size:12px}
-.followup-form{margin-top:20px}
-.followup-form label{display:block;font-size:12px;font-weight:800;color:#4c6953;margin-bottom:8px}
-.followup-form textarea{display:block;width:100%;resize:vertical;padding:13px 15px;border:1px solid #dfe7dd;border-radius:9px;background:#fff;color:#27362b;line-height:1.5;outline:none}
-.followup-form textarea:focus{border-color:#67aa7c;box-shadow:0 0 0 3px #d9eede}
-.followup-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:10px}
-.followup-actions span{font-size:10px;color:#9aa59c}
-.followup-form textarea:disabled{background:#f4f6f2}
 .preview{margin-top:21px;border:1px solid #e3e9e1;border-radius:10px;background:#fff;overflow:hidden}
 .preview summary{cursor:pointer;padding:15px 19px;font-size:12px;font-weight:700;color:#5f7565}
 .preview pre{margin:0;border-top:1px solid #e9eee8;background:#fbfcfa;padding:19px;white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.65 'Segoe UI',system-ui,sans-serif;color:#4b5a4e}

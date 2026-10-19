@@ -14,12 +14,3 @@ export function composePrompt(template, instructions) {
   if (!change) throw new Error("Enter instructions first.");
   return template.replaceAll(slot, change);
 }
-
-export function codexLaunchUrl(prompt, workspacePath = "") {
-  const text = prompt.trim();
-  if (!text) throw new Error("Instructions are required.");
-  const parts = [`prompt=${encodeURIComponent(text)}`];
-  const localPath = workspacePath.trim();
-  if (localPath) parts.push(`path=${encodeURIComponent(localPath)}`);
-  return `codex://new?${parts.join("&")}`;
-}

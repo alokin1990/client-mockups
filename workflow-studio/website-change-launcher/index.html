@@ -6,8 +6,8 @@
   <meta name="theme-color" content="#f7f8f5">
   <title>Workflow Studio — GSC test</title>
   <meta name="description" content="Open a local Codex chat with a prepared GSC data request.">
-  <link rel="stylesheet" href="./style.css?v=desktop-review-1">
-  <script type="module" src="./app.js?v=desktop-review-1"></script>
+  <link rel="stylesheet" href="./style.css?v=auto-run-1">
+  <script type="module" src="./app.js?v=auto-run-1"></script>
 </head>
 <body>
   <div class="shell">
@@ -30,15 +30,15 @@
         <p class="intro" id="description">Start a Codex chat with a ready-to-run GSC data request.</p>
 
         <section id="start-card" class="card">
-          <div class="card-head"><div><h2>Prepare a Codex chat</h2><p>Edit the instruction, then open it in Codex desktop.</p></div></div>
+          <div class="card-head"><div><h2>Start a Codex chat</h2><p>Edit the instruction, then start the work with one click.</p></div></div>
           <label class="visually-hidden" for="instructions">Codex instructions</label>
           <textarea id="instructions" rows="8" maxlength="8000" placeholder="Enter the instructions you want to run in Codex."></textarea>
           <div class="workspace-row"><span class="folder-icon">▤</span><span>Workspace</span><strong id="workspace-display">Choose in Codex</strong></div>
           <div class="actions">
-            <a id="run-now" class="primary-action" href="codex://threads/new"><span>✦</span> Send to Codex <span class="arrow">↗</span></a>
+            <button id="run-now" class="primary-action" type="button"><span>✦</span> Send to Codex <span class="arrow">↗</span></button>
             <button id="copy-prompt" class="secondary-action" type="button">Copy instructions</button>
           </div>
-          <p class="note">Codex opens with the instruction ready. Press <strong>Send</strong> in Codex to start, then continue the entire conversation there. This page shows a read-only copy of the chat when <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">the local review service</a> is running.</p>
+          <p class="note">The <a href="http://127.0.0.1:4177/" target="_blank" rel="noopener">local Workflow Studio service</a> starts the first instruction and opens the chat in Codex when it is ready for your follow-ups. This page keeps a read-only copy.</p>
         </section>
 
         <section id="chat-card" class="card chat-card" hidden>

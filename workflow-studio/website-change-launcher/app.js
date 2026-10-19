@@ -1,4 +1,4 @@
-import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt, codexLaunchUrl } from "./logic.mjs?v=desktop-review-1";
+import { DEFAULT_WORKFLOW, INITIAL_INSTRUCTIONS, composePrompt } from "./logic.mjs?v=auto-run-1";
 
 const $ = selector => document.querySelector(selector);
 const STORAGE_KEY = "workflow-studio.gsc-test.v1";
@@ -10,6 +10,8 @@ let activeSession = null;
 let chats = [];
 let refreshingChat = false;
 let renderedMessages = "";
+let pendingAutoOpenId = null;
+const openedChats = new Set();
 
 try {
   const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "null");
@@ -35,14 +37,11 @@ function showToast(message) {
 function updateLink() {
   draft = $("#instructions").value;
   let preview = "Add instructions above to preview the complete prompt.";
-  let url = "codex://threads/new";
   try {
     const prompt = composePrompt(workflow.template, draft);
     preview = prompt;
-    url = codexLaunchUrl(prompt, workflow.path);
   } catch {}
   $("#prompt-preview").textContent = preview;
-  $("#run-now").href = url;
 }
 
 function render() {
@@ -88,7 +87,7 @@ function renderChatList() {
     const title = document.createElement("strong");
     title.textContent = chat.title.replace(/\s+/g, " ").trim();
     const detail = document.createElement("small");
-    detail.textContent = `${new Date(chat.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", minute: "2-digit" })} · ${chat.status === "waitingToSend" ? "waiting for Send" : "in Codex"}`;
+    detail.textContent = `${new Date(chat.createdAt).toLocaleString(undefined, { month: "short", day: "numeric", minute: "2-digit" })} · ${chat.status === "running" ? "working" : "in Codex"}`;
     button.append(title, detail);
     button.addEventListener("click", () => {
       selectChat({ id: chat.id, status: "connecting", mode: "desktop", messages: [] });
@@ -104,16 +103,19 @@ function renderChat(session) {
   $("#start-card").hidden = true;
   $("#prompt-preview-card").hidden = true;
   $("#chat-card").hidden = false;
-  $("#chat-status").textContent = session.status === "waitingToSend" ? "Waiting for Send"
-    : session.status === "workingInCodex" ? "Codex working"
-      : session.status === "offline" ? "Review offline" : "In Codex";
-  $("#chat-help").textContent = session.status === "waitingToSend"
-    ? "Press Send in the new Codex chat. Its conversation will appear here for review."
-    : session.status === "offline"
-      ? "Start the local review service to refresh this read-only copy. Continue in Codex."
+  $("#chat-status").textContent = session.status === "offline" ? "Review offline"
+    : session.status === "running" ? "Codex working"
+      : session.autoOpen && !session.desktopReady ? "Opening Codex soon"
+        : session.status === "workingInCodex" ? "Codex working" : "In Codex";
+  $("#chat-help").textContent = session.status === "offline"
+    ? "Start the local review service to refresh this read-only copy. Continue in Codex."
+    : session.status === "running"
+    ? "The first instruction is running. Codex desktop will open when the chat is ready for follow-ups."
+    : session.autoOpen && !session.desktopReady
+      ? "Finishing the first turn and releasing this chat to Codex desktop."
       : "Continue in Codex desktop. This page shows a read-only copy of the conversation.";
   const link = $("#chat-desktop-link");
-  link.hidden = !session.threadId;
+  link.hidden = !session.threadId || (session.autoOpen && !session.desktopReady);
   if (session.threadId) link.href = `codex://threads/${encodeURIComponent(session.threadId)}`;
   $("#chat-error").hidden = !session.error;
   $("#chat-error").textContent = session.error || "";
@@ -139,15 +141,18 @@ function renderChat(session) {
     if (!messages.childElementCount) {
       const empty = document.createElement("p");
       empty.className = "chat-empty";
-      empty.textContent = session.status === "waitingToSend"
-        ? "Waiting for the first message to be sent in Codex…"
-        : "No messages to show yet.";
+      empty.textContent = session.status === "running" ? "Codex is starting…" : "No messages to show yet.";
       messages.append(empty);
     }
     renderedMessages = signature;
     if (nearBottom) messages.scrollTop = messages.scrollHeight;
   }
   if (changedChat) renderChatList();
+  if (session.id === pendingAutoOpenId && session.desktopReady && session.threadId && !openedChats.has(session.id)) {
+    openedChats.add(session.id);
+    pendingAutoOpenId = null;
+    window.location.href = link.href;
+  }
 }
 
 function selectChat(session) {
@@ -198,28 +203,33 @@ async function refreshChat() {
 
 $("#instructions").addEventListener("input", () => { updateLink(); save(); });
 
-$("#run-now").addEventListener("click", event => {
+$("#run-now").addEventListener("click", async () => {
   let prompt;
   try { prompt = composePrompt(workflow.template, $("#instructions").value); }
   catch (error) {
-    event.preventDefault();
     $("#instructions").focus();
     return showToast(error.message);
   }
-  $("#run-now").href = codexLaunchUrl(prompt, workflow.path);
   save();
-  // The link opens Codex directly. This request only registers a read-only review record.
-  void hostedApi("/launches", {
-    method: "POST", keepalive: true,
-    body: JSON.stringify({ prompt, path: workflow.path })
-  }).then(result => {
+  const button = $("#run-now");
+  button.disabled = true;
+  button.textContent = "Starting Codex…";
+  try {
+    const result = await hostedApi("/runs", {
+      method: "POST", body: JSON.stringify({ prompt, path: workflow.path })
+    });
+    pendingAutoOpenId = result.session.id;
     selectChat(result.session);
     void loadChats();
-  }).catch(error => {
+    void refreshChat();
+  } catch (error) {
     showToast(error instanceof TypeError
-      ? "Codex opened, but chat review needs the local service and browser local-network access."
+      ? "Start the local Workflow Studio service and allow this site to use the local network."
       : error.message);
-  });
+  } finally {
+    button.disabled = false;
+    button.innerHTML = '<span>✦</span> Send to Codex <span class="arrow">↗</span>';
+  }
 });
 
 $("#new-chat").addEventListener("click", () => {
