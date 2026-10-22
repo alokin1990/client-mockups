@@ -1,0 +1,70 @@
+@font-face {
+  font-family: Nunito;
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../assets/nunito-latin.woff2') format('woff2');
+}
+:root { --review-ink: #234743; --review-muted: #66756c; --review-accent: #e14b26; --paper: #eef1ed; --note-size: 274px; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--paper); color: var(--review-ink); font: 15px/1.55 'Avenir Next', Avenir, Nunito, sans-serif; }
+button, a { -webkit-tap-highlight-color: transparent; }
+button { font: inherit; }
+button, .review-controls a { cursor: pointer; }
+a { color: inherit; text-underline-offset: 4px; }
+button:focus-visible, a:focus-visible { outline: 3px solid #896031; outline-offset: 5px; }
+.review-skip { position: absolute; top: -80px; left: 16px; z-index: 100; padding: 12px; background: #fff; }
+.review-skip:focus { top: 10px; }
+.review-toolbar { position: sticky; top: 0; z-index: 60; display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 95px; padding: 18px 32px; border-bottom: 1px solid #23474320; background: #f7f8f2f0; backdrop-filter: blur(14px); }
+.review-title { min-width: 0; }
+.review-title p { margin: 0 0 3px; color: var(--review-muted); font-size: 11px; letter-spacing: .1em; text-transform: uppercase; font-weight: 600; }
+.review-title h1 { margin: 0; font-size: clamp(19px, 1.7vw, 25px); line-height: 1.3; font-weight: 600; letter-spacing: -.025em; }
+.review-controls { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.review-controls button, .review-controls a { min-height: 44px; border: 0; border-radius: 24px; color: var(--review-ink); background: transparent; font-size: 13px; white-space: nowrap; }
+.review-controls > button { padding: 0 16px; border: 1px solid #23474338; }
+.review-controls > button:hover { background: #fff9; }
+.review-controls a { display: inline-flex; gap: 6px; align-items: center; }
+.note-navigation { display: flex; align-items: center; gap: 7px; }
+.note-navigation button { width: 44px; font-size: 19px; }
+.note-navigation button:hover { background: #2347430a; }
+#note-count { min-width: 50px; text-align: center; font-size: 11px; letter-spacing: .04em; }
+.review-intro { max-width: 1676px; margin: 22px auto 16px; padding: 0 32px; font-size: 13px; color: var(--review-muted); }
+#homepage-frame { display: block; width: 100%; height: 850px; border: 0; background: #fff; }
+.review-stage { position: relative; width: 100%; max-width: 1740px; margin: 0 auto; min-height: 700px; isolation: isolate; }
+.review-notes { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.review-note { position: absolute; right: 34px; width: var(--note-size); height: var(--note-size); padding: 35px 33px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 11px; border: 2px solid var(--review-accent); border-radius: 50%; background: #fff9e9d6; backdrop-filter: blur(4px); color: var(--review-ink); box-shadow: 0 9px 27px #102f3024; text-align: center; pointer-events: auto; z-index: 3; transform: rotate(-1deg); transition: background .18s, box-shadow .18s; }
+.review-note[data-side="left"] { right: auto; left: 34px; }
+.review-note:nth-child(even) { transform: rotate(1.2deg); }
+.review-note:nth-child(3n) { background: #e3f1eadb; }
+.review-note:hover, .review-note:focus-visible, .review-note.is-current { background: #fff9e9ed; box-shadow: 0 12px 32px #e14b2629; border-color: #c33d1c; }
+.note-number { display: block; font-size: 10px; line-height: 1.4; font-weight: 600; color: #687b6b; letter-spacing: .045em; }
+.review-note strong { display: block; font-size: 17px; font-weight: 600; line-height: 1.25; letter-spacing: -.02em; }
+.note-copy { display: block; font-size: 13px; line-height: 1.48; font-weight: 400; }
+.review-connectors { position: absolute; inset: 0 auto auto 0; z-index: 2; pointer-events: none; overflow: visible; color: var(--review-accent); }
+.review-connectors .connector { fill: none; stroke: currentColor; stroke-width: 3; stroke-linecap: round; opacity: .94; filter: drop-shadow(0 1px 1px #fff8); }
+.review-connectors .connector.is-current { stroke-width: 3.8; opacity: 1; }
+.review-connectors circle { fill: var(--review-accent); stroke: #fff8ee; stroke-width: 2px; }
+.review-outcome { max-width: 1740px; margin: 0 auto; padding: 34px 32px 42px; color: var(--review-muted); font-size: 13px; text-align: center; }
+.review-noscript { padding: 20px 32px; }
+.notes-hidden .review-note, .notes-hidden .review-connectors { visibility: hidden; }
+[hidden] { display: none !important; }
+@media (min-width: 1700px) { :root { --note-size: 292px; } .review-note { padding: 40px 36px; } .note-copy { font-size: 14px; } }
+@media (max-width: 1050px) and (min-width: 861px) { :root { --note-size: 248px; } .review-note { right: 24px; padding: 30px; gap: 9px; } .review-note[data-side="left"] { left: 24px; } .review-note strong { font-size: 16px; } .note-copy { font-size: 12px; } .review-toolbar { padding-inline: 20px; gap: 14px; } .review-controls { gap: 10px; } }
+@media (max-width: 860px) {
+  .review-toolbar { padding: 12px 16px; gap: 8px; flex-wrap: wrap; }
+  .review-title { width: 100%; }
+  .review-title h1 { font-size: 20px; }
+  .review-controls { width: 100%; justify-content: space-between; gap: 12px; }
+  .review-controls > button { padding-inline: 12px; }
+  .review-intro { margin: 15px 0; padding-inline: 16px; font-size: 12px; }
+  .review-stage { width: 100%; isolation: auto; }
+  .review-notes { position: static; }
+  .review-note, .review-note[data-side="left"] { position: fixed; inset: auto 14px 18px auto; width: 230px; height: 230px; padding: 29px; gap: 8px; z-index: 50; }
+  .review-note strong { font-size: 15px; }
+  .note-copy { font-size: 11.8px; line-height: 1.42; }
+  .note-number { font-size: 9px; }
+  .review-connectors { position: fixed; inset: 0; z-index: 45; }
+  .review-outcome { padding: 28px 20px 280px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition: none !important; } }
