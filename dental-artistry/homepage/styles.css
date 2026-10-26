@@ -217,7 +217,7 @@ p{max-width:72ch}
 .section-intro[data-revealed="true"],.reason-card[data-revealed="true"],.care-card[data-revealed="true"],.provider-card[data-revealed="true"],.recognition-gallery figure[data-revealed="true"],.tour-photo[data-revealed="true"],.office-card[data-revealed="true"]{animation:soft-rise .48s ease-out}
 @keyframes soft-rise{from{opacity:.76;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .office-card-copy{padding:clamp(26px,3vw,40px)}
-.office-tag{display:inline-block;padding:6px 10px;background:#d7eef6;color:#004b67;font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+.office-tag{display:inline-block;padding:6px 10px;background:#d7eef6;color:#004b67;font-size:.544rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
 .office-card h3{margin:18px 0 12px}
 .office-card .office-service-copy{margin:0 0 19px;color:#244454;font-size:.97rem;line-height:1.58}
 .office-card address{font-style:normal;font-weight:600;line-height:1.6}
