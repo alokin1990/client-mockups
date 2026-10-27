@@ -294,3 +294,16 @@ footer { padding: 2rem 0; color: #b9beb7; background: #06170d; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; }
 }
+
+.biologic-section { background: #f4f5ef; }
+.biologic-grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 1.4rem; }
+.biologic-grid .icon-card { grid-column: span 2; min-height: 0; }
+.biologic-grid .icon-card:nth-last-child(-n+2) { grid-column: span 3; }
+.biologic-grid .card-kicker { color: var(--teal); }
+.doctor-credentials { padding-top: 1rem; border-top: 1px solid var(--line); }
+@media (max-width: 980px) { .biologic-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .biologic-grid .icon-card, .biologic-grid .icon-card:nth-last-child(-n+2) { grid-column: auto; } .biologic-grid .icon-card:last-child { grid-column: 1 / -1; } }
+@media (max-width: 700px) { .biologic-grid { grid-template-columns: 1fr; } [data-viewport-hero][data-hero-density="tight"] .trust-list { display: grid; } }
+
+.biologic-section .center-heading > p:not(.eyebrow) { color: var(--muted); }
+.faq-list summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; overflow-wrap: anywhere; }
+.faq-list summary span { align-self: center; width: 1.35rem; height: 1.35rem; line-height: 1; text-align: center; }
