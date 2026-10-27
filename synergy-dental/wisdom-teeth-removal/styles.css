@@ -307,3 +307,9 @@ footer { padding: 2rem 0; color: #b9beb7; background: #06170d; }
 .biologic-section .center-heading > p:not(.eyebrow) { color: var(--muted); }
 .faq-list summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; overflow-wrap: anywhere; }
 .faq-list summary span { align-self: center; width: 1.35rem; height: 1.35rem; line-height: 1; text-align: center; }
+
+/* Small, consistent line icons replace numbered markers. */
+.care-icon { display: block; width: 24px; height: 24px; flex: none; }
+.mini-steps .care-icon { width: 17px; height: 17px; }
+.strip-grid .care-marker { display: grid; place-items: center; width: 26px; height: 30px; }
+.process-grid .care-marker { display: grid; place-items: center; width: 44px; height: 44px; margin-bottom: 2rem; border: 1px solid #bfd39e; border-radius: 50%; }
