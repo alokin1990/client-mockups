@@ -1,0 +1,23 @@
+/*
+ * Apply data-containment="strict" to a visual surface whose text and media
+ * must remain inside its own border box. The visual-quality gate verifies it.
+ */
+[data-containment="strict"] {
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+[data-containment="strict"] > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+[data-containment="strict"] :where(img, picture, video, svg, canvas, iframe) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+[data-containment="strict"] :where(h1, h2, h3, h4, p, li, a, figcaption) {
+  overflow-wrap: anywhere;
+}

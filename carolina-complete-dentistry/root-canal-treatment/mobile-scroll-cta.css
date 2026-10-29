@@ -1,0 +1,35 @@
+/* Mobile CTA appears only after the in-hero actions leave the viewport. */
+[data-mobile-scroll-cta] {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  [data-mobile-scroll-cta] {
+    position: fixed;
+    z-index: 120;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 0.45rem;
+    visibility: hidden;
+    opacity: 0;
+    background: var(--ink);
+    box-shadow: 0 -10px 30px rgba(37, 40, 34, 0.2);
+    pointer-events: none;
+    transform: translateY(calc(100% + 1rem));
+    transition:
+      opacity 180ms ease,
+      transform 180ms ease,
+      visibility 0s linear 180ms;
+  }
+
+  [data-mobile-scroll-cta].is-visible {
+    visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    transition-delay: 0s;
+  }
+}
